@@ -258,6 +258,10 @@ def parse_args():
     parser.add_argument("--device", type=str, default="cuda")
     parser.add_argument("--nms-iou", type=float, default=0.8,
                         help="NMS IoU threshold for candidate box dedup")
+    parser.add_argument("--pred-nms-iou", type=float, default=0.8,
+                        help="NMS IoU threshold for final prediction dedup")
+    parser.add_argument("--max-samples", type=int, default=None,
+                        help="Limit number of samples per subset (for quick testing)")
     parser.add_argument("--output-json", type=str, default=None,
                         help="Save predictions as JSON")
     parser.add_argument("--debug", action="store_true",
@@ -305,7 +309,8 @@ def main():
 
     for subset in subsets:
         t0_ds = time.time()
-        dataset = DatasetRF20VL(args.data_path, subset, query_split=args.split)
+        dataset = DatasetRF20VL(args.data_path, subset, query_split=args.split,
+                                max_samples=args.max_samples)
         t_ds = time.time() - t0_ds
         log.info("Dataset loaded: subset=%s, samples=%d, categories=%s (%.2f s)",
                  subset, len(dataset), dataset.categories, t_ds)
@@ -368,6 +373,10 @@ def main():
             for pt in pred_types:
                 boxes = result[f"{pt}_boxes"].cpu()
                 scores = result[f"{pt}_scores"].cpu()
+                if boxes.numel() > 0 and args.pred_nms_iou < 1.0:
+                    keep = nms(boxes, scores, args.pred_nms_iou)
+                    boxes = boxes[keep]
+                    scores = scores[keep]
                 submission.add(pt, subset, img_id, class_id, boxes, scores)
 
             t_sample = time.time() - t0_sample
@@ -405,9 +414,11 @@ def main():
                 if metrics:
                     coco_results[subset][pt] = metrics
                     log.info("  [%s] AP=%.4f  AP50=%.4f  AP75=%.4f  "
-                             "AP_s=%.4f  AP_m=%.4f  AP_l=%.4f",
+                             "AP_s=%.4f  AP_m=%.4f  AP_l=%.4f  "
+                             "AR_1=%.4f  AR_10=%.4f  AR_100=%.4f",
                              pt, metrics["AP"], metrics["AP_50"], metrics["AP_75"],
-                             metrics["AP_small"], metrics["AP_medium"], metrics["AP_large"])
+                             metrics["AP_small"], metrics["AP_medium"], metrics["AP_large"],
+                             metrics["AR_1"], metrics["AR_10"], metrics["AR_100"])
                 else:
                     log.info("  [%s] No predictions for COCO eval.", pt)
         else:

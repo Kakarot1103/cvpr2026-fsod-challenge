@@ -15,7 +15,7 @@ from torch.utils.data import Dataset
 
 class DatasetRF20VL(Dataset):
 
-    def __init__(self, datapath, subset, query_split="test", transform=None):
+    def __init__(self, datapath, subset, query_split="test", transform=None, max_samples=None):
         self.datapath = datapath
         self.subset = subset
         self.query_split = query_split
@@ -55,6 +55,8 @@ class DatasetRF20VL(Dataset):
 
         # Build ordered index: [(cat_id, img_id), ...] sorted by cat_id then img_id
         self.index = sorted(self.query_bboxes.keys(), key=lambda x: (x[0], x[1]))
+        if max_samples is not None and max_samples > 0:
+            self.index = self.index[:max_samples]
 
     def __len__(self):
         return len(self.index)

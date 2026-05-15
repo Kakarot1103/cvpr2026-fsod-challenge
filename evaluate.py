@@ -108,7 +108,6 @@ def main():
     print("=" * 90)
 
     all_results = {}
-    all_ap50 = []
 
     for pkl_file in pkl_files:
         subset = os.path.splitext(pkl_file)[0]
@@ -124,23 +123,29 @@ def main():
 
         if metrics:
             all_results[subset] = metrics
-            all_ap50.append(metrics["AP_50"])
             print(f"  [{subset}] AP={metrics['AP']:.4f}  AP50={metrics['AP_50']:.4f}  "
-                  f"AP75={metrics['AP_75']:.4f}  AR100={metrics['AR_100']:.4f}  "
+                  f"AP75={metrics['AP_75']:.4f}  "
+                  f"AR_1={metrics['AR_1']:.4f}  AR_10={metrics['AR_10']:.4f}  AR_100={metrics['AR_100']:.4f}  "
                   f"preds={len(predictions)}")
         else:
             print(f"  [{subset}] SKIP — no predictions")
 
     # Summary
     print("=" * 90)
-    if all_ap50:
+    if all_results:
         mean_ap = np.mean([m["AP"] for m in all_results.values()])
-        mean_ap50 = np.mean(all_ap50)
+        mean_ap50 = np.mean([m["AP_50"] for m in all_results.values()])
         mean_ap75 = np.mean([m["AP_75"] for m in all_results.values()])
+        mean_ar1 = np.mean([m["AR_1"] for m in all_results.values()])
+        mean_ar10 = np.mean([m["AR_10"] for m in all_results.values()])
+        mean_ar100 = np.mean([m["AR_100"] for m in all_results.values()])
         print(f"  Evaluated {len(all_results)} subsets")
-        print(f"  Mean AP   = {mean_ap:.4f}")
-        print(f"  Mean AP50 = {mean_ap50:.4f}")
-        print(f"  Mean AP75 = {mean_ap75:.4f}")
+        print(f"  Mean AP    = {mean_ap:.4f}")
+        print(f"  Mean AP50  = {mean_ap50:.4f}")
+        print(f"  Mean AP75  = {mean_ap75:.4f}")
+        print(f"  Mean AR_1  = {mean_ar1:.4f}")
+        print(f"  Mean AR_10 = {mean_ar10:.4f}")
+        print(f"  Mean AR_100= {mean_ar100:.4f}")
     else:
         print("  No results to summarize.")
 
@@ -151,9 +156,12 @@ def main():
             "data_path": args.data_path,
             "split": args.split,
             "num_subsets_evaluated": len(all_results),
-            "mean_AP": float(mean_ap) if all_ap50 else None,
-            "mean_AP50": float(mean_ap50) if all_ap50 else None,
-            "mean_AP75": float(mean_ap75) if all_ap50 else None,
+            "mean_AP": float(mean_ap) if all_results else None,
+            "mean_AP50": float(mean_ap50) if all_results else None,
+            "mean_AP75": float(mean_ap75) if all_results else None,
+            "mean_AR_1": float(mean_ar1) if all_results else None,
+            "mean_AR_10": float(mean_ar10) if all_results else None,
+            "mean_AR_100": float(mean_ar100) if all_results else None,
             "per_subset": {k: {kk: round(vv, 6) for kk, vv in v.items()} for k, v in all_results.items()},
         }
         with open(args.output_json, "w") as f:
