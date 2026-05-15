@@ -4,3 +4,4 @@ submission/
 results/
 __pycache__/
 CLAUDE.md
+scripts/parallel/logs/
