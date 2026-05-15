@@ -1,0 +1,1516 @@
+
+CondaError: Run 'conda init' before 'conda activate'
+
+[GPU 0] Subsets 1-4 (4 tasks)
+
+>>>>>>>>>> [GPU 0] (1/4) actions-zzid2-zb1hq-fsod-amih <<<<<<<<<<
+/home/chenzhigang/anaconda3/envs/sam3/lib/python3.12/site-packages/torch/backends/__init__.py:46: UserWarning: Please use the new API settings to control TF32 behavior, such as torch.backends.cudnn.conv.fp32_precision = 'tf32' or torch.backends.cuda.matmul.fp32_precision = 'ieee'. Old settings, e.g, torch.backends.cuda.matmul.allow_tf32 = True, torch.backends.cudnn.allow_tf32 = True, allowTF32CuDNN() and allowTF32CuBLAS() will be deprecated after Pytorch 2.9. Please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:80.)
+  self.setter(val)
+17:39:43 [INFO] ============================================================
+17:39:43 [INFO] RF20VL Few-Shot Object Detection — Inference
+17:39:43 [INFO] ============================================================
+17:39:43 [INFO] Arguments: {'data_path': './data', 'split': 'test', 'subset': 'actions-zzid2-zb1hq-fsod-amih', 'device': 'cuda', 'nms_iou': 0.8, 'output_json': None, 'debug': False, 'no_vis': False}
+17:39:43 [INFO] Loading Sam3Segmenter on cuda ...
+17:40:08 [INFO] Model loaded in 25.10 s
+17:40:08 [INFO] Found 1 subset(s): ['actions-zzid2-zb1hq-fsod-amih']
+17:40:08 [INFO] Dataset loaded: subset=actions-zzid2-zb1hq-fsod-amih, samples=726, categories={1: 'Attack', 2: 'Block', 3: 'Defense', 4: 'Serve', 5: 'Set', 6: 'ball'} (0.21 s)
+17:40:16 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 1/726 | category=Attack | supports=10 | candidates=28 | visual=30 tv=25 text=0 | 7.01 s
+17:40:21 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 2/726 | category=Attack | supports=10 | candidates=15 | visual=15 tv=15 text=0 | 5.38 s
+17:40:27 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 3/726 | category=Attack | supports=10 | candidates=15 | visual=13 tv=13 text=0 | 5.33 s
+17:40:33 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 4/726 | category=Attack | supports=10 | candidates=17 | visual=18 tv=17 text=0 | 5.49 s
+17:40:38 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 5/726 | category=Attack | supports=10 | candidates=14 | visual=14 tv=13 text=0 | 5.26 s
+17:40:44 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 6/726 | category=Attack | supports=10 | candidates=19 | visual=20 tv=20 text=0 | 5.68 s
+17:40:50 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 7/726 | category=Attack | supports=10 | candidates=16 | visual=16 tv=16 text=0 | 5.44 s
+17:40:56 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 8/726 | category=Attack | supports=10 | candidates=19 | visual=17 tv=16 text=0 | 5.72 s
+17:41:03 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 9/726 | category=Attack | supports=10 | candidates=28 | visual=32 tv=30 text=0 | 6.33 s
+17:41:08 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 10/726 | category=Attack | supports=10 | candidates=11 | visual=12 tv=11 text=0 | 5.06 s
+17:41:14 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 11/726 | category=Attack | supports=10 | candidates=17 | visual=16 tv=16 text=0 | 5.53 s
+17:41:20 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 12/726 | category=Attack | supports=10 | candidates=15 | visual=15 tv=15 text=0 | 5.37 s
+17:41:25 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 13/726 | category=Attack | supports=10 | candidates=13 | visual=14 tv=13 text=0 | 5.21 s
+17:41:31 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 14/726 | category=Attack | supports=10 | candidates=22 | visual=21 tv=19 text=0 | 5.87 s
+17:41:37 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 15/726 | category=Attack | supports=10 | candidates=19 | visual=22 tv=19 text=0 | 5.63 s
+17:41:43 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 16/726 | category=Attack | supports=10 | candidates=17 | visual=19 tv=17 text=0 | 5.48 s
+17:41:48 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 17/726 | category=Attack | supports=10 | candidates=13 | visual=16 tv=13 text=0 | 5.21 s
+17:41:54 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 18/726 | category=Attack | supports=10 | candidates=19 | visual=18 tv=16 text=0 | 5.63 s
+17:42:00 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 19/726 | category=Attack | supports=10 | candidates=16 | visual=17 tv=16 text=0 | 5.41 s
+17:42:06 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 20/726 | category=Attack | supports=10 | candidates=16 | visual=15 tv=15 text=0 | 5.43 s
+17:42:11 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 21/726 | category=Attack | supports=10 | candidates=12 | visual=12 tv=12 text=0 | 5.13 s
+17:42:17 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 22/726 | category=Attack | supports=10 | candidates=20 | visual=21 tv=18 text=0 | 5.73 s
+17:42:23 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 23/726 | category=Attack | supports=10 | candidates=20 | visual=20 tv=20 text=0 | 5.72 s
+17:42:29 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 24/726 | category=Attack | supports=10 | candidates=18 | visual=18 tv=17 text=0 | 5.56 s
+17:42:35 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 25/726 | category=Attack | supports=10 | candidates=13 | visual=16 tv=15 text=0 | 5.21 s
+17:42:41 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 26/726 | category=Attack | supports=10 | candidates=28 | visual=27 tv=26 text=0 | 6.31 s
+17:42:47 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 27/726 | category=Attack | supports=10 | candidates=18 | visual=19 tv=18 text=0 | 5.56 s
+17:42:53 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 28/726 | category=Attack | supports=10 | candidates=21 | visual=20 tv=19 text=0 | 5.78 s
+17:43:00 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 29/726 | category=Attack | supports=10 | candidates=26 | visual=29 tv=25 text=0 | 6.17 s
+17:43:06 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 30/726 | category=Attack | supports=10 | candidates=19 | visual=20 tv=19 text=0 | 5.64 s
+17:43:12 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 31/726 | category=Attack | supports=10 | candidates=29 | visual=29 tv=29 text=0 | 6.37 s
+17:43:18 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 32/726 | category=Attack | supports=10 | candidates=15 | visual=20 tv=16 text=0 | 5.33 s
+17:43:24 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 33/726 | category=Attack | supports=10 | candidates=17 | visual=17 tv=17 text=0 | 5.47 s
+17:43:30 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 34/726 | category=Attack | supports=10 | candidates=25 | visual=27 tv=25 text=0 | 6.08 s
+17:43:36 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 35/726 | category=Attack | supports=10 | candidates=15 | visual=18 tv=18 text=0 | 5.34 s
+17:43:42 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 36/726 | category=Attack | supports=10 | candidates=23 | visual=27 tv=25 text=0 | 5.96 s
+17:43:48 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 37/726 | category=Attack | supports=10 | candidates=27 | visual=26 tv=23 text=0 | 6.27 s
+17:43:54 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 38/726 | category=Attack | supports=10 | candidates=13 | visual=13 tv=13 text=0 | 5.23 s
+17:44:00 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 39/726 | category=Attack | supports=10 | candidates=17 | visual=18 tv=17 text=0 | 5.52 s
+17:44:06 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 40/726 | category=Attack | supports=10 | candidates=19 | visual=19 tv=19 text=0 | 5.67 s
+17:44:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 41/726 | category=Attack | supports=10 | candidates=31 | visual=9 tv=7 text=0 | 6.59 s
+17:44:19 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 42/726 | category=Attack | supports=10 | candidates=22 | visual=24 tv=22 text=0 | 5.87 s
+17:44:24 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 43/726 | category=Attack | supports=10 | candidates=15 | visual=16 tv=16 text=0 | 5.39 s
+17:44:30 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 44/726 | category=Attack | supports=10 | candidates=16 | visual=17 tv=16 text=0 | 5.43 s
+17:44:36 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 45/726 | category=Attack | supports=10 | candidates=17 | visual=18 tv=17 text=0 | 5.52 s
+17:44:42 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 46/726 | category=Attack | supports=10 | candidates=18 | visual=20 tv=19 text=0 | 5.60 s
+17:44:48 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 47/726 | category=Attack | supports=10 | candidates=19 | visual=17 tv=17 text=0 | 5.66 s
+17:44:54 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 48/726 | category=Attack | supports=10 | candidates=19 | visual=19 tv=18 text=0 | 5.65 s
+17:44:59 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 49/726 | category=Attack | supports=10 | candidates=13 | visual=15 tv=13 text=0 | 5.20 s
+17:45:05 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 50/726 | category=Attack | supports=10 | candidates=18 | visual=20 tv=16 text=0 | 5.57 s
+17:45:11 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 51/726 | category=Attack | supports=10 | candidates=21 | visual=20 tv=20 text=0 | 5.81 s
+17:45:17 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 52/726 | category=Attack | supports=10 | candidates=18 | visual=19 tv=19 text=0 | 5.56 s
+17:45:23 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 53/726 | category=Attack | supports=10 | candidates=16 | visual=16 tv=15 text=0 | 5.44 s
+17:45:28 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 54/726 | category=Attack | supports=10 | candidates=13 | visual=12 tv=12 text=0 | 5.27 s
+17:45:35 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 55/726 | category=Attack | supports=10 | candidates=28 | visual=28 tv=27 text=0 | 6.45 s
+17:45:41 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 56/726 | category=Attack | supports=10 | candidates=15 | visual=15 tv=15 text=0 | 5.48 s
+17:45:47 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 57/726 | category=Attack | supports=10 | candidates=19 | visual=20 tv=19 text=0 | 5.77 s
+17:45:53 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 58/726 | category=Attack | supports=10 | candidates=16 | visual=18 tv=16 text=0 | 5.44 s
+17:45:59 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 59/726 | category=Attack | supports=10 | candidates=21 | visual=24 tv=21 text=0 | 5.82 s
+17:46:04 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 60/726 | category=Attack | supports=10 | candidates=14 | visual=13 tv=13 text=0 | 5.28 s
+17:46:10 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 61/726 | category=Attack | supports=10 | candidates=20 | visual=18 tv=18 text=0 | 5.70 s
+17:46:17 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 62/726 | category=Attack | supports=10 | candidates=23 | visual=25 tv=23 text=0 | 5.94 s
+17:46:23 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 63/726 | category=Attack | supports=10 | candidates=20 | visual=25 tv=20 text=0 | 5.71 s
+17:46:28 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 64/726 | category=Attack | supports=10 | candidates=15 | visual=15 tv=15 text=0 | 5.34 s
+17:46:35 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 65/726 | category=Attack | supports=10 | candidates=27 | visual=27 tv=27 text=0 | 6.22 s
+17:46:41 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 66/726 | category=Attack | supports=10 | candidates=19 | visual=24 tv=19 text=0 | 5.65 s
+17:46:46 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 67/726 | category=Attack | supports=10 | candidates=16 | visual=15 tv=15 text=0 | 5.45 s
+17:46:53 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 68/726 | category=Attack | supports=10 | candidates=22 | visual=24 tv=24 text=0 | 5.88 s
+17:46:58 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 69/726 | category=Attack | supports=10 | candidates=14 | visual=15 tv=14 text=0 | 5.28 s
+17:47:04 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 70/726 | category=Attack | supports=10 | candidates=18 | visual=17 tv=15 text=0 | 5.58 s
+17:47:10 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 71/726 | category=Attack | supports=10 | candidates=16 | visual=16 tv=16 text=0 | 5.43 s
+17:47:15 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 72/726 | category=Attack | supports=10 | candidates=14 | visual=15 tv=13 text=0 | 5.29 s
+17:47:21 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 73/726 | category=Attack | supports=10 | candidates=14 | visual=14 tv=14 text=0 | 5.27 s
+17:47:27 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 74/726 | category=Attack | supports=10 | candidates=15 | visual=15 tv=15 text=0 | 5.34 s
+17:47:32 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 75/726 | category=Attack | supports=10 | candidates=11 | visual=11 tv=10 text=0 | 5.06 s
+17:47:38 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 76/726 | category=Attack | supports=10 | candidates=20 | visual=17 tv=18 text=0 | 5.73 s
+17:47:44 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 77/726 | category=Attack | supports=10 | candidates=26 | visual=33 tv=27 text=0 | 6.17 s
+17:47:50 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 78/726 | category=Attack | supports=10 | candidates=15 | visual=14 tv=14 text=0 | 5.42 s
+17:47:56 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 79/726 | category=Attack | supports=10 | candidates=14 | visual=15 tv=14 text=0 | 5.28 s
+17:48:01 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 80/726 | category=Attack | supports=10 | candidates=15 | visual=16 tv=15 text=0 | 5.41 s
+17:48:07 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 81/726 | category=Attack | supports=10 | candidates=11 | visual=11 tv=11 text=0 | 5.08 s
+17:48:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 82/726 | category=Attack | supports=10 | candidates=17 | visual=19 tv=17 text=0 | 5.50 s
+17:48:19 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 83/726 | category=Attack | supports=10 | candidates=27 | visual=9 tv=7 text=0 | 6.31 s
+17:48:25 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 84/726 | category=Attack | supports=10 | candidates=15 | visual=14 tv=14 text=0 | 5.35 s
+17:48:31 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 85/726 | category=Attack | supports=10 | candidates=19 | visual=23 tv=21 text=0 | 5.66 s
+17:48:37 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 86/726 | category=Attack | supports=10 | candidates=19 | visual=17 tv=16 text=0 | 5.66 s
+17:48:43 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 87/726 | category=Attack | supports=10 | candidates=20 | visual=17 tv=17 text=0 | 5.71 s
+17:48:48 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 88/726 | category=Attack | supports=10 | candidates=16 | visual=23 tv=19 text=0 | 5.42 s
+17:48:54 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 89/726 | category=Attack | supports=10 | candidates=15 | visual=16 tv=15 text=0 | 5.36 s
+17:49:00 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 90/726 | category=Attack | supports=10 | candidates=23 | visual=21 tv=20 text=0 | 5.93 s
+17:49:06 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 91/726 | category=Attack | supports=10 | candidates=20 | visual=19 tv=19 text=0 | 5.76 s
+17:49:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 92/726 | category=Attack | supports=10 | candidates=27 | visual=28 tv=25 text=0 | 6.22 s
+17:49:19 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 93/726 | category=Attack | supports=10 | candidates=22 | visual=24 tv=22 text=0 | 5.85 s
+17:49:25 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 94/726 | category=Attack | supports=10 | candidates=25 | visual=24 tv=24 text=0 | 6.09 s
+17:49:32 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 95/726 | category=Attack | supports=10 | candidates=22 | visual=25 tv=21 text=0 | 5.87 s
+17:49:37 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 96/726 | category=Attack | supports=10 | candidates=18 | visual=18 tv=18 text=0 | 5.57 s
+17:49:44 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 97/726 | category=Attack | supports=10 | candidates=32 | visual=32 tv=30 text=0 | 6.63 s
+17:49:50 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 98/726 | category=Attack | supports=10 | candidates=17 | visual=15 tv=15 text=0 | 5.50 s
+17:49:56 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 99/726 | category=Attack | supports=10 | candidates=17 | visual=20 tv=18 text=0 | 5.51 s
+17:50:02 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 100/726 | category=Attack | supports=10 | candidates=23 | visual=22 tv=21 text=0 | 5.95 s
+17:50:08 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 101/726 | category=Block | supports=8 | candidates=22 | visual=28 tv=27 text=0 | 5.33 s
+17:50:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 102/726 | category=Block | supports=8 | candidates=16 | visual=16 tv=16 text=0 | 4.72 s
+17:50:18 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 103/726 | category=Block | supports=8 | candidates=18 | visual=21 tv=21 text=0 | 5.01 s
+17:50:23 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 104/726 | category=Block | supports=8 | candidates=20 | visual=18 tv=17 text=0 | 5.00 s
+17:50:28 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 105/726 | category=Block | supports=8 | candidates=18 | visual=17 tv=17 text=0 | 5.00 s
+17:50:33 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 106/726 | category=Block | supports=8 | candidates=18 | visual=18 tv=18 text=0 | 5.00 s
+17:50:39 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 107/726 | category=Block | supports=8 | candidates=28 | visual=29 tv=28 text=0 | 5.77 s
+17:50:44 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 108/726 | category=Block | supports=8 | candidates=14 | visual=17 tv=17 text=0 | 4.71 s
+17:50:49 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 109/726 | category=Block | supports=8 | candidates=18 | visual=18 tv=18 text=0 | 4.89 s
+17:50:54 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 110/726 | category=Block | supports=8 | candidates=19 | visual=22 tv=21 text=0 | 5.10 s
+17:50:59 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 111/726 | category=Block | supports=8 | candidates=13 | visual=14 tv=14 text=0 | 4.64 s
+17:51:04 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 112/726 | category=Block | supports=8 | candidates=15 | visual=15 tv=15 text=0 | 4.80 s
+17:51:09 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 113/726 | category=Block | supports=8 | candidates=19 | visual=21 tv=20 text=0 | 5.10 s
+17:51:14 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 114/726 | category=Block | supports=8 | candidates=17 | visual=17 tv=17 text=0 | 4.80 s
+17:51:19 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 115/726 | category=Block | supports=8 | candidates=13 | visual=14 tv=14 text=0 | 4.65 s
+17:51:24 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 116/726 | category=Block | supports=8 | candidates=11 | visual=13 tv=12 text=0 | 4.37 s
+17:51:28 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 117/726 | category=Block | supports=8 | candidates=12 | visual=13 tv=13 text=0 | 4.44 s
+17:51:33 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 118/726 | category=Block | supports=8 | candidates=13 | visual=17 tv=16 text=0 | 4.65 s
+17:51:38 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 119/726 | category=Block | supports=8 | candidates=16 | visual=17 tv=17 text=0 | 4.86 s
+17:51:43 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 120/726 | category=Block | supports=8 | candidates=18 | visual=23 tv=23 text=0 | 4.87 s
+17:51:48 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 121/726 | category=Block | supports=8 | candidates=16 | visual=20 tv=18 text=0 | 4.86 s
+17:51:53 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 122/726 | category=Block | supports=8 | candidates=11 | visual=11 tv=11 text=0 | 4.37 s
+17:51:57 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 123/726 | category=Block | supports=8 | candidates=12 | visual=12 tv=12 text=0 | 4.44 s
+17:52:03 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 124/726 | category=Block | supports=8 | candidates=19 | visual=21 tv=21 text=0 | 5.09 s
+17:52:08 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 125/726 | category=Block | supports=8 | candidates=16 | visual=19 tv=19 text=0 | 4.78 s
+17:52:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 126/726 | category=Block | supports=8 | candidates=16 | visual=17 tv=17 text=0 | 4.87 s
+17:52:18 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 127/726 | category=Block | supports=8 | candidates=17 | visual=21 tv=21 text=0 | 4.80 s
+17:52:23 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 128/726 | category=Block | supports=8 | candidates=16 | visual=18 tv=17 text=0 | 4.87 s
+17:52:28 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 129/726 | category=Block | supports=8 | candidates=18 | visual=18 tv=18 text=0 | 4.93 s
+17:52:33 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 130/726 | category=Block | supports=8 | candidates=19 | visual=19 tv=19 text=0 | 5.11 s
+17:52:38 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 131/726 | category=Block | supports=8 | candidates=14 | visual=16 tv=16 text=0 | 4.73 s
+17:52:43 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 132/726 | category=Block | supports=8 | candidates=13 | visual=14 tv=13 text=0 | 4.67 s
+17:52:47 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 133/726 | category=Block | supports=8 | candidates=13 | visual=13 tv=13 text=0 | 4.67 s
+17:52:52 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 134/726 | category=Block | supports=8 | candidates=15 | visual=17 tv=15 text=0 | 4.80 s
+17:52:58 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 135/726 | category=Block | supports=8 | candidates=17 | visual=18 tv=19 text=0 | 4.94 s
+17:53:02 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 136/726 | category=Block | supports=8 | candidates=16 | visual=15 tv=15 text=0 | 4.72 s
+17:53:08 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 137/726 | category=Block | supports=8 | candidates=17 | visual=18 tv=17 text=0 | 4.94 s
+17:53:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 138/726 | category=Block | supports=8 | candidates=23 | visual=27 tv=25 text=0 | 5.39 s
+17:53:18 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 139/726 | category=Block | supports=8 | candidates=13 | visual=14 tv=14 text=0 | 4.64 s
+17:53:23 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 140/726 | category=Block | supports=8 | candidates=14 | visual=15 tv=16 text=0 | 4.72 s
+17:53:28 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 141/726 | category=Block | supports=8 | candidates=16 | visual=16 tv=16 text=0 | 4.71 s
+17:53:33 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 142/726 | category=Block | supports=8 | candidates=15 | visual=16 tv=15 text=0 | 4.81 s
+17:53:38 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 143/726 | category=Block | supports=8 | candidates=16 | visual=14 tv=14 text=0 | 4.74 s
+17:53:43 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 144/726 | category=Block | supports=8 | candidates=17 | visual=18 tv=18 text=0 | 5.01 s
+17:53:48 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 145/726 | category=Block | supports=8 | candidates=14 | visual=14 tv=14 text=0 | 4.59 s
+17:53:53 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 146/726 | category=Block | supports=8 | candidates=17 | visual=16 tv=16 text=0 | 4.82 s
+17:53:58 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 147/726 | category=Block | supports=8 | candidates=21 | visual=23 tv=22 text=0 | 5.10 s
+17:54:03 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 148/726 | category=Block | supports=8 | candidates=13 | visual=14 tv=13 text=0 | 4.67 s
+17:54:07 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 149/726 | category=Block | supports=8 | candidates=13 | visual=13 tv=13 text=0 | 4.53 s
+17:54:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 150/726 | category=Block | supports=8 | candidates=20 | visual=28 tv=29 text=0 | 5.20 s
+17:54:18 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 151/726 | category=Block | supports=8 | candidates=13 | visual=14 tv=13 text=0 | 4.68 s
+17:54:23 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 152/726 | category=Block | supports=8 | candidates=20 | visual=18 tv=18 text=0 | 5.12 s
+17:54:28 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 153/726 | category=Block | supports=8 | candidates=17 | visual=19 tv=19 text=0 | 4.82 s
+17:54:33 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 154/726 | category=Block | supports=8 | candidates=19 | visual=22 tv=23 text=0 | 4.97 s
+17:54:38 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 155/726 | category=Block | supports=8 | candidates=23 | visual=20 tv=20 text=0 | 5.26 s
+17:54:44 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 156/726 | category=Block | supports=8 | candidates=17 | visual=19 tv=18 text=0 | 5.00 s
+17:54:49 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 157/726 | category=Block | supports=8 | candidates=21 | visual=21 tv=21 text=0 | 5.26 s
+17:54:54 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 158/726 | category=Block | supports=8 | candidates=13 | visual=12 tv=12 text=0 | 4.66 s
+17:54:59 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 159/726 | category=Block | supports=8 | candidates=21 | visual=25 tv=25 text=0 | 5.12 s
+17:55:04 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 160/726 | category=Block | supports=8 | candidates=15 | visual=16 tv=16 text=0 | 4.82 s
+17:55:09 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 161/726 | category=Block | supports=8 | candidates=15 | visual=15 tv=15 text=0 | 4.80 s
+17:55:14 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 162/726 | category=Block | supports=8 | candidates=15 | visual=14 tv=14 text=0 | 4.68 s
+17:55:19 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 163/726 | category=Block | supports=8 | candidates=19 | visual=19 tv=18 text=0 | 5.10 s
+17:55:24 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 164/726 | category=Block | supports=8 | candidates=18 | visual=22 tv=24 text=0 | 5.04 s
+17:55:30 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 165/726 | category=Block | supports=8 | candidates=23 | visual=23 tv=23 text=0 | 5.41 s
+17:55:35 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 166/726 | category=Block | supports=8 | candidates=15 | visual=15 tv=15 text=0 | 4.83 s
+17:55:40 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 167/726 | category=Block | supports=8 | candidates=12 | visual=12 tv=12 text=0 | 4.59 s
+17:55:45 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 168/726 | category=Block | supports=8 | candidates=14 | visual=17 tv=15 text=0 | 4.73 s
+17:55:50 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 169/726 | category=Block | supports=8 | candidates=23 | visual=31 tv=30 text=0 | 5.42 s
+17:55:55 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 170/726 | category=Block | supports=8 | candidates=18 | visual=20 tv=18 text=0 | 5.06 s
+17:56:00 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 171/726 | category=Block | supports=8 | candidates=14 | visual=17 tv=15 text=0 | 4.74 s
+17:56:05 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 172/726 | category=Block | supports=8 | candidates=15 | visual=16 tv=16 text=0 | 4.68 s
+17:56:10 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 173/726 | category=Block | supports=8 | candidates=13 | visual=13 tv=13 text=0 | 4.67 s
+17:56:15 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 174/726 | category=Block | supports=8 | candidates=15 | visual=19 tv=19 text=0 | 4.83 s
+17:56:20 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 175/726 | category=Block | supports=8 | candidates=17 | visual=17 tv=17 text=0 | 4.97 s
+17:56:25 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 176/726 | category=Block | supports=8 | candidates=17 | visual=19 tv=19 text=0 | 4.98 s
+17:56:30 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 177/726 | category=Block | supports=8 | candidates=18 | visual=20 tv=19 text=0 | 5.04 s
+17:56:35 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 178/726 | category=Block | supports=8 | candidates=15 | visual=16 tv=16 text=0 | 4.81 s
+17:56:40 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 179/726 | category=Block | supports=8 | candidates=14 | visual=15 tv=15 text=0 | 4.74 s
+17:56:46 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 180/726 | category=Block | supports=8 | candidates=22 | visual=26 tv=24 text=0 | 5.35 s
+17:56:50 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 181/726 | category=Block | supports=8 | candidates=11 | visual=12 tv=13 text=0 | 4.38 s
+17:56:56 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 182/726 | category=Block | supports=8 | candidates=21 | visual=23 tv=23 text=0 | 5.25 s
+17:57:01 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 183/726 | category=Block | supports=8 | candidates=14 | visual=13 tv=14 text=0 | 4.60 s
+17:57:06 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 184/726 | category=Block | supports=8 | candidates=20 | visual=21 tv=21 text=0 | 5.22 s
+17:57:11 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 185/726 | category=Block | supports=8 | candidates=19 | visual=23 tv=20 text=0 | 5.11 s
+17:57:16 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 186/726 | category=Block | supports=8 | candidates=16 | visual=18 tv=18 text=0 | 4.74 s
+17:57:21 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 187/726 | category=Block | supports=8 | candidates=16 | visual=19 tv=18 text=0 | 4.88 s
+17:57:26 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 188/726 | category=Block | supports=8 | candidates=15 | visual=15 tv=15 text=0 | 4.81 s
+17:57:33 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 189/726 | category=Defense | supports=10 | candidates=27 | visual=18 tv=15 text=0 | 6.26 s
+17:57:40 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 190/726 | category=Defense | supports=10 | candidates=42 | visual=32 tv=28 text=0 | 7.40 s
+17:57:47 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 191/726 | category=Defense | supports=10 | candidates=30 | visual=16 tv=16 text=0 | 6.47 s
+17:57:54 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 192/726 | category=Defense | supports=10 | candidates=31 | visual=18 tv=18 text=0 | 6.65 s
+17:58:01 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 193/726 | category=Defense | supports=10 | candidates=37 | visual=20 tv=20 text=0 | 7.09 s
+17:58:08 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 194/726 | category=Defense | supports=10 | candidates=28 | visual=15 tv=14 text=0 | 6.33 s
+17:58:15 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 195/726 | category=Defense | supports=10 | candidates=30 | visual=17 tv=17 text=0 | 6.46 s
+17:58:22 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 196/726 | category=Defense | supports=10 | candidates=31 | visual=16 tv=16 text=0 | 6.51 s
+17:58:28 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 197/726 | category=Defense | supports=10 | candidates=28 | visual=19 tv=18 text=0 | 6.29 s
+17:58:36 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 198/726 | category=Defense | supports=10 | candidates=41 | visual=21 tv=21 text=0 | 7.24 s
+17:58:42 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 199/726 | category=Defense | supports=10 | candidates=26 | visual=15 tv=15 text=0 | 6.16 s
+17:58:48 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 200/726 | category=Defense | supports=10 | candidates=19 | visual=13 tv=11 text=0 | 5.68 s
+17:58:55 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 201/726 | category=Defense | supports=10 | candidates=29 | visual=17 tv=16 text=0 | 6.39 s
+17:59:02 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 202/726 | category=Defense | supports=10 | candidates=32 | visual=21 tv=21 text=0 | 6.66 s
+17:59:08 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 203/726 | category=Defense | supports=10 | candidates=25 | visual=20 tv=19 text=0 | 6.18 s
+17:59:15 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 204/726 | category=Defense | supports=10 | candidates=34 | visual=19 tv=18 text=0 | 6.87 s
+17:59:23 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 205/726 | category=Defense | supports=10 | candidates=39 | visual=42 tv=32 text=0 | 7.26 s
+17:59:30 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 206/726 | category=Defense | supports=10 | candidates=34 | visual=18 tv=18 text=0 | 6.82 s
+17:59:37 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 207/726 | category=Defense | supports=10 | candidates=28 | visual=19 tv=19 text=0 | 6.38 s
+17:59:43 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 208/726 | category=Defense | supports=10 | candidates=26 | visual=16 tv=16 text=0 | 6.26 s
+17:59:49 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 209/726 | category=Defense | supports=10 | candidates=24 | visual=14 tv=14 text=0 | 6.03 s
+17:59:56 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 210/726 | category=Defense | supports=10 | candidates=28 | visual=18 tv=17 text=0 | 6.33 s
+18:00:03 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 211/726 | category=Defense | supports=10 | candidates=30 | visual=16 tv=16 text=0 | 6.48 s
+18:00:10 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 212/726 | category=Defense | supports=10 | candidates=31 | visual=18 tv=18 text=0 | 6.53 s
+18:00:18 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 213/726 | category=Defense | supports=10 | candidates=46 | visual=30 tv=26 text=0 | 7.65 s
+18:00:25 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 214/726 | category=Defense | supports=10 | candidates=39 | visual=23 tv=22 text=0 | 7.13 s
+18:00:31 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 215/726 | category=Defense | supports=10 | candidates=21 | visual=14 tv=13 text=0 | 5.80 s
+18:00:38 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 216/726 | category=Defense | supports=10 | candidates=35 | visual=24 tv=22 text=0 | 6.82 s
+18:00:45 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 217/726 | category=Defense | supports=10 | candidates=35 | visual=23 tv=23 text=0 | 6.81 s
+18:00:52 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 218/726 | category=Defense | supports=10 | candidates=29 | visual=21 tv=17 text=0 | 6.36 s
+18:00:59 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 219/726 | category=Defense | supports=10 | candidates=28 | visual=14 tv=14 text=0 | 6.31 s
+18:01:06 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 220/726 | category=Defense | supports=10 | candidates=35 | visual=45 tv=33 text=0 | 6.87 s
+18:01:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 221/726 | category=Defense | supports=10 | candidates=32 | visual=17 tv=17 text=0 | 6.69 s
+18:01:20 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 222/726 | category=Defense | supports=10 | candidates=32 | visual=21 tv=20 text=0 | 6.61 s
+18:01:26 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 223/726 | category=Defense | supports=10 | candidates=24 | visual=14 tv=14 text=0 | 6.02 s
+18:01:33 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 224/726 | category=Defense | supports=10 | candidates=37 | visual=31 tv=23 text=0 | 6.99 s
+18:01:40 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 225/726 | category=Defense | supports=10 | candidates=36 | visual=23 tv=19 text=0 | 6.91 s
+18:01:47 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 226/726 | category=Defense | supports=10 | candidates=29 | visual=16 tv=15 text=0 | 6.38 s
+18:01:54 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 227/726 | category=Defense | supports=10 | candidates=31 | visual=23 tv=23 text=0 | 6.54 s
+18:02:01 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 228/726 | category=Defense | supports=10 | candidates=31 | visual=25 tv=23 text=0 | 6.53 s
+18:02:07 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 229/726 | category=Defense | supports=10 | candidates=26 | visual=18 tv=15 text=0 | 6.18 s
+18:02:15 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 230/726 | category=Defense | supports=10 | candidates=42 | visual=35 tv=29 text=0 | 7.35 s
+18:02:21 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 231/726 | category=Defense | supports=10 | candidates=28 | visual=16 tv=15 text=0 | 6.30 s
+18:02:28 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 232/726 | category=Defense | supports=10 | candidates=25 | visual=21 tv=18 text=0 | 6.08 s
+18:02:35 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 233/726 | category=Defense | supports=10 | candidates=41 | visual=28 tv=25 text=0 | 7.27 s
+18:02:42 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 234/726 | category=Defense | supports=10 | candidates=27 | visual=14 tv=14 text=0 | 6.25 s
+18:02:48 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 235/726 | category=Defense | supports=10 | candidates=27 | visual=15 tv=14 text=0 | 6.31 s
+18:02:55 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 236/726 | category=Defense | supports=10 | candidates=33 | visual=18 tv=17 text=0 | 6.84 s
+18:03:02 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 237/726 | category=Defense | supports=10 | candidates=27 | visual=14 tv=14 text=0 | 6.29 s
+18:03:09 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 238/726 | category=Defense | supports=10 | candidates=36 | visual=41 tv=26 text=0 | 6.95 s
+18:03:16 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 239/726 | category=Defense | supports=10 | candidates=24 | visual=14 tv=13 text=0 | 6.02 s
+18:03:22 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 240/726 | category=Defense | supports=10 | candidates=31 | visual=21 tv=18 text=0 | 6.54 s
+18:03:29 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 241/726 | category=Defense | supports=10 | candidates=31 | visual=17 tv=16 text=0 | 6.54 s
+18:03:36 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 242/726 | category=Defense | supports=10 | candidates=30 | visual=17 tv=15 text=0 | 6.47 s
+18:03:42 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 243/726 | category=Defense | supports=10 | candidates=26 | visual=18 tv=18 text=0 | 6.16 s
+18:03:50 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 244/726 | category=Defense | supports=10 | candidates=40 | visual=31 tv=29 text=0 | 7.22 s
+18:03:57 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 245/726 | category=Defense | supports=10 | candidates=34 | visual=19 tv=19 text=0 | 6.77 s
+18:04:04 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 246/726 | category=Defense | supports=10 | candidates=33 | visual=19 tv=19 text=0 | 6.71 s
+18:04:11 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 247/726 | category=Defense | supports=10 | candidates=27 | visual=20 tv=18 text=0 | 6.22 s
+18:04:18 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 248/726 | category=Defense | supports=10 | candidates=37 | visual=29 tv=25 text=0 | 6.98 s
+18:04:25 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 249/726 | category=Defense | supports=10 | candidates=32 | visual=20 tv=18 text=0 | 6.62 s
+18:04:32 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 250/726 | category=Defense | supports=10 | candidates=33 | visual=21 tv=19 text=0 | 6.68 s
+18:04:39 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 251/726 | category=Defense | supports=10 | candidates=37 | visual=22 tv=22 text=0 | 7.11 s
+18:04:46 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 252/726 | category=Defense | supports=10 | candidates=32 | visual=20 tv=18 text=0 | 6.71 s
+18:04:53 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 253/726 | category=Defense | supports=10 | candidates=26 | visual=19 tv=15 text=0 | 6.26 s
+18:05:00 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 254/726 | category=Defense | supports=10 | candidates=33 | visual=18 tv=18 text=0 | 6.78 s
+18:05:06 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 255/726 | category=Defense | supports=10 | candidates=28 | visual=20 tv=18 text=0 | 6.43 s
+18:05:14 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 256/726 | category=Defense | supports=10 | candidates=44 | visual=31 tv=31 text=0 | 7.59 s
+18:05:22 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 257/726 | category=Defense | supports=10 | candidates=46 | visual=35 tv=34 text=0 | 7.77 s
+18:05:29 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 258/726 | category=Defense | supports=10 | candidates=28 | visual=16 tv=15 text=0 | 6.33 s
+18:05:37 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 259/726 | category=Defense | supports=10 | candidates=43 | visual=30 tv=26 text=0 | 7.46 s
+18:05:43 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 260/726 | category=Defense | supports=10 | candidates=23 | visual=17 tv=17 text=0 | 5.98 s
+18:05:49 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 261/726 | category=Defense | supports=10 | candidates=19 | visual=13 tv=12 text=0 | 5.69 s
+18:05:56 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 262/726 | category=Defense | supports=10 | candidates=31 | visual=23 tv=21 text=0 | 6.62 s
+18:06:03 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 263/726 | category=Defense | supports=10 | candidates=27 | visual=17 tv=15 text=0 | 6.30 s
+18:06:09 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 264/726 | category=Defense | supports=10 | candidates=28 | visual=18 tv=16 text=0 | 6.40 s
+18:06:17 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 265/726 | category=Defense | supports=10 | candidates=38 | visual=30 tv=30 text=0 | 7.09 s
+18:06:24 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 266/726 | category=Defense | supports=10 | candidates=41 | visual=29 tv=27 text=0 | 7.32 s
+18:06:32 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 267/726 | category=Defense | supports=10 | candidates=37 | visual=23 tv=22 text=0 | 7.00 s
+18:06:38 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 268/726 | category=Defense | supports=10 | candidates=27 | visual=15 tv=14 text=0 | 6.25 s
+18:06:46 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 269/726 | category=Defense | supports=10 | candidates=39 | visual=38 tv=31 text=0 | 7.19 s
+18:06:54 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 270/726 | category=Defense | supports=10 | candidates=45 | visual=29 tv=26 text=0 | 7.66 s
+18:07:00 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 271/726 | category=Defense | supports=10 | candidates=25 | visual=15 tv=15 text=0 | 6.12 s
+18:07:07 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 272/726 | category=Defense | supports=10 | candidates=30 | visual=16 tv=15 text=0 | 6.47 s
+18:07:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 273/726 | category=Defense | supports=10 | candidates=27 | visual=14 tv=14 text=0 | 6.27 s
+18:07:20 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 274/726 | category=Defense | supports=10 | candidates=29 | visual=28 tv=26 text=0 | 6.39 s
+18:07:26 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 275/726 | category=Serve | supports=10 | candidates=16 | visual=17 tv=17 text=0 | 5.41 s
+18:07:32 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 276/726 | category=Serve | supports=10 | candidates=19 | visual=22 tv=21 text=0 | 5.62 s
+18:07:37 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 277/726 | category=Serve | supports=10 | candidates=11 | visual=11 tv=11 text=0 | 5.11 s
+18:07:43 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 278/726 | category=Serve | supports=10 | candidates=18 | visual=19 tv=19 text=0 | 5.63 s
+18:07:49 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 279/726 | category=Serve | supports=10 | candidates=16 | visual=18 tv=16 text=0 | 5.41 s
+18:07:54 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 280/726 | category=Serve | supports=10 | candidates=16 | visual=18 tv=17 text=0 | 5.42 s
+18:08:00 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 281/726 | category=Serve | supports=10 | candidates=14 | visual=19 tv=18 text=0 | 5.26 s
+18:08:06 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 282/726 | category=Serve | supports=10 | candidates=12 | visual=13 tv=12 text=0 | 5.19 s
+18:08:11 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 283/726 | category=Serve | supports=10 | candidates=17 | visual=19 tv=19 text=0 | 5.49 s
+18:08:17 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 284/726 | category=Serve | supports=10 | candidates=14 | visual=15 tv=14 text=0 | 5.35 s
+18:08:23 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 285/726 | category=Serve | supports=10 | candidates=17 | visual=18 tv=17 text=0 | 5.49 s
+18:08:28 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 286/726 | category=Serve | supports=10 | candidates=10 | visual=11 tv=11 text=0 | 5.04 s
+18:08:34 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 287/726 | category=Serve | supports=10 | candidates=15 | visual=25 tv=17 text=0 | 5.36 s
+18:08:40 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 288/726 | category=Serve | supports=10 | candidates=20 | visual=28 tv=27 text=0 | 5.72 s
+18:08:46 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 289/726 | category=Serve | supports=10 | candidates=14 | visual=14 tv=14 text=0 | 5.34 s
+18:08:51 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 290/726 | category=Serve | supports=10 | candidates=11 | visual=11 tv=10 text=0 | 5.14 s
+18:08:57 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 291/726 | category=Serve | supports=10 | candidates=16 | visual=16 tv=16 text=0 | 5.49 s
+18:09:02 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 292/726 | category=Serve | supports=10 | candidates=12 | visual=16 tv=14 text=0 | 5.21 s
+18:09:08 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 293/726 | category=Serve | supports=10 | candidates=16 | visual=14 tv=14 text=0 | 5.41 s
+18:09:14 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 294/726 | category=Serve | supports=10 | candidates=13 | visual=14 tv=13 text=0 | 5.26 s
+18:09:19 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 295/726 | category=Serve | supports=10 | candidates=13 | visual=14 tv=13 text=0 | 5.26 s
+18:09:25 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 296/726 | category=Serve | supports=10 | candidates=19 | visual=19 tv=19 text=0 | 5.63 s
+18:09:31 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 297/726 | category=Serve | supports=10 | candidates=12 | visual=13 tv=13 text=0 | 5.10 s
+18:09:37 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 298/726 | category=Serve | supports=10 | candidates=20 | visual=21 tv=19 text=0 | 5.71 s
+18:09:42 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 299/726 | category=Serve | supports=10 | candidates=12 | visual=11 tv=11 text=0 | 5.20 s
+18:09:47 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 300/726 | category=Serve | supports=10 | candidates=9 | visual=9 tv=9 text=0 | 4.97 s
+18:09:53 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 301/726 | category=Serve | supports=10 | candidates=17 | visual=20 tv=20 text=0 | 5.49 s
+18:09:59 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 302/726 | category=Serve | supports=10 | candidates=13 | visual=22 tv=16 text=0 | 5.20 s
+18:10:04 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 303/726 | category=Serve | supports=10 | candidates=15 | visual=16 tv=16 text=0 | 5.33 s
+18:10:10 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 304/726 | category=Serve | supports=10 | candidates=22 | visual=25 tv=25 text=0 | 5.86 s
+18:10:17 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 305/726 | category=Serve | supports=10 | candidates=23 | visual=26 tv=24 text=0 | 5.94 s
+18:10:22 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 306/726 | category=Serve | supports=10 | candidates=15 | visual=15 tv=15 text=0 | 5.32 s
+18:10:28 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 307/726 | category=Serve | supports=10 | candidates=14 | visual=16 tv=15 text=0 | 5.34 s
+18:10:34 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 308/726 | category=Serve | supports=10 | candidates=13 | visual=14 tv=13 text=0 | 5.25 s
+18:10:39 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 309/726 | category=Serve | supports=10 | candidates=18 | visual=20 tv=19 text=0 | 5.55 s
+18:10:45 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 310/726 | category=Serve | supports=10 | candidates=20 | visual=27 tv=24 text=0 | 5.70 s
+18:10:51 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 311/726 | category=Serve | supports=10 | candidates=14 | visual=18 tv=17 text=0 | 5.25 s
+18:10:57 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 312/726 | category=Serve | supports=10 | candidates=20 | visual=28 tv=25 text=0 | 5.70 s
+18:11:03 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 313/726 | category=Serve | supports=10 | candidates=15 | visual=18 tv=17 text=0 | 5.32 s
+18:11:08 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 314/726 | category=Serve | supports=10 | candidates=15 | visual=16 tv=15 text=0 | 5.33 s
+18:11:14 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 315/726 | category=Serve | supports=10 | candidates=22 | visual=22 tv=21 text=0 | 5.85 s
+18:11:20 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 316/726 | category=Serve | supports=10 | candidates=10 | visual=11 tv=10 text=0 | 5.04 s
+18:11:25 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 317/726 | category=Serve | supports=10 | candidates=11 | visual=10 tv=10 text=0 | 5.10 s
+18:11:31 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 318/726 | category=Serve | supports=10 | candidates=17 | visual=17 tv=17 text=0 | 5.48 s
+18:11:36 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 319/726 | category=Serve | supports=10 | candidates=12 | visual=12 tv=12 text=0 | 5.18 s
+18:11:43 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 320/726 | category=Serve | supports=10 | candidates=24 | visual=25 tv=24 text=0 | 6.00 s
+18:11:48 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 321/726 | category=Serve | supports=10 | candidates=16 | visual=25 tv=18 text=0 | 5.40 s
+18:11:54 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 322/726 | category=Serve | supports=10 | candidates=17 | visual=19 tv=18 text=0 | 5.53 s
+18:12:00 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 323/726 | category=Serve | supports=10 | candidates=14 | visual=14 tv=14 text=0 | 5.24 s
+18:12:05 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 324/726 | category=Serve | supports=10 | candidates=9 | visual=9 tv=9 text=0 | 4.95 s
+18:12:10 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 325/726 | category=Serve | supports=10 | candidates=11 | visual=13 tv=12 text=0 | 5.09 s
+18:12:16 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 326/726 | category=Serve | supports=10 | candidates=10 | visual=14 tv=11 text=0 | 4.94 s
+18:12:21 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 327/726 | category=Serve | supports=10 | candidates=14 | visual=16 tv=15 text=0 | 5.24 s
+18:12:28 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 328/726 | category=Serve | supports=10 | candidates=28 | visual=29 tv=29 text=0 | 6.28 s
+18:12:34 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 329/726 | category=Serve | supports=10 | candidates=17 | visual=17 tv=17 text=0 | 5.46 s
+18:12:39 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 330/726 | category=Serve | supports=10 | candidates=14 | visual=17 tv=16 text=0 | 5.31 s
+18:12:45 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 331/726 | category=Serve | supports=10 | candidates=13 | visual=13 tv=13 text=0 | 5.24 s
+18:12:50 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 332/726 | category=Serve | supports=10 | candidates=13 | visual=14 tv=14 text=0 | 5.18 s
+18:12:56 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 333/726 | category=Serve | supports=10 | candidates=17 | visual=20 tv=17 text=0 | 5.56 s
+18:13:02 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 334/726 | category=Serve | supports=10 | candidates=17 | visual=19 tv=19 text=0 | 5.46 s
+18:13:07 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 335/726 | category=Serve | supports=10 | candidates=13 | visual=14 tv=14 text=0 | 5.24 s
+18:13:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 336/726 | category=Serve | supports=10 | candidates=13 | visual=14 tv=14 text=0 | 5.25 s
+18:13:19 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 337/726 | category=Serve | supports=10 | candidates=18 | visual=19 tv=18 text=0 | 5.54 s
+18:13:24 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 338/726 | category=Serve | supports=10 | candidates=17 | visual=17 tv=16 text=0 | 5.46 s
+18:13:30 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 339/726 | category=Serve | supports=10 | candidates=15 | visual=18 tv=17 text=0 | 5.38 s
+18:13:36 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 340/726 | category=Serve | supports=10 | candidates=11 | visual=11 tv=11 text=0 | 5.05 s
+18:13:42 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 341/726 | category=Set | supports=10 | candidates=23 | visual=23 tv=23 text=0 | 5.90 s
+18:13:47 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 342/726 | category=Set | supports=10 | candidates=17 | visual=18 tv=18 text=0 | 5.45 s
+18:13:53 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 343/726 | category=Set | supports=10 | candidates=16 | visual=19 tv=20 text=0 | 5.39 s
+18:13:59 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 344/726 | category=Set | supports=10 | candidates=17 | visual=16 tv=16 text=0 | 5.45 s
+18:14:04 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 345/726 | category=Set | supports=10 | candidates=14 | visual=13 tv=13 text=0 | 5.22 s
+18:14:10 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 346/726 | category=Set | supports=10 | candidates=16 | visual=18 tv=16 text=0 | 5.46 s
+18:14:16 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 347/726 | category=Set | supports=10 | candidates=14 | visual=14 tv=14 text=0 | 5.33 s
+18:14:21 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 348/726 | category=Set | supports=10 | candidates=11 | visual=12 tv=12 text=0 | 5.09 s
+18:14:27 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 349/726 | category=Set | supports=10 | candidates=19 | visual=20 tv=21 text=0 | 5.65 s
+18:14:33 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 350/726 | category=Set | supports=10 | candidates=16 | visual=16 tv=16 text=0 | 5.38 s
+18:14:39 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 351/726 | category=Set | supports=10 | candidates=24 | visual=24 tv=24 text=0 | 5.99 s
+18:14:45 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 352/726 | category=Set | supports=10 | candidates=15 | visual=15 tv=16 text=0 | 5.32 s
+18:14:50 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 353/726 | category=Set | supports=10 | candidates=11 | visual=12 tv=12 text=0 | 5.10 s
+18:14:56 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 354/726 | category=Set | supports=10 | candidates=12 | visual=12 tv=12 text=0 | 5.17 s
+18:15:01 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 355/726 | category=Set | supports=10 | candidates=14 | visual=15 tv=15 text=0 | 5.33 s
+18:15:07 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 356/726 | category=Set | supports=10 | candidates=20 | visual=27 tv=24 text=0 | 5.70 s
+18:15:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 357/726 | category=Set | supports=10 | candidates=10 | visual=12 tv=11 text=0 | 5.03 s
+18:15:18 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 358/726 | category=Set | supports=10 | candidates=13 | visual=15 tv=15 text=0 | 5.19 s
+18:15:24 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 359/726 | category=Set | supports=10 | candidates=13 | visual=13 tv=13 text=0 | 5.18 s
+18:15:30 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 360/726 | category=Set | supports=10 | candidates=25 | visual=28 tv=27 text=0 | 6.12 s
+18:15:36 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 361/726 | category=Set | supports=10 | candidates=15 | visual=16 tv=15 text=0 | 5.42 s
+18:15:41 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 362/726 | category=Set | supports=10 | candidates=17 | visual=19 tv=18 text=0 | 5.46 s
+18:15:47 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 363/726 | category=Set | supports=10 | candidates=15 | visual=15 tv=15 text=0 | 5.32 s
+18:15:53 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 364/726 | category=Set | supports=10 | candidates=16 | visual=16 tv=16 text=0 | 5.39 s
+18:15:58 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 365/726 | category=Set | supports=10 | candidates=8 | visual=10 tv=8 text=0 | 4.89 s
+18:16:04 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 366/726 | category=Set | supports=10 | candidates=23 | visual=22 tv=22 text=0 | 5.98 s
+18:16:10 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 367/726 | category=Set | supports=10 | candidates=17 | visual=18 tv=18 text=0 | 5.47 s
+18:16:16 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 368/726 | category=Set | supports=10 | candidates=16 | visual=19 tv=19 text=0 | 5.46 s
+18:16:22 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 369/726 | category=Set | supports=10 | candidates=17 | visual=16 tv=16 text=0 | 5.47 s
+18:16:27 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 370/726 | category=Set | supports=10 | candidates=16 | visual=18 tv=16 text=0 | 5.40 s
+18:16:33 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 371/726 | category=Set | supports=10 | candidates=15 | visual=15 tv=15 text=0 | 5.39 s
+18:16:39 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 372/726 | category=Set | supports=10 | candidates=13 | visual=15 tv=14 text=0 | 5.24 s
+18:16:44 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 373/726 | category=Set | supports=10 | candidates=12 | visual=13 tv=12 text=0 | 5.18 s
+18:16:50 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 374/726 | category=Set | supports=10 | candidates=16 | visual=18 tv=18 text=0 | 5.40 s
+18:16:55 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 375/726 | category=Set | supports=10 | candidates=15 | visual=19 tv=16 text=0 | 5.31 s
+18:17:01 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 376/726 | category=Set | supports=10 | candidates=22 | visual=28 tv=26 text=0 | 5.85 s
+18:17:07 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 377/726 | category=Set | supports=10 | candidates=18 | visual=16 tv=16 text=0 | 5.53 s
+18:17:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 378/726 | category=Set | supports=10 | candidates=15 | visual=14 tv=14 text=0 | 5.31 s
+18:17:19 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 379/726 | category=Set | supports=10 | candidates=17 | visual=18 tv=17 text=0 | 5.47 s
+18:17:25 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 380/726 | category=Set | supports=10 | candidates=19 | visual=21 tv=20 text=0 | 5.62 s
+18:17:31 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 381/726 | category=Set | supports=10 | candidates=20 | visual=22 tv=20 text=0 | 5.75 s
+18:17:36 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 382/726 | category=Set | supports=10 | candidates=15 | visual=16 tv=15 text=0 | 5.39 s
+18:17:42 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 383/726 | category=Set | supports=10 | candidates=20 | visual=19 tv=18 text=0 | 5.67 s
+18:17:48 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 384/726 | category=Set | supports=10 | candidates=16 | visual=17 tv=17 text=0 | 5.38 s
+18:17:54 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 385/726 | category=Set | supports=10 | candidates=13 | visual=13 tv=13 text=0 | 5.24 s
+18:17:59 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 386/726 | category=Set | supports=10 | candidates=16 | visual=16 tv=16 text=0 | 5.39 s
+18:18:05 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 387/726 | category=Set | supports=10 | candidates=19 | visual=17 tv=17 text=0 | 5.61 s
+18:18:11 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 388/726 | category=Set | supports=10 | candidates=16 | visual=15 tv=15 text=0 | 5.38 s
+18:18:17 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 389/726 | category=Set | supports=10 | candidates=16 | visual=16 tv=15 text=0 | 5.40 s
+18:18:22 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 390/726 | category=Set | supports=10 | candidates=16 | visual=14 tv=14 text=0 | 5.38 s
+18:18:28 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 391/726 | category=Set | supports=10 | candidates=15 | visual=15 tv=15 text=0 | 5.31 s
+18:18:34 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 392/726 | category=Set | supports=10 | candidates=15 | visual=15 tv=15 text=0 | 5.43 s
+18:18:40 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 393/726 | category=Set | supports=10 | candidates=24 | visual=25 tv=25 text=0 | 6.01 s
+18:18:46 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 394/726 | category=Set | supports=10 | candidates=18 | visual=18 tv=18 text=0 | 5.61 s
+18:18:52 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 395/726 | category=Set | supports=10 | candidates=18 | visual=16 tv=16 text=0 | 5.63 s
+18:18:57 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 396/726 | category=Set | supports=10 | candidates=15 | visual=14 tv=14 text=0 | 5.32 s
+18:19:03 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 397/726 | category=Set | supports=10 | candidates=15 | visual=16 tv=16 text=0 | 5.33 s
+18:19:09 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 398/726 | category=Set | supports=10 | candidates=16 | visual=18 tv=17 text=0 | 5.55 s
+18:19:15 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 399/726 | category=Set | supports=10 | candidates=24 | visual=26 tv=26 text=0 | 6.07 s
+18:19:21 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 400/726 | category=Set | supports=10 | candidates=18 | visual=21 tv=20 text=0 | 5.58 s
+18:19:27 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 401/726 | category=Set | supports=10 | candidates=15 | visual=15 tv=15 text=0 | 5.41 s
+18:19:33 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 402/726 | category=Set | supports=10 | candidates=14 | visual=18 tv=16 text=0 | 5.34 s
+18:19:38 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 403/726 | category=Set | supports=10 | candidates=13 | visual=13 tv=13 text=0 | 5.30 s
+18:19:45 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 404/726 | category=Set | supports=10 | candidates=30 | visual=30 tv=30 text=0 | 6.46 s
+18:19:51 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 405/726 | category=Set | supports=10 | candidates=14 | visual=14 tv=14 text=0 | 5.28 s
+18:19:56 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 406/726 | category=Set | supports=10 | candidates=12 | visual=12 tv=12 text=0 | 5.19 s
+18:20:02 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 407/726 | category=Set | supports=10 | candidates=14 | visual=16 tv=15 text=0 | 5.36 s
+18:20:08 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 408/726 | category=Set | supports=10 | candidates=18 | visual=19 tv=19 text=0 | 5.55 s
+18:20:14 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 409/726 | category=Set | supports=10 | candidates=17 | visual=17 tv=17 text=0 | 5.54 s
+18:20:19 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 410/726 | category=Set | supports=10 | candidates=15 | visual=16 tv=15 text=0 | 5.31 s
+18:20:26 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 411/726 | category=Set | supports=10 | candidates=24 | visual=5 tv=5 text=0 | 6.11 s
+18:20:31 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 412/726 | category=Set | supports=10 | candidates=17 | visual=19 tv=19 text=0 | 5.49 s
+18:20:37 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 413/726 | category=Set | supports=10 | candidates=16 | visual=16 tv=16 text=0 | 5.39 s
+18:20:43 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 414/726 | category=Set | supports=10 | candidates=22 | visual=25 tv=24 text=0 | 5.86 s
+18:20:49 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 415/726 | category=Set | supports=10 | candidates=22 | visual=25 tv=25 text=0 | 5.86 s
+18:20:55 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 416/726 | category=Set | supports=10 | candidates=15 | visual=17 tv=15 text=0 | 5.30 s
+18:21:01 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 417/726 | category=Set | supports=10 | candidates=18 | visual=19 tv=19 text=0 | 5.56 s
+18:21:07 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 418/726 | category=Set | supports=10 | candidates=18 | visual=20 tv=20 text=0 | 5.53 s
+18:21:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 419/726 | category=Set | supports=10 | candidates=18 | visual=18 tv=18 text=0 | 5.64 s
+18:21:19 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 420/726 | category=Set | supports=10 | candidates=19 | visual=19 tv=18 text=0 | 5.61 s
+18:21:25 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 421/726 | category=Set | supports=10 | candidates=25 | visual=25 tv=25 text=0 | 6.12 s
+18:21:31 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 422/726 | category=Set | supports=10 | candidates=13 | visual=15 tv=13 text=0 | 5.16 s
+18:21:36 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 423/726 | category=Set | supports=10 | candidates=16 | visual=27 tv=23 text=0 | 5.40 s
+18:21:43 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 424/726 | category=ball | supports=10 | candidates=25 | visual=30 tv=29 text=0 | 6.13 s
+18:21:49 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 425/726 | category=ball | supports=10 | candidates=26 | visual=31 tv=27 text=1 | 6.21 s
+18:21:55 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 426/726 | category=ball | supports=10 | candidates=20 | visual=18 tv=18 text=1 | 5.75 s
+18:22:02 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 427/726 | category=ball | supports=10 | candidates=26 | visual=29 tv=28 text=2 | 6.21 s
+18:22:08 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 428/726 | category=ball | supports=10 | candidates=26 | visual=28 tv=27 text=1 | 6.21 s
+18:22:14 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 429/726 | category=ball | supports=10 | candidates=14 | visual=15 tv=14 text=2 | 5.30 s
+18:22:19 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 430/726 | category=ball | supports=10 | candidates=8 | visual=17 tv=11 text=1 | 4.78 s
+18:22:24 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 431/726 | category=ball | supports=10 | candidates=19 | visual=30 tv=29 text=1 | 5.68 s
+18:22:30 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 432/726 | category=ball | supports=10 | candidates=17 | visual=17 tv=18 text=2 | 5.51 s
+18:22:36 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 433/726 | category=ball | supports=10 | candidates=20 | visual=23 tv=21 text=1 | 5.74 s
+18:22:42 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 434/726 | category=ball | supports=10 | candidates=16 | visual=19 tv=17 text=1 | 5.44 s
+18:22:48 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 435/726 | category=ball | supports=10 | candidates=22 | visual=20 tv=22 text=0 | 5.90 s
+18:22:55 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 436/726 | category=ball | supports=10 | candidates=30 | visual=30 tv=29 text=1 | 6.50 s
+18:23:00 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 437/726 | category=ball | supports=10 | candidates=14 | visual=18 tv=16 text=1 | 5.22 s
+18:23:06 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 438/726 | category=ball | supports=10 | candidates=18 | visual=20 tv=20 text=1 | 5.59 s
+18:23:12 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 439/726 | category=ball | supports=10 | candidates=23 | visual=27 tv=26 text=2 | 5.97 s
+18:23:18 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 440/726 | category=ball | supports=10 | candidates=16 | visual=19 tv=17 text=1 | 5.46 s
+18:23:23 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 441/726 | category=ball | supports=10 | candidates=13 | visual=19 tv=18 text=1 | 5.15 s
+18:23:29 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 442/726 | category=ball | supports=10 | candidates=15 | visual=20 tv=20 text=1 | 5.39 s
+18:23:34 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 443/726 | category=ball | supports=10 | candidates=11 | visual=14 tv=14 text=2 | 5.08 s
+18:23:40 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 444/726 | category=ball | supports=10 | candidates=13 | visual=19 tv=16 text=1 | 5.14 s
+18:23:44 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 445/726 | category=ball | supports=10 | candidates=5 | visual=13 tv=8 text=0 | 4.56 s
+18:23:50 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 446/726 | category=ball | supports=10 | candidates=18 | visual=21 tv=21 text=0 | 5.50 s
+18:23:56 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 447/726 | category=ball | supports=10 | candidates=19 | visual=23 tv=19 text=1 | 5.59 s
+18:24:01 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 448/726 | category=ball | supports=10 | candidates=8 | visual=13 tv=12 text=1 | 4.78 s
+18:24:06 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 449/726 | category=ball | supports=10 | candidates=11 | visual=13 tv=12 text=1 | 5.00 s
+18:24:12 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 450/726 | category=ball | supports=10 | candidates=19 | visual=19 tv=18 text=1 | 5.69 s
+18:24:19 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 451/726 | category=ball | supports=10 | candidates=25 | visual=30 tv=31 text=3 | 6.14 s
+18:24:25 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 452/726 | category=ball | supports=10 | candidates=19 | visual=18 tv=18 text=1 | 5.67 s
+18:24:31 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 453/726 | category=ball | supports=10 | candidates=24 | visual=31 tv=30 text=1 | 6.09 s
+18:24:37 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 454/726 | category=ball | supports=10 | candidates=16 | visual=20 tv=19 text=1 | 5.48 s
+18:24:42 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 455/726 | category=ball | supports=10 | candidates=9 | visual=16 tv=14 text=1 | 4.94 s
+18:24:48 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 456/726 | category=ball | supports=10 | candidates=17 | visual=20 tv=21 text=2 | 5.56 s
+18:24:53 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 457/726 | category=ball | supports=10 | candidates=10 | visual=26 tv=24 text=0 | 4.99 s
+18:24:59 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 458/726 | category=ball | supports=10 | candidates=23 | visual=31 tv=30 text=1 | 6.04 s
+18:25:04 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 459/726 | category=ball | supports=10 | candidates=9 | visual=11 tv=11 text=1 | 4.89 s
+18:25:10 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 460/726 | category=ball | supports=10 | candidates=17 | visual=23 tv=21 text=1 | 5.62 s
+18:25:15 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 461/726 | category=ball | supports=10 | candidates=9 | visual=14 tv=13 text=0 | 4.98 s
+18:25:22 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 462/726 | category=ball | supports=10 | candidates=24 | visual=40 tv=33 text=1 | 6.12 s
+18:25:27 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 463/726 | category=ball | supports=10 | candidates=7 | visual=10 tv=9 text=1 | 4.74 s
+18:25:32 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 464/726 | category=ball | supports=10 | candidates=10 | visual=14 tv=14 text=0 | 4.95 s
+18:25:36 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 465/726 | category=ball | supports=10 | candidates=2 | visual=12 tv=3 text=2 | 4.37 s
+18:25:43 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 466/726 | category=ball | supports=10 | candidates=21 | visual=29 tv=26 text=3 | 5.87 s
+18:25:47 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 467/726 | category=ball | supports=10 | candidates=6 | visual=10 tv=8 text=0 | 4.67 s
+18:25:54 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 468/726 | category=ball | supports=10 | candidates=24 | visual=26 tv=27 text=1 | 6.16 s
+18:25:59 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 469/726 | category=ball | supports=10 | candidates=10 | visual=12 tv=11 text=0 | 4.96 s
+18:26:05 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 470/726 | category=ball | supports=10 | candidates=19 | visual=23 tv=20 text=1 | 5.70 s
+18:26:10 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 471/726 | category=ball | supports=10 | candidates=9 | visual=9 tv=9 text=0 | 4.87 s
+18:26:17 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 472/726 | category=ball | supports=10 | candidates=27 | visual=31 tv=31 text=1 | 6.30 s
+18:26:23 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 473/726 | category=ball | supports=10 | candidates=22 | visual=24 tv=23 text=1 | 5.92 s
+18:26:29 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 474/726 | category=ball | supports=10 | candidates=26 | visual=26 tv=26 text=1 | 6.24 s
+18:26:35 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 475/726 | category=ball | supports=10 | candidates=17 | visual=21 tv=21 text=2 | 5.48 s
+18:26:41 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 476/726 | category=ball | supports=10 | candidates=14 | visual=17 tv=15 text=1 | 5.33 s
+18:26:46 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 477/726 | category=ball | supports=10 | candidates=12 | visual=15 tv=13 text=1 | 5.09 s
+18:26:52 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 478/726 | category=ball | supports=10 | candidates=19 | visual=23 tv=23 text=0 | 5.70 s
+18:26:57 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 479/726 | category=ball | supports=10 | candidates=10 | visual=14 tv=11 text=0 | 4.94 s
+18:27:02 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 480/726 | category=ball | supports=10 | candidates=8 | visual=14 tv=12 text=1 | 4.80 s
+18:27:08 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 481/726 | category=ball | supports=10 | candidates=17 | visual=20 tv=19 text=2 | 5.57 s
+18:27:14 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 482/726 | category=ball | supports=10 | candidates=19 | visual=21 tv=21 text=0 | 5.62 s
+18:27:20 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 483/726 | category=ball | supports=10 | candidates=19 | visual=26 tv=24 text=1 | 5.72 s
+18:27:26 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 484/726 | category=ball | supports=10 | candidates=18 | visual=19 tv=19 text=1 | 5.64 s
+18:27:31 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 485/726 | category=ball | supports=10 | candidates=8 | visual=12 tv=9 text=0 | 4.80 s
+18:27:36 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 486/726 | category=ball | supports=10 | candidates=12 | visual=14 tv=13 text=0 | 5.10 s
+18:27:41 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 487/726 | category=ball | supports=10 | candidates=10 | visual=14 tv=12 text=1 | 4.95 s
+18:27:47 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 488/726 | category=ball | supports=10 | candidates=23 | visual=27 tv=27 text=3 | 6.01 s
+18:27:52 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 489/726 | category=ball | supports=10 | candidates=7 | visual=10 tv=8 text=0 | 4.74 s
+18:27:58 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 490/726 | category=ball | supports=10 | candidates=11 | visual=18 tv=18 text=0 | 5.05 s
+18:28:03 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 491/726 | category=ball | supports=10 | candidates=8 | visual=12 tv=12 text=0 | 4.82 s
+18:28:09 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 492/726 | category=ball | supports=10 | candidates=19 | visual=19 tv=19 text=1 | 5.74 s
+18:28:15 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 493/726 | category=ball | supports=10 | candidates=25 | visual=32 tv=29 text=2 | 6.17 s
+18:28:21 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 494/726 | category=ball | supports=10 | candidates=23 | visual=24 tv=23 text=0 | 6.01 s
+18:28:28 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 495/726 | category=ball | supports=10 | candidates=22 | visual=25 tv=25 text=0 | 5.85 s
+18:28:33 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 496/726 | category=ball | supports=10 | candidates=17 | visual=21 tv=20 text=0 | 5.53 s
+18:28:38 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 497/726 | category=ball | supports=10 | candidates=5 | visual=11 tv=8 text=1 | 4.59 s
+18:28:44 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 498/726 | category=ball | supports=10 | candidates=13 | visual=13 tv=13 text=2 | 5.27 s
+18:28:50 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 499/726 | category=ball | supports=10 | candidates=21 | visual=29 tv=28 text=1 | 5.88 s
+18:28:55 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 500/726 | category=ball | supports=10 | candidates=16 | visual=18 tv=18 text=1 | 5.48 s
+18:29:02 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 501/726 | category=ball | supports=10 | candidates=21 | visual=21 tv=21 text=0 | 5.87 s
+18:29:08 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 502/726 | category=ball | supports=10 | candidates=30 | visual=28 tv=29 text=2 | 6.54 s
+18:29:14 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 503/726 | category=ball | supports=10 | candidates=18 | visual=21 tv=19 text=1 | 5.63 s
+18:29:19 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 504/726 | category=ball | supports=10 | candidates=4 | visual=6 tv=4 text=0 | 4.50 s
+18:29:24 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 505/726 | category=ball | supports=10 | candidates=11 | visual=12 tv=12 text=1 | 5.01 s
+18:29:31 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 506/726 | category=ball | supports=10 | candidates=28 | visual=30 tv=27 text=1 | 6.38 s
+18:29:36 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 507/726 | category=ball | supports=10 | candidates=4 | visual=7 tv=4 text=1 | 4.51 s
+18:29:41 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 508/726 | category=ball | supports=10 | candidates=13 | visual=16 tv=16 text=1 | 5.17 s
+18:29:47 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 509/726 | category=ball | supports=10 | candidates=17 | visual=17 tv=17 text=0 | 5.56 s
+18:29:53 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 510/726 | category=ball | supports=10 | candidates=18 | visual=22 tv=21 text=1 | 5.63 s
+18:29:59 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 511/726 | category=ball | supports=10 | candidates=18 | visual=24 tv=21 text=1 | 5.63 s
+18:30:05 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 512/726 | category=ball | supports=10 | candidates=30 | visual=29 tv=27 text=1 | 6.56 s
+18:30:12 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 513/726 | category=ball | supports=10 | candidates=24 | visual=33 tv=32 text=1 | 6.09 s
+18:30:18 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 514/726 | category=ball | supports=10 | candidates=22 | visual=21 tv=21 text=2 | 5.93 s
+18:30:25 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 515/726 | category=ball | supports=10 | candidates=29 | visual=33 tv=31 text=1 | 6.48 s
+18:30:31 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 516/726 | category=ball | supports=10 | candidates=24 | visual=30 tv=30 text=1 | 6.14 s
+18:30:36 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 517/726 | category=ball | supports=10 | candidates=5 | visual=13 tv=8 text=0 | 4.60 s
+18:30:42 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 518/726 | category=ball | supports=10 | candidates=25 | visual=29 tv=27 text=1 | 6.23 s
+18:30:48 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 519/726 | category=ball | supports=10 | candidates=17 | visual=21 tv=21 text=3 | 5.56 s
+18:30:55 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 520/726 | category=ball | supports=10 | candidates=29 | visual=28 tv=28 text=1 | 6.45 s
+18:31:00 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 521/726 | category=ball | supports=10 | candidates=13 | visual=14 tv=13 text=0 | 5.17 s
+18:31:07 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 522/726 | category=ball | supports=10 | candidates=23 | visual=28 tv=28 text=1 | 6.02 s
+18:31:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 523/726 | category=ball | supports=10 | candidates=23 | visual=28 tv=27 text=2 | 6.05 s
+18:31:19 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 524/726 | category=ball | supports=10 | candidates=21 | visual=29 tv=26 text=0 | 5.76 s
+18:31:25 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 525/726 | category=ball | supports=10 | candidates=16 | visual=22 tv=22 text=2 | 5.40 s
+18:31:31 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 526/726 | category=ball | supports=10 | candidates=23 | visual=28 tv=27 text=0 | 5.94 s
+18:31:36 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 527/726 | category=ball | supports=10 | candidates=7 | visual=9 tv=9 text=1 | 4.74 s
+18:31:42 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 528/726 | category=ball | supports=10 | candidates=25 | visual=27 tv=27 text=1 | 6.17 s
+18:31:47 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 529/726 | category=ball | supports=10 | candidates=8 | visual=11 tv=10 text=0 | 4.80 s
+18:31:53 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 530/726 | category=ball | supports=10 | candidates=19 | visual=22 tv=22 text=1 | 5.71 s
+18:31:59 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 531/726 | category=ball | supports=10 | candidates=19 | visual=21 tv=21 text=1 | 5.62 s
+18:32:05 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 532/726 | category=ball | supports=10 | candidates=22 | visual=26 tv=25 text=3 | 5.97 s
+18:32:10 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 533/726 | category=ball | supports=10 | candidates=2 | visual=14 tv=3 text=0 | 4.43 s
+18:32:16 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 534/726 | category=ball | supports=10 | candidates=16 | visual=20 tv=18 text=2 | 5.46 s
+18:32:21 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 535/726 | category=ball | supports=10 | candidates=7 | visual=14 tv=12 text=1 | 4.73 s
+18:32:27 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 536/726 | category=ball | supports=10 | candidates=25 | visual=31 tv=26 text=3 | 6.14 s
+18:32:32 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 537/726 | category=ball | supports=10 | candidates=14 | visual=20 tv=19 text=0 | 5.23 s
+18:32:39 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 538/726 | category=ball | supports=10 | candidates=24 | visual=25 tv=24 text=3 | 6.07 s
+18:32:45 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 539/726 | category=ball | supports=10 | candidates=17 | visual=16 tv=16 text=1 | 5.57 s
+18:32:51 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 540/726 | category=ball | supports=10 | candidates=24 | visual=26 tv=25 text=1 | 6.08 s
+18:32:57 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 541/726 | category=ball | supports=10 | candidates=17 | visual=20 tv=19 text=0 | 5.55 s
+18:33:03 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 542/726 | category=ball | supports=10 | candidates=22 | visual=27 tv=27 text=2 | 5.82 s
+18:33:09 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 543/726 | category=ball | supports=10 | candidates=20 | visual=22 tv=22 text=0 | 5.67 s
+18:33:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 544/726 | category=ball | supports=10 | candidates=5 | visual=10 tv=7 text=1 | 4.58 s
+18:33:19 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 545/726 | category=ball | supports=10 | candidates=11 | visual=14 tv=13 text=0 | 5.03 s
+18:33:24 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 546/726 | category=ball | supports=10 | candidates=12 | visual=15 tv=15 text=1 | 5.09 s
+18:33:30 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 547/726 | category=ball | supports=10 | candidates=25 | visual=30 tv=27 text=1 | 6.16 s
+18:33:37 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 548/726 | category=ball | supports=10 | candidates=23 | visual=28 tv=27 text=1 | 6.01 s
+18:33:43 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 549/726 | category=ball | supports=10 | candidates=23 | visual=26 tv=26 text=1 | 6.00 s
+18:33:49 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 550/726 | category=ball | supports=10 | candidates=21 | visual=30 tv=23 text=1 | 5.86 s
+18:33:55 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 551/726 | category=ball | supports=10 | candidates=23 | visual=29 tv=28 text=3 | 6.02 s
+18:34:01 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 552/726 | category=ball | supports=10 | candidates=17 | visual=18 tv=18 text=0 | 5.47 s
+18:34:06 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 553/726 | category=ball | supports=10 | candidates=12 | visual=14 tv=14 text=0 | 5.10 s
+18:34:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 554/726 | category=ball | supports=10 | candidates=23 | visual=25 tv=25 text=1 | 6.02 s
+18:34:18 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 555/726 | category=ball | supports=10 | candidates=10 | visual=15 tv=12 text=1 | 4.95 s
+18:34:23 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 556/726 | category=ball | supports=10 | candidates=15 | visual=19 tv=18 text=1 | 5.40 s
+18:34:30 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 557/726 | category=ball | supports=10 | candidates=22 | visual=23 tv=23 text=1 | 5.92 s
+18:34:35 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 558/726 | category=ball | supports=10 | candidates=18 | visual=19 tv=19 text=1 | 5.63 s
+18:34:42 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 559/726 | category=ball | supports=10 | candidates=28 | visual=32 tv=31 text=1 | 6.39 s
+18:34:48 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 560/726 | category=ball | supports=10 | candidates=23 | visual=27 tv=26 text=1 | 6.01 s
+18:34:54 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 561/726 | category=ball | supports=10 | candidates=21 | visual=25 tv=27 text=1 | 5.87 s
+18:35:00 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 562/726 | category=ball | supports=10 | candidates=20 | visual=21 tv=21 text=1 | 5.77 s
+18:35:06 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 563/726 | category=ball | supports=10 | candidates=19 | visual=20 tv=20 text=1 | 5.70 s
+18:35:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 564/726 | category=ball | supports=10 | candidates=21 | visual=20 tv=20 text=0 | 5.87 s
+18:35:18 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 565/726 | category=ball | supports=10 | candidates=15 | visual=21 tv=19 text=1 | 5.42 s
+18:35:25 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 566/726 | category=ball | supports=10 | candidates=27 | visual=31 tv=29 text=1 | 6.33 s
+18:35:31 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 567/726 | category=ball | supports=10 | candidates=16 | visual=17 tv=17 text=1 | 5.48 s
+18:35:36 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 568/726 | category=ball | supports=10 | candidates=18 | visual=20 tv=20 text=1 | 5.63 s
+18:35:42 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 569/726 | category=ball | supports=10 | candidates=11 | visual=20 tv=16 text=1 | 5.02 s
+18:35:47 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 570/726 | category=ball | supports=10 | candidates=17 | visual=20 tv=19 text=1 | 5.55 s
+18:35:53 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 571/726 | category=ball | supports=10 | candidates=10 | visual=15 tv=12 text=1 | 4.94 s
+18:35:58 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 572/726 | category=ball | supports=10 | candidates=9 | visual=11 tv=11 text=3 | 4.88 s
+18:36:04 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 573/726 | category=ball | supports=10 | candidates=22 | visual=26 tv=25 text=1 | 5.93 s
+18:36:10 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 574/726 | category=ball | supports=10 | candidates=17 | visual=20 tv=18 text=1 | 5.55 s
+18:36:16 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 575/726 | category=ball | supports=10 | candidates=29 | visual=28 tv=29 text=1 | 6.45 s
+18:36:23 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 576/726 | category=ball | supports=10 | candidates=24 | visual=31 tv=31 text=1 | 6.08 s
+18:36:29 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 577/726 | category=ball | supports=10 | candidates=19 | visual=27 tv=24 text=1 | 5.70 s
+18:36:33 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 578/726 | category=ball | supports=10 | candidates=5 | visual=9 tv=8 text=1 | 4.58 s
+18:36:39 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 579/726 | category=ball | supports=10 | candidates=16 | visual=18 tv=18 text=0 | 5.49 s
+18:36:46 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 580/726 | category=ball | supports=10 | candidates=27 | visual=27 tv=27 text=1 | 6.33 s
+18:36:51 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 581/726 | category=ball | supports=10 | candidates=13 | visual=14 tv=13 text=1 | 5.20 s
+18:36:56 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 582/726 | category=ball | supports=10 | candidates=11 | visual=17 tv=15 text=0 | 5.04 s
+18:37:02 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 583/726 | category=ball | supports=10 | candidates=12 | visual=15 tv=14 text=1 | 5.11 s
+18:37:08 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 584/726 | category=ball | supports=10 | candidates=18 | visual=18 tv=18 text=2 | 5.65 s
+18:37:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 585/726 | category=ball | supports=10 | candidates=15 | visual=19 tv=19 text=2 | 5.41 s
+18:37:20 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 586/726 | category=ball | supports=10 | candidates=22 | visual=25 tv=26 text=2 | 5.95 s
+18:37:25 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 587/726 | category=ball | supports=10 | candidates=19 | visual=18 tv=18 text=2 | 5.71 s
+18:37:31 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 588/726 | category=ball | supports=10 | candidates=13 | visual=15 tv=15 text=0 | 5.25 s
+18:37:38 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 589/726 | category=ball | supports=10 | candidates=30 | visual=33 tv=32 text=3 | 6.52 s
+18:37:43 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 590/726 | category=ball | supports=10 | candidates=7 | visual=8 tv=8 text=1 | 4.72 s
+18:37:48 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 591/726 | category=ball | supports=10 | candidates=18 | visual=21 tv=21 text=1 | 5.53 s
+18:37:54 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 592/726 | category=ball | supports=10 | candidates=18 | visual=31 tv=27 text=2 | 5.64 s
+18:38:00 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 593/726 | category=ball | supports=10 | candidates=15 | visual=23 tv=21 text=0 | 5.33 s
+18:38:06 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 594/726 | category=ball | supports=10 | candidates=23 | visual=25 tv=23 text=2 | 6.01 s
+18:38:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 595/726 | category=ball | supports=10 | candidates=25 | visual=27 tv=28 text=1 | 6.17 s
+18:38:19 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 596/726 | category=ball | supports=10 | candidates=22 | visual=27 tv=26 text=1 | 5.92 s
+18:38:24 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 597/726 | category=ball | supports=10 | candidates=16 | visual=17 tv=17 text=1 | 5.47 s
+18:38:30 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 598/726 | category=ball | supports=10 | candidates=12 | visual=12 tv=12 text=1 | 5.10 s
+18:38:35 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 599/726 | category=ball | supports=10 | candidates=12 | visual=13 tv=13 text=1 | 5.10 s
+18:38:42 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 600/726 | category=ball | supports=10 | candidates=27 | visual=38 tv=35 text=0 | 6.31 s
+18:38:49 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 601/726 | category=ball | supports=10 | candidates=32 | visual=31 tv=31 text=3 | 6.73 s
+18:38:55 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 602/726 | category=ball | supports=10 | candidates=19 | visual=27 tv=29 text=1 | 5.72 s
+18:39:00 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 603/726 | category=ball | supports=10 | candidates=13 | visual=16 tv=15 text=1 | 5.25 s
+18:39:06 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 604/726 | category=ball | supports=10 | candidates=23 | visual=38 tv=34 text=1 | 6.01 s
+18:39:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 605/726 | category=ball | supports=10 | candidates=22 | visual=26 tv=28 text=1 | 5.93 s
+18:39:18 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 606/726 | category=ball | supports=10 | candidates=13 | visual=19 tv=17 text=0 | 5.25 s
+18:39:24 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 607/726 | category=ball | supports=10 | candidates=22 | visual=24 tv=24 text=3 | 5.94 s
+18:39:31 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 608/726 | category=ball | supports=10 | candidates=31 | visual=32 tv=32 text=2 | 6.62 s
+18:39:37 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 609/726 | category=ball | supports=10 | candidates=16 | visual=17 tv=17 text=2 | 5.45 s
+18:39:43 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 610/726 | category=ball | supports=10 | candidates=19 | visual=21 tv=20 text=1 | 5.70 s
+18:39:49 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 611/726 | category=ball | supports=10 | candidates=27 | visual=40 tv=36 text=2 | 6.32 s
+18:39:55 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 612/726 | category=ball | supports=10 | candidates=18 | visual=19 tv=19 text=1 | 5.62 s
+18:40:01 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 613/726 | category=ball | supports=10 | candidates=14 | visual=25 tv=21 text=0 | 5.24 s
+18:40:07 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 614/726 | category=ball | supports=10 | candidates=20 | visual=23 tv=23 text=1 | 5.68 s
+18:40:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 615/726 | category=ball | supports=10 | candidates=23 | visual=38 tv=33 text=0 | 6.01 s
+18:40:19 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 616/726 | category=ball | supports=10 | candidates=16 | visual=19 tv=19 text=1 | 5.47 s
+18:40:24 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 617/726 | category=ball | supports=10 | candidates=11 | visual=13 tv=12 text=0 | 5.01 s
+18:40:29 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 618/726 | category=ball | supports=10 | candidates=15 | visual=14 tv=14 text=3 | 5.39 s
+18:40:34 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 619/726 | category=ball | supports=10 | candidates=8 | visual=14 tv=13 text=0 | 4.79 s
+18:40:41 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 620/726 | category=ball | supports=10 | candidates=23 | visual=25 tv=25 text=2 | 6.00 s
+18:40:46 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 621/726 | category=ball | supports=10 | candidates=13 | visual=16 tv=15 text=0 | 5.25 s
+18:40:51 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 622/726 | category=ball | supports=10 | candidates=11 | visual=11 tv=11 text=1 | 5.02 s
+18:40:58 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 623/726 | category=ball | supports=10 | candidates=27 | visual=27 tv=28 text=1 | 6.30 s
+18:41:04 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 624/726 | category=ball | supports=10 | candidates=20 | visual=22 tv=22 text=2 | 5.68 s
+18:41:10 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 625/726 | category=ball | supports=10 | candidates=20 | visual=22 tv=22 text=1 | 5.68 s
+18:41:15 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 626/726 | category=ball | supports=10 | candidates=9 | visual=38 tv=17 text=1 | 4.89 s
+18:41:20 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 627/726 | category=ball | supports=10 | candidates=15 | visual=16 tv=16 text=0 | 5.40 s
+18:41:26 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 628/726 | category=ball | supports=10 | candidates=13 | visual=12 tv=12 text=1 | 5.18 s
+18:41:31 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 629/726 | category=ball | supports=10 | candidates=14 | visual=22 tv=21 text=1 | 5.24 s
+18:41:36 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 630/726 | category=ball | supports=10 | candidates=3 | visual=3 tv=3 text=1 | 4.44 s
+18:41:42 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 631/726 | category=ball | supports=10 | candidates=14 | visual=17 tv=17 text=1 | 5.33 s
+18:41:47 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 632/726 | category=ball | supports=10 | candidates=16 | visual=16 tv=17 text=1 | 5.48 s
+18:41:54 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 633/726 | category=ball | supports=10 | candidates=25 | visual=27 tv=26 text=1 | 6.16 s
+18:41:59 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 634/726 | category=ball | supports=10 | candidates=9 | visual=14 tv=12 text=1 | 4.87 s
+18:42:05 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 635/726 | category=ball | supports=10 | candidates=26 | visual=26 tv=26 text=1 | 6.24 s
+18:42:11 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 636/726 | category=ball | supports=10 | candidates=13 | visual=21 tv=16 text=1 | 5.26 s
+18:42:17 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 637/726 | category=ball | supports=10 | candidates=21 | visual=24 tv=25 text=3 | 5.86 s
+18:42:23 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 638/726 | category=ball | supports=10 | candidates=19 | visual=20 tv=20 text=1 | 5.71 s
+18:42:29 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 639/726 | category=ball | supports=10 | candidates=22 | visual=26 tv=23 text=1 | 5.92 s
+18:42:35 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 640/726 | category=ball | supports=10 | candidates=15 | visual=16 tv=15 text=1 | 5.40 s
+18:42:40 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 641/726 | category=ball | supports=10 | candidates=10 | visual=9 tv=9 text=0 | 4.95 s
+18:42:45 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 642/726 | category=ball | supports=10 | candidates=12 | visual=15 tv=15 text=1 | 5.18 s
+18:42:51 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 643/726 | category=ball | supports=10 | candidates=18 | visual=18 tv=19 text=1 | 5.63 s
+18:42:57 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 644/726 | category=ball | supports=10 | candidates=15 | visual=18 tv=16 text=1 | 5.40 s
+18:43:04 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 645/726 | category=ball | supports=10 | candidates=31 | visual=31 tv=31 text=1 | 6.62 s
+18:43:09 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 646/726 | category=ball | supports=10 | candidates=17 | visual=17 tv=17 text=1 | 5.58 s
+18:43:15 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 647/726 | category=ball | supports=10 | candidates=11 | visual=13 tv=13 text=1 | 5.04 s
+18:43:21 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 648/726 | category=ball | supports=10 | candidates=26 | visual=29 tv=28 text=1 | 6.24 s
+18:43:26 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 649/726 | category=ball | supports=10 | candidates=8 | visual=14 tv=12 text=1 | 4.80 s
+18:43:32 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 650/726 | category=ball | supports=10 | candidates=14 | visual=20 tv=18 text=2 | 5.33 s
+18:43:37 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 651/726 | category=ball | supports=10 | candidates=12 | visual=16 tv=15 text=1 | 5.09 s
+18:43:43 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 652/726 | category=ball | supports=10 | candidates=23 | visual=28 tv=26 text=1 | 6.00 s
+18:43:50 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 653/726 | category=ball | supports=10 | candidates=29 | visual=34 tv=35 text=1 | 6.48 s
+18:43:56 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 654/726 | category=ball | supports=10 | candidates=14 | visual=15 tv=15 text=2 | 5.31 s
+18:44:02 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 655/726 | category=ball | supports=10 | candidates=30 | visual=31 tv=31 text=1 | 6.55 s
+18:44:09 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 656/726 | category=ball | supports=10 | candidates=26 | visual=26 tv=28 text=1 | 6.23 s
+18:44:15 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 657/726 | category=ball | supports=10 | candidates=24 | visual=28 tv=28 text=1 | 6.08 s
+18:44:20 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 658/726 | category=ball | supports=10 | candidates=8 | visual=12 tv=12 text=1 | 4.81 s
+18:44:26 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 659/726 | category=ball | supports=10 | candidates=24 | visual=25 tv=24 text=0 | 6.10 s
+18:44:32 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 660/726 | category=ball | supports=10 | candidates=16 | visual=25 tv=25 text=2 | 5.38 s
+18:44:39 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 661/726 | category=ball | supports=10 | candidates=35 | visual=35 tv=35 text=1 | 6.91 s
+18:44:45 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 662/726 | category=ball | supports=10 | candidates=19 | visual=21 tv=21 text=1 | 5.71 s
+18:44:51 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 663/726 | category=ball | supports=10 | candidates=16 | visual=16 tv=16 text=0 | 5.49 s
+18:44:56 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 664/726 | category=ball | supports=10 | candidates=13 | visual=16 tv=16 text=2 | 5.24 s
+18:45:01 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 665/726 | category=ball | supports=10 | candidates=5 | visual=14 tv=6 text=1 | 4.59 s
+18:45:07 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 666/726 | category=ball | supports=10 | candidates=19 | visual=23 tv=21 text=1 | 5.72 s
+18:45:13 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 667/726 | category=ball | supports=10 | candidates=15 | visual=22 tv=20 text=0 | 5.33 s
+18:45:18 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 668/726 | category=ball | supports=10 | candidates=16 | visual=18 tv=16 text=1 | 5.49 s
+18:45:23 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 669/726 | category=ball | supports=10 | candidates=7 | visual=11 tv=7 text=1 | 4.74 s
+18:45:29 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 670/726 | category=ball | supports=10 | candidates=14 | visual=17 tv=17 text=1 | 5.35 s
+18:45:36 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 671/726 | category=ball | supports=10 | candidates=37 | visual=39 tv=39 text=1 | 6.93 s
+18:45:41 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 672/726 | category=ball | supports=10 | candidates=5 | visual=11 tv=5 text=1 | 4.59 s
+18:45:46 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 673/726 | category=ball | supports=10 | candidates=5 | visual=11 tv=9 text=0 | 4.59 s
+18:45:51 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 674/726 | category=ball | supports=10 | candidates=4 | visual=8 tv=6 text=0 | 4.50 s
+18:45:57 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 675/726 | category=ball | supports=10 | candidates=27 | visual=31 tv=31 text=1 | 6.29 s
+18:46:03 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 676/726 | category=ball | supports=10 | candidates=20 | visual=21 tv=19 text=0 | 5.76 s
+18:46:09 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 677/726 | category=ball | supports=10 | candidates=15 | visual=17 tv=16 text=1 | 5.39 s
+18:46:15 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 678/726 | category=ball | supports=10 | candidates=25 | visual=32 tv=29 text=1 | 6.14 s
+18:46:21 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 679/726 | category=ball | supports=10 | candidates=18 | visual=17 tv=17 text=1 | 5.61 s
+18:46:27 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 680/726 | category=ball | supports=10 | candidates=20 | visual=22 tv=22 text=1 | 5.76 s
+18:46:33 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 681/726 | category=ball | supports=10 | candidates=19 | visual=21 tv=21 text=0 | 5.59 s
+18:46:37 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 682/726 | category=ball | supports=10 | candidates=2 | visual=13 tv=2 text=0 | 4.42 s
+18:46:43 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 683/726 | category=ball | supports=10 | candidates=12 | visual=21 tv=18 text=1 | 5.18 s
+18:46:49 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 684/726 | category=ball | supports=10 | candidates=18 | visual=20 tv=19 text=2 | 5.61 s
+18:46:54 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 685/726 | category=ball | supports=10 | candidates=8 | visual=13 tv=10 text=0 | 4.79 s
+18:47:00 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 686/726 | category=ball | supports=10 | candidates=18 | visual=22 tv=22 text=2 | 5.62 s
+18:47:05 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 687/726 | category=ball | supports=10 | candidates=17 | visual=16 tv=16 text=1 | 5.57 s
+18:47:11 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 688/726 | category=ball | supports=10 | candidates=21 | visual=25 tv=24 text=1 | 5.88 s
+18:47:17 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 689/726 | category=ball | supports=10 | candidates=18 | visual=17 tv=17 text=1 | 5.64 s
+18:47:23 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 690/726 | category=ball | supports=10 | candidates=16 | visual=17 tv=17 text=1 | 5.48 s
+18:47:28 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 691/726 | category=ball | supports=10 | candidates=7 | visual=15 tv=14 text=0 | 4.73 s
+18:47:34 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 692/726 | category=ball | supports=10 | candidates=18 | visual=18 tv=18 text=2 | 5.63 s
+18:47:40 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 693/726 | category=ball | supports=10 | candidates=26 | visual=28 tv=26 text=1 | 6.25 s
+18:47:46 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 694/726 | category=ball | supports=10 | candidates=15 | visual=21 tv=21 text=0 | 5.42 s
+18:47:52 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 695/726 | category=ball | supports=10 | candidates=17 | visual=23 tv=20 text=0 | 5.47 s
+18:47:58 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 696/726 | category=ball | supports=10 | candidates=27 | visual=26 tv=25 text=1 | 6.31 s
+18:48:05 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 697/726 | category=ball | supports=10 | candidates=26 | visual=26 tv=26 text=1 | 6.23 s
+18:48:11 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 698/726 | category=ball | supports=10 | candidates=22 | visual=27 tv=27 text=1 | 5.93 s
+18:48:18 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 699/726 | category=ball | supports=10 | candidates=34 | visual=34 tv=35 text=1 | 6.83 s
+18:48:24 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 700/726 | category=ball | supports=10 | candidates=22 | visual=24 tv=24 text=0 | 5.93 s
+18:48:30 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 701/726 | category=ball | supports=10 | candidates=24 | visual=29 tv=27 text=1 | 6.09 s
+18:48:36 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 702/726 | category=ball | supports=10 | candidates=19 | visual=21 tv=21 text=2 | 5.72 s
+18:48:43 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 703/726 | category=ball | supports=10 | candidates=26 | visual=27 tv=27 text=2 | 6.24 s
+18:48:49 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 704/726 | category=ball | supports=10 | candidates=20 | visual=26 tv=24 text=2 | 5.77 s
+18:48:55 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 705/726 | category=ball | supports=10 | candidates=18 | visual=22 tv=23 text=2 | 5.59 s
+18:49:01 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 706/726 | category=ball | supports=10 | candidates=28 | visual=29 tv=28 text=1 | 6.37 s
+18:49:08 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 707/726 | category=ball | supports=10 | candidates=24 | visual=29 tv=28 text=1 | 6.08 s
+18:49:14 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 708/726 | category=ball | supports=10 | candidates=22 | visual=29 tv=30 text=2 | 5.92 s
+18:49:20 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 709/726 | category=ball | supports=10 | candidates=18 | visual=20 tv=20 text=1 | 5.62 s
+18:49:26 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 710/726 | category=ball | supports=10 | candidates=21 | visual=27 tv=27 text=2 | 5.75 s
+18:49:32 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 711/726 | category=ball | supports=10 | candidates=26 | visual=27 tv=27 text=1 | 6.22 s
+18:49:38 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 712/726 | category=ball | supports=10 | candidates=23 | visual=25 tv=25 text=1 | 5.99 s
+18:49:44 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 713/726 | category=ball | supports=10 | candidates=17 | visual=22 tv=21 text=0 | 5.46 s
+18:49:50 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 714/726 | category=ball | supports=10 | candidates=19 | visual=24 tv=19 text=1 | 5.70 s
+18:49:56 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 715/726 | category=ball | supports=10 | candidates=20 | visual=20 tv=19 text=2 | 5.78 s
+18:50:02 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 716/726 | category=ball | supports=10 | candidates=23 | visual=28 tv=26 text=1 | 6.00 s
+18:50:09 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 717/726 | category=ball | supports=10 | candidates=30 | visual=32 tv=31 text=1 | 6.55 s
+18:50:14 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 718/726 | category=ball | supports=10 | candidates=6 | visual=11 tv=10 text=1 | 4.65 s
+18:50:20 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 719/726 | category=ball | supports=10 | candidates=19 | visual=20 tv=17 text=1 | 5.72 s
+18:50:25 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 720/726 | category=ball | supports=10 | candidates=11 | visual=16 tv=13 text=2 | 5.03 s
+18:50:31 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 721/726 | category=ball | supports=10 | candidates=16 | visual=18 tv=17 text=1 | 5.50 s
+18:50:37 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 722/726 | category=ball | supports=10 | candidates=17 | visual=25 tv=19 text=1 | 5.57 s
+18:50:43 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 723/726 | category=ball | supports=10 | candidates=28 | visual=32 tv=32 text=2 | 6.38 s
+18:50:49 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 724/726 | category=ball | supports=10 | candidates=14 | visual=15 tv=15 text=1 | 5.25 s
+18:50:54 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 725/726 | category=ball | supports=10 | candidates=13 | visual=21 tv=19 text=0 | 5.16 s
+18:51:00 [INFO] [actions-zzid2-zb1hq-fsod-amih] sample 726/726 | category=ball | supports=10 | candidates=24 | visual=31 tv=28 text=3 | 6.06 s
+18:51:01 [INFO] --- COCO Evaluation: actions-zzid2-zb1hq-fsod-amih ---
+loading annotations into memory...
+Done (t=0.01s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.55s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.077
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.131
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.078
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.016
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.045
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.100
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.066
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.336
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.515
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.102
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.470
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.666
+18:51:01 [INFO]   [visual] AP=0.0766  AP50=0.1312  AP75=0.0778  AP_s=0.0163  AP_m=0.0452  AP_l=0.1001
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.36s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.52s).
+Accumulating evaluation results...
+DONE (t=0.12s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.081
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.138
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.081
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.020
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.043
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.103
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.080
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.341
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.520
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.112
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.480
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.666
+18:51:02 [INFO]   [tv] AP=0.0808  AP50=0.1384  AP75=0.0807  AP_s=0.0201  AP_m=0.0430  AP_l=0.1031
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.00s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.09s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.035
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.095
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.014
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.085
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.055
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.046
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.048
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.048
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.129
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.065
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.000
+18:51:02 [INFO]   [text] AP=0.0351  AP50=0.0949  AP75=0.0144  AP_s=0.0855  AP_m=0.0549  AP_l=0.0000
+18:51:02 [INFO] ============================================================
+18:51:02 [INFO] TIMING SUMMARY
+18:51:02 [INFO] ============================================================
+18:51:02 [INFO] 
+18:51:02 [INFO] --- Timing ---
+18:51:02 [INFO] Model loading:    25.10 s
+18:51:02 [INFO] Total inference:  4254.38 s
+18:51:02 [INFO] Samples processed: 726
+18:51:02 [INFO] Avg per sample:   5.599 s
+18:51:02 [INFO] Min per sample:   4.366 s
+18:51:02 [INFO] Max per sample:   7.770 s
+18:51:03 [INFO] Submission pickle files saved to results/20260513_173943_actions-zzid2-zb1hq-fsod-amih_test/submissions
+18:51:03 [INFO] Results saved to results/20260513_173943_actions-zzid2-zb1hq-fsod-amih_test/results.json
+18:51:03 [INFO] Log file: results/20260513_173943_actions-zzid2-zb1hq-fsod-amih_test/inference.log
+>>>>>>>>>> [GPU 0] actions-zzid2-zb1hq-fsod-amih DONE <<<<<<<<<<
+>>>>>>>>>> [GPU 0] (2/4) aerial-airport-7ap9o-fsod-ddgc <<<<<<<<<<
+/home/chenzhigang/anaconda3/envs/sam3/lib/python3.12/site-packages/torch/backends/__init__.py:46: UserWarning: Please use the new API settings to control TF32 behavior, such as torch.backends.cudnn.conv.fp32_precision = 'tf32' or torch.backends.cuda.matmul.fp32_precision = 'ieee'. Old settings, e.g, torch.backends.cuda.matmul.allow_tf32 = True, torch.backends.cudnn.allow_tf32 = True, allowTF32CuDNN() and allowTF32CuBLAS() will be deprecated after Pytorch 2.9. Please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:80.)
+  self.setter(val)
+18:51:08 [INFO] ============================================================
+18:51:08 [INFO] RF20VL Few-Shot Object Detection — Inference
+18:51:08 [INFO] ============================================================
+18:51:08 [INFO] Arguments: {'data_path': './data', 'split': 'test', 'subset': 'aerial-airport-7ap9o-fsod-ddgc', 'device': 'cuda', 'nms_iou': 0.8, 'output_json': None, 'debug': False, 'no_vis': False}
+18:51:08 [INFO] Loading Sam3Segmenter on cuda ...
+18:51:18 [INFO] Model loaded in 9.91 s
+18:51:18 [INFO] Found 1 subset(s): ['aerial-airport-7ap9o-fsod-ddgc']
+18:51:18 [INFO] Dataset loaded: subset=aerial-airport-7ap9o-fsod-ddgc, samples=34, categories={1: 'airplane'} (0.19 s)
+18:51:23 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 1/34 | category=airplane | supports=5 | candidates=14 | visual=14 tv=14 text=15 | 4.09 s
+18:51:26 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 2/34 | category=airplane | supports=5 | candidates=12 | visual=22 tv=27 text=34 | 3.42 s
+18:51:31 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 3/34 | category=airplane | supports=5 | candidates=39 | visual=41 tv=41 text=56 | 5.41 s
+18:51:34 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 4/34 | category=airplane | supports=5 | candidates=4 | visual=4 tv=4 text=0 | 2.85 s
+18:51:37 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 5/34 | category=airplane | supports=5 | candidates=0 | visual=0 tv=0 text=0 | 2.56 s
+18:51:42 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 6/34 | category=airplane | supports=5 | candidates=30 | visual=30 tv=30 text=26 | 4.73 s
+18:51:47 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 7/34 | category=airplane | supports=5 | candidates=32 | visual=39 tv=40 text=38 | 4.88 s
+18:51:50 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 8/34 | category=airplane | supports=5 | candidates=5 | visual=5 tv=5 text=6 | 2.93 s
+18:51:53 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 9/34 | category=airplane | supports=5 | candidates=5 | visual=5 tv=5 text=6 | 2.93 s
+18:51:55 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 10/34 | category=airplane | supports=5 | candidates=1 | visual=1 tv=1 text=2 | 2.64 s
+18:51:58 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 11/34 | category=airplane | supports=5 | candidates=7 | visual=7 tv=7 text=6 | 3.08 s
+18:52:02 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 12/34 | category=airplane | supports=5 | candidates=17 | visual=17 tv=14 text=12 | 3.79 s
+18:52:05 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 13/34 | category=airplane | supports=5 | candidates=6 | visual=7 tv=7 text=9 | 3.00 s
+18:52:08 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 14/34 | category=airplane | supports=5 | candidates=6 | visual=6 tv=6 text=4 | 3.01 s
+18:52:12 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 15/34 | category=airplane | supports=5 | candidates=19 | visual=19 tv=19 text=20 | 3.94 s
+18:52:16 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 16/34 | category=airplane | supports=5 | candidates=9 | visual=9 tv=9 text=7 | 3.22 s
+18:52:18 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 17/34 | category=airplane | supports=5 | candidates=2 | visual=2 tv=2 text=2 | 2.72 s
+18:52:21 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 18/34 | category=airplane | supports=5 | candidates=8 | visual=8 tv=8 text=8 | 3.15 s
+18:52:26 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 19/34 | category=airplane | supports=5 | candidates=23 | visual=35 tv=37 text=18 | 4.23 s
+18:52:29 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 20/34 | category=airplane | supports=5 | candidates=2 | visual=2 tv=2 text=2 | 2.72 s
+18:52:32 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 21/34 | category=airplane | supports=5 | candidates=17 | visual=14 tv=14 text=12 | 3.80 s
+18:52:37 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 22/34 | category=airplane | supports=5 | candidates=33 | visual=34 tv=34 text=34 | 4.96 s
+18:52:41 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 23/34 | category=airplane | supports=5 | candidates=8 | visual=7 tv=7 text=7 | 3.16 s
+18:52:44 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 24/34 | category=airplane | supports=5 | candidates=6 | visual=7 tv=7 text=3 | 3.02 s
+18:52:46 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 25/34 | category=airplane | supports=5 | candidates=2 | visual=2 tv=2 text=2 | 2.72 s
+18:52:49 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 26/34 | category=airplane | supports=5 | candidates=4 | visual=3 tv=3 text=3 | 2.88 s
+18:52:52 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 27/34 | category=airplane | supports=5 | candidates=2 | visual=2 tv=2 text=2 | 2.72 s
+18:52:55 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 28/34 | category=airplane | supports=5 | candidates=9 | visual=9 tv=9 text=9 | 3.23 s
+18:52:58 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 29/34 | category=airplane | supports=5 | candidates=6 | visual=6 tv=6 text=7 | 3.01 s
+18:53:02 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 30/34 | category=airplane | supports=5 | candidates=11 | visual=11 tv=11 text=9 | 3.38 s
+18:53:06 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 31/34 | category=airplane | supports=5 | candidates=18 | visual=20 tv=20 text=20 | 3.88 s
+18:53:09 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 32/34 | category=airplane | supports=5 | candidates=12 | visual=11 tv=11 text=8 | 3.46 s
+18:53:12 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 33/34 | category=airplane | supports=5 | candidates=8 | visual=8 tv=8 text=4 | 3.16 s
+18:53:16 [INFO] [aerial-airport-7ap9o-fsod-ddgc] sample 34/34 | category=airplane | supports=5 | candidates=7 | visual=7 tv=7 text=5 | 3.09 s
+18:53:16 [INFO] --- COCO Evaluation: aerial-airport-7ap9o-fsod-ddgc ---
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.00s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.11s).
+Accumulating evaluation results...
+DONE (t=0.01s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.392
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.750
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.356
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.266
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.586
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.054
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.326
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.493
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.400
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.666
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = -1.000
+18:53:16 [INFO]   [visual] AP=0.3924  AP50=0.7502  AP75=0.3562  AP_s=0.2657  AP_m=0.5863  AP_l=-1.0000
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.00s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.11s).
+Accumulating evaluation results...
+DONE (t=0.01s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.389
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.754
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.354
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.264
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.582
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.053
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.323
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.494
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.402
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.663
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = -1.000
+18:53:16 [INFO]   [tv] AP=0.3889  AP50=0.7544  AP75=0.3539  AP_s=0.2640  AP_m=0.5824  AP_l=-1.0000
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.00s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.12s).
+Accumulating evaluation results...
+DONE (t=0.01s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.426
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.876
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.369
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.319
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.594
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.053
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.321
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.483
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.395
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.645
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = -1.000
+18:53:16 [INFO]   [text] AP=0.4256  AP50=0.8759  AP75=0.3692  AP_s=0.3190  AP_m=0.5935  AP_l=-1.0000
+18:53:16 [INFO] ============================================================
+18:53:16 [INFO] TIMING SUMMARY
+18:53:16 [INFO] ============================================================
+18:53:16 [INFO] 
+18:53:16 [INFO] --- Timing ---
+18:53:16 [INFO] Model loading:    9.91 s
+18:53:16 [INFO] Total inference:  117.71 s
+18:53:16 [INFO] Samples processed: 34
+18:53:16 [INFO] Avg per sample:   3.405 s
+18:53:16 [INFO] Min per sample:   2.559 s
+18:53:16 [INFO] Max per sample:   5.414 s
+18:53:16 [INFO] Submission pickle files saved to results/20260513_185108_aerial-airport-7ap9o-fsod-ddgc_test/submissions
+18:53:16 [INFO] Results saved to results/20260513_185108_aerial-airport-7ap9o-fsod-ddgc_test/results.json
+18:53:16 [INFO] Log file: results/20260513_185108_aerial-airport-7ap9o-fsod-ddgc_test/inference.log
+>>>>>>>>>> [GPU 0] aerial-airport-7ap9o-fsod-ddgc DONE <<<<<<<<<<
+>>>>>>>>>> [GPU 0] (3/4) all-elements-fsod-mebv <<<<<<<<<<
+/home/chenzhigang/anaconda3/envs/sam3/lib/python3.12/site-packages/torch/backends/__init__.py:46: UserWarning: Please use the new API settings to control TF32 behavior, such as torch.backends.cudnn.conv.fp32_precision = 'tf32' or torch.backends.cuda.matmul.fp32_precision = 'ieee'. Old settings, e.g, torch.backends.cuda.matmul.allow_tf32 = True, torch.backends.cudnn.allow_tf32 = True, allowTF32CuDNN() and allowTF32CuBLAS() will be deprecated after Pytorch 2.9. Please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:80.)
+  self.setter(val)
+18:53:22 [INFO] ============================================================
+18:53:22 [INFO] RF20VL Few-Shot Object Detection — Inference
+18:53:22 [INFO] ============================================================
+18:53:22 [INFO] Arguments: {'data_path': './data', 'split': 'test', 'subset': 'all-elements-fsod-mebv', 'device': 'cuda', 'nms_iou': 0.8, 'output_json': None, 'debug': False, 'no_vis': False}
+18:53:22 [INFO] Loading Sam3Segmenter on cuda ...
+18:53:32 [INFO] Model loaded in 10.39 s
+18:53:32 [INFO] Found 1 subset(s): ['all-elements-fsod-mebv']
+18:53:32 [INFO] Dataset loaded: subset=all-elements-fsod-mebv, samples=237, categories={1: 'Button', 2: 'Check box', 3: 'Checked Radio button', 4: 'Checked box', 5: 'Dropdown box', 6: 'Dropdown expand', 7: 'Icon', 8: 'Radio button', 9: 'Scroll bar', 10: 'Text box'} (0.20 s)
+18:53:37 [INFO] [all-elements-fsod-mebv] sample 1/237 | category=Button | supports=8 | candidates=4 | visual=9 tv=11 text=8 | 4.64 s
+18:53:41 [INFO] [all-elements-fsod-mebv] sample 2/237 | category=Button | supports=8 | candidates=2 | visual=4 tv=5 text=3 | 3.72 s
+18:53:45 [INFO] [all-elements-fsod-mebv] sample 3/237 | category=Button | supports=8 | candidates=3 | visual=7 tv=5 text=1 | 3.78 s
+18:53:50 [INFO] [all-elements-fsod-mebv] sample 4/237 | category=Button | supports=8 | candidates=16 | visual=15 tv=14 text=15 | 4.97 s
+18:53:54 [INFO] [all-elements-fsod-mebv] sample 5/237 | category=Button | supports=8 | candidates=0 | visual=0 tv=1 text=1 | 3.77 s
+18:53:58 [INFO] [all-elements-fsod-mebv] sample 6/237 | category=Button | supports=8 | candidates=1 | visual=2 tv=4 text=6 | 3.91 s
+18:54:02 [INFO] [all-elements-fsod-mebv] sample 7/237 | category=Button | supports=8 | candidates=3 | visual=6 tv=2 text=1 | 3.78 s
+18:54:08 [INFO] [all-elements-fsod-mebv] sample 8/237 | category=Button | supports=8 | candidates=9 | visual=2 tv=4 text=3 | 6.48 s
+18:54:13 [INFO] [all-elements-fsod-mebv] sample 9/237 | category=Button | supports=8 | candidates=3 | visual=4 tv=4 text=2 | 4.10 s
+18:54:17 [INFO] [all-elements-fsod-mebv] sample 10/237 | category=Button | supports=8 | candidates=3 | visual=4 tv=4 text=1 | 3.88 s
+18:54:20 [INFO] [all-elements-fsod-mebv] sample 11/237 | category=Button | supports=8 | candidates=0 | visual=0 tv=0 text=0 | 3.65 s
+18:54:24 [INFO] [all-elements-fsod-mebv] sample 12/237 | category=Button | supports=8 | candidates=1 | visual=1 tv=1 text=1 | 3.65 s
+18:54:29 [INFO] [all-elements-fsod-mebv] sample 13/237 | category=Button | supports=8 | candidates=10 | visual=9 tv=11 text=13 | 4.55 s
+18:54:34 [INFO] [all-elements-fsod-mebv] sample 14/237 | category=Button | supports=8 | candidates=11 | visual=10 tv=8 text=7 | 4.60 s
+18:54:38 [INFO] [all-elements-fsod-mebv] sample 15/237 | category=Button | supports=8 | candidates=1 | visual=1 tv=2 text=6 | 3.97 s
+18:54:42 [INFO] [all-elements-fsod-mebv] sample 16/237 | category=Button | supports=8 | candidates=9 | visual=4 tv=4 text=3 | 4.31 s
+18:54:47 [INFO] [all-elements-fsod-mebv] sample 17/237 | category=Button | supports=8 | candidates=6 | visual=3 tv=4 text=2 | 4.24 s
+18:54:51 [INFO] [all-elements-fsod-mebv] sample 18/237 | category=Button | supports=8 | candidates=9 | visual=6 tv=5 text=2 | 4.29 s
+18:54:55 [INFO] [all-elements-fsod-mebv] sample 19/237 | category=Button | supports=8 | candidates=1 | visual=1 tv=2 text=6 | 3.85 s
+18:55:00 [INFO] [all-elements-fsod-mebv] sample 20/237 | category=Button | supports=8 | candidates=7 | visual=0 tv=12 text=10 | 4.15 s
+18:55:04 [INFO] [all-elements-fsod-mebv] sample 21/237 | category=Button | supports=8 | candidates=6 | visual=2 tv=3 text=2 | 4.23 s
+18:55:08 [INFO] [all-elements-fsod-mebv] sample 22/237 | category=Button | supports=8 | candidates=1 | visual=1 tv=5 text=0 | 3.71 s
+18:55:12 [INFO] [all-elements-fsod-mebv] sample 23/237 | category=Button | supports=8 | candidates=4 | visual=1 tv=10 text=8 | 3.96 s
+18:55:16 [INFO] [all-elements-fsod-mebv] sample 24/237 | category=Button | supports=8 | candidates=3 | visual=6 tv=7 text=2 | 4.02 s
+18:55:21 [INFO] [all-elements-fsod-mebv] sample 25/237 | category=Button | supports=8 | candidates=6 | visual=6 tv=5 text=8 | 4.21 s
+18:55:25 [INFO] [all-elements-fsod-mebv] sample 26/237 | category=Button | supports=8 | candidates=8 | visual=2 tv=3 text=3 | 4.36 s
+18:55:30 [INFO] [all-elements-fsod-mebv] sample 27/237 | category=Check box | supports=5 | candidates=30 | visual=0 tv=6 text=6 | 5.01 s
+18:55:35 [INFO] [all-elements-fsod-mebv] sample 28/237 | category=Check box | supports=5 | candidates=28 | visual=1 tv=0 text=7 | 4.74 s
+18:55:41 [INFO] [all-elements-fsod-mebv] sample 29/237 | category=Check box | supports=5 | candidates=40 | visual=7 tv=6 text=6 | 5.81 s
+18:55:47 [INFO] [all-elements-fsod-mebv] sample 30/237 | category=Check box | supports=5 | candidates=33 | visual=7 tv=6 text=5 | 5.26 s
+18:55:55 [INFO] [all-elements-fsod-mebv] sample 31/237 | category=Check box | supports=5 | candidates=51 | visual=8 tv=8 text=11 | 7.86 s
+18:56:00 [INFO] [all-elements-fsod-mebv] sample 32/237 | category=Check box | supports=5 | candidates=31 | visual=2 tv=2 text=5 | 4.98 s
+18:56:05 [INFO] [all-elements-fsod-mebv] sample 33/237 | category=Check box | supports=5 | candidates=35 | visual=2 tv=2 text=9 | 5.42 s
+18:56:10 [INFO] [all-elements-fsod-mebv] sample 34/237 | category=Check box | supports=5 | candidates=20 | visual=3 tv=3 text=1 | 4.30 s
+18:56:14 [INFO] [all-elements-fsod-mebv] sample 35/237 | category=Check box | supports=5 | candidates=22 | visual=4 tv=4 text=3 | 4.36 s
+18:56:20 [INFO] [all-elements-fsod-mebv] sample 36/237 | category=Check box | supports=5 | candidates=30 | visual=6 tv=7 text=11 | 5.03 s
+18:56:25 [INFO] [all-elements-fsod-mebv] sample 37/237 | category=Check box | supports=5 | candidates=32 | visual=0 tv=0 text=8 | 5.16 s
+18:56:30 [INFO] [all-elements-fsod-mebv] sample 38/237 | category=Check box | supports=5 | candidates=27 | visual=5 tv=5 text=10 | 4.81 s
+18:56:35 [INFO] [all-elements-fsod-mebv] sample 39/237 | category=Check box | supports=5 | candidates=34 | visual=8 tv=6 text=3 | 5.23 s
+18:56:40 [INFO] [all-elements-fsod-mebv] sample 40/237 | category=Check box | supports=5 | candidates=28 | visual=2 tv=3 text=3 | 4.92 s
+18:56:46 [INFO] [all-elements-fsod-mebv] sample 41/237 | category=Check box | supports=5 | candidates=35 | visual=4 tv=4 text=4 | 5.30 s
+18:56:54 [INFO] [all-elements-fsod-mebv] sample 42/237 | category=Check box | supports=5 | candidates=67 | visual=10 tv=10 text=13 | 7.75 s
+18:57:00 [INFO] [all-elements-fsod-mebv] sample 43/237 | category=Check box | supports=5 | candidates=36 | visual=0 tv=0 text=9 | 5.71 s
+18:57:03 [INFO] [all-elements-fsod-mebv] sample 44/237 | category=Check box | supports=5 | candidates=6 | visual=2 tv=5 text=2 | 3.16 s
+18:57:08 [INFO] [all-elements-fsod-mebv] sample 45/237 | category=Check box | supports=5 | candidates=34 | visual=6 tv=4 text=4 | 5.23 s
+18:57:13 [INFO] [all-elements-fsod-mebv] sample 46/237 | category=Check box | supports=5 | candidates=20 | visual=9 tv=14 text=8 | 4.30 s
+18:57:18 [INFO] [all-elements-fsod-mebv] sample 47/237 | category=Check box | supports=5 | candidates=24 | visual=1 tv=2 text=8 | 4.48 s
+18:57:24 [INFO] [all-elements-fsod-mebv] sample 48/237 | category=Check box | supports=5 | candidates=48 | visual=7 tv=7 text=11 | 6.37 s
+18:57:29 [INFO] [all-elements-fsod-mebv] sample 49/237 | category=Checked Radio button | supports=9 | candidates=13 | visual=5 tv=2 text=0 | 4.77 s
+18:57:34 [INFO] [all-elements-fsod-mebv] sample 50/237 | category=Checked Radio button | supports=9 | candidates=9 | visual=8 tv=6 text=0 | 4.50 s
+18:57:40 [INFO] [all-elements-fsod-mebv] sample 51/237 | category=Checked Radio button | supports=9 | candidates=25 | visual=18 tv=15 text=0 | 5.86 s
+18:57:44 [INFO] [all-elements-fsod-mebv] sample 52/237 | category=Checked Radio button | supports=9 | candidates=5 | visual=3 tv=3 text=0 | 4.38 s
+18:57:51 [INFO] [all-elements-fsod-mebv] sample 53/237 | category=Checked Radio button | supports=9 | candidates=16 | visual=22 tv=19 text=0 | 7.03 s
+18:57:56 [INFO] [all-elements-fsod-mebv] sample 54/237 | category=Checked Radio button | supports=9 | candidates=8 | visual=9 tv=9 text=0 | 4.59 s
+18:58:03 [INFO] [all-elements-fsod-mebv] sample 55/237 | category=Checked Radio button | supports=9 | candidates=33 | visual=0 tv=0 text=0 | 6.32 s
+18:58:08 [INFO] [all-elements-fsod-mebv] sample 56/237 | category=Checked Radio button | supports=9 | candidates=11 | visual=7 tv=7 text=0 | 4.78 s
+18:58:13 [INFO] [all-elements-fsod-mebv] sample 57/237 | category=Checked Radio button | supports=9 | candidates=17 | visual=15 tv=13 text=0 | 5.22 s
+18:58:17 [INFO] [all-elements-fsod-mebv] sample 58/237 | category=Checked Radio button | supports=9 | candidates=2 | visual=2 tv=2 text=0 | 4.05 s
+18:58:22 [INFO] [all-elements-fsod-mebv] sample 59/237 | category=Checked Radio button | supports=9 | candidates=11 | visual=8 tv=8 text=0 | 4.69 s
+18:58:26 [INFO] [all-elements-fsod-mebv] sample 60/237 | category=Checked Radio button | supports=9 | candidates=1 | visual=10 tv=4 text=0 | 4.06 s
+18:58:32 [INFO] [all-elements-fsod-mebv] sample 61/237 | category=Checked Radio button | supports=9 | candidates=13 | visual=9 tv=6 text=0 | 6.25 s
+18:58:38 [INFO] [all-elements-fsod-mebv] sample 62/237 | category=Checked Radio button | supports=9 | candidates=22 | visual=7 tv=7 text=0 | 5.63 s
+18:58:44 [INFO] [all-elements-fsod-mebv] sample 63/237 | category=Checked Radio button | supports=9 | candidates=21 | visual=13 tv=7 text=0 | 5.42 s
+18:58:49 [INFO] [all-elements-fsod-mebv] sample 64/237 | category=Checked Radio button | supports=9 | candidates=16 | visual=12 tv=11 text=0 | 5.07 s
+18:58:55 [INFO] [all-elements-fsod-mebv] sample 65/237 | category=Checked Radio button | supports=9 | candidates=21 | visual=9 tv=8 text=0 | 5.52 s
+18:58:59 [INFO] [all-elements-fsod-mebv] sample 66/237 | category=Checked Radio button | supports=9 | candidates=10 | visual=6 tv=6 text=0 | 4.72 s
+18:59:06 [INFO] [all-elements-fsod-mebv] sample 67/237 | category=Checked Radio button | supports=9 | candidates=33 | visual=25 tv=16 text=0 | 6.31 s
+18:59:11 [INFO] [all-elements-fsod-mebv] sample 68/237 | category=Checked Radio button | supports=9 | candidates=14 | visual=11 tv=10 text=0 | 5.00 s
+18:59:17 [INFO] [all-elements-fsod-mebv] sample 69/237 | category=Checked Radio button | supports=9 | candidates=26 | visual=0 tv=0 text=0 | 5.78 s
+18:59:22 [INFO] [all-elements-fsod-mebv] sample 70/237 | category=Checked Radio button | supports=9 | candidates=14 | visual=7 tv=7 text=0 | 5.00 s
+18:59:27 [INFO] [all-elements-fsod-mebv] sample 71/237 | category=Checked Radio button | supports=9 | candidates=14 | visual=21 tv=14 text=0 | 5.00 s
+18:59:32 [INFO] [all-elements-fsod-mebv] sample 72/237 | category=Checked Radio button | supports=9 | candidates=12 | visual=5 tv=4 text=0 | 4.89 s
+18:59:36 [INFO] [all-elements-fsod-mebv] sample 73/237 | category=Checked box | supports=5 | candidates=15 | visual=5 tv=6 text=7 | 3.81 s
+18:59:40 [INFO] [all-elements-fsod-mebv] sample 74/237 | category=Checked box | supports=5 | candidates=12 | visual=18 tv=14 text=2 | 3.79 s
+18:59:43 [INFO] [all-elements-fsod-mebv] sample 75/237 | category=Checked box | supports=5 | candidates=2 | visual=2 tv=2 text=2 | 3.05 s
+18:59:48 [INFO] [all-elements-fsod-mebv] sample 76/237 | category=Checked box | supports=5 | candidates=13 | visual=15 tv=13 text=8 | 4.84 s
+18:59:52 [INFO] [all-elements-fsod-mebv] sample 77/237 | category=Checked box | supports=5 | candidates=9 | visual=1 tv=1 text=0 | 3.37 s
+18:59:55 [INFO] [all-elements-fsod-mebv] sample 78/237 | category=Checked box | supports=5 | candidates=4 | visual=4 tv=4 text=3 | 3.19 s
+18:59:58 [INFO] [all-elements-fsod-mebv] sample 79/237 | category=Checked box | supports=5 | candidates=4 | visual=4 tv=4 text=3 | 3.07 s
+19:00:02 [INFO] [all-elements-fsod-mebv] sample 80/237 | category=Checked box | supports=5 | candidates=14 | visual=6 tv=6 text=5 | 3.83 s
+19:00:06 [INFO] [all-elements-fsod-mebv] sample 81/237 | category=Checked box | supports=5 | candidates=8 | visual=5 tv=6 text=8 | 3.40 s
+19:00:09 [INFO] [all-elements-fsod-mebv] sample 82/237 | category=Checked box | supports=5 | candidates=6 | visual=7 tv=7 text=1 | 3.16 s
+19:00:12 [INFO] [all-elements-fsod-mebv] sample 83/237 | category=Checked box | supports=5 | candidates=4 | visual=3 tv=3 text=3 | 3.14 s
+19:00:16 [INFO] [all-elements-fsod-mebv] sample 84/237 | category=Checked box | supports=5 | candidates=9 | visual=8 tv=6 text=3 | 3.37 s
+19:00:19 [INFO] [all-elements-fsod-mebv] sample 85/237 | category=Checked box | supports=5 | candidates=4 | visual=4 tv=4 text=0 | 3.09 s
+19:00:23 [INFO] [all-elements-fsod-mebv] sample 86/237 | category=Checked box | supports=5 | candidates=8 | visual=0 tv=0 text=9 | 3.51 s
+19:00:26 [INFO] [all-elements-fsod-mebv] sample 87/237 | category=Checked box | supports=5 | candidates=2 | visual=1 tv=2 text=1 | 2.88 s
+19:00:29 [INFO] [all-elements-fsod-mebv] sample 88/237 | category=Checked box | supports=5 | candidates=6 | visual=6 tv=6 text=3 | 3.15 s
+19:00:32 [INFO] [all-elements-fsod-mebv] sample 89/237 | category=Checked box | supports=5 | candidates=2 | visual=9 tv=8 text=1 | 2.89 s
+19:00:36 [INFO] [all-elements-fsod-mebv] sample 90/237 | category=Checked box | supports=5 | candidates=13 | visual=15 tv=14 text=8 | 3.75 s
+19:00:41 [INFO] [all-elements-fsod-mebv] sample 91/237 | category=Dropdown box | supports=8 | candidates=7 | visual=13 tv=4 text=0 | 4.45 s
+19:00:46 [INFO] [all-elements-fsod-mebv] sample 92/237 | category=Dropdown box | supports=8 | candidates=8 | visual=6 tv=6 text=0 | 4.91 s
+19:00:51 [INFO] [all-elements-fsod-mebv] sample 93/237 | category=Dropdown box | supports=8 | candidates=3 | visual=2 tv=2 text=0 | 4.22 s
+19:00:56 [INFO] [all-elements-fsod-mebv] sample 94/237 | category=Dropdown box | supports=8 | candidates=6 | visual=7 tv=6 text=0 | 4.73 s
+19:01:02 [INFO] [all-elements-fsod-mebv] sample 95/237 | category=Dropdown box | supports=8 | candidates=11 | visual=14 tv=10 text=0 | 5.11 s
+19:01:07 [INFO] [all-elements-fsod-mebv] sample 96/237 | category=Dropdown box | supports=8 | candidates=6 | visual=4 tv=4 text=0 | 4.55 s
+19:01:12 [INFO] [all-elements-fsod-mebv] sample 97/237 | category=Dropdown box | supports=8 | candidates=1 | visual=8 tv=1 text=0 | 4.18 s
+19:01:17 [INFO] [all-elements-fsod-mebv] sample 98/237 | category=Dropdown box | supports=8 | candidates=1 | visual=1 tv=1 text=0 | 4.20 s
+19:01:22 [INFO] [all-elements-fsod-mebv] sample 99/237 | category=Dropdown box | supports=8 | candidates=10 | visual=11 tv=6 text=0 | 4.69 s
+19:01:27 [INFO] [all-elements-fsod-mebv] sample 100/237 | category=Dropdown box | supports=8 | candidates=0 | visual=0 tv=0 text=0 | 4.52 s
+19:01:33 [INFO] [all-elements-fsod-mebv] sample 101/237 | category=Dropdown box | supports=8 | candidates=10 | visual=16 tv=13 text=0 | 4.65 s
+19:01:38 [INFO] [all-elements-fsod-mebv] sample 102/237 | category=Dropdown box | supports=8 | candidates=8 | visual=1 tv=2 text=0 | 4.59 s
+19:01:43 [INFO] [all-elements-fsod-mebv] sample 103/237 | category=Dropdown box | supports=8 | candidates=0 | visual=0 tv=0 text=0 | 3.96 s
+19:01:48 [INFO] [all-elements-fsod-mebv] sample 104/237 | category=Dropdown box | supports=8 | candidates=6 | visual=8 tv=6 text=0 | 4.64 s
+19:01:53 [INFO] [all-elements-fsod-mebv] sample 105/237 | category=Dropdown box | supports=8 | candidates=5 | visual=10 tv=7 text=0 | 4.48 s
+19:01:58 [INFO] [all-elements-fsod-mebv] sample 106/237 | category=Dropdown box | supports=8 | candidates=3 | visual=3 tv=3 text=0 | 4.52 s
+19:02:03 [INFO] [all-elements-fsod-mebv] sample 107/237 | category=Dropdown expand | supports=9 | candidates=1 | visual=2 tv=1 text=0 | 4.21 s
+19:02:07 [INFO] [all-elements-fsod-mebv] sample 108/237 | category=Dropdown expand | supports=9 | candidates=0 | visual=0 tv=0 text=0 | 4.01 s
+19:02:11 [INFO] [all-elements-fsod-mebv] sample 109/237 | category=Dropdown expand | supports=9 | candidates=3 | visual=2 tv=2 text=0 | 4.25 s
+19:02:15 [INFO] [all-elements-fsod-mebv] sample 110/237 | category=Dropdown expand | supports=9 | candidates=0 | visual=0 tv=0 text=0 | 3.88 s
+19:02:20 [INFO] [all-elements-fsod-mebv] sample 111/237 | category=Dropdown expand | supports=9 | candidates=7 | visual=6 tv=4 text=0 | 4.91 s
+19:02:24 [INFO] [all-elements-fsod-mebv] sample 112/237 | category=Dropdown expand | supports=9 | candidates=0 | visual=0 tv=0 text=0 | 3.92 s
+19:02:28 [INFO] [all-elements-fsod-mebv] sample 113/237 | category=Dropdown expand | supports=9 | candidates=1 | visual=1 tv=1 text=0 | 3.96 s
+19:02:31 [INFO] [all-elements-fsod-mebv] sample 114/237 | category=Icon | supports=4 | candidates=0 | visual=0 tv=26 text=26 | 2.58 s
+19:02:34 [INFO] [all-elements-fsod-mebv] sample 115/237 | category=Icon | supports=4 | candidates=4 | visual=3 tv=18 text=15 | 2.82 s
+19:02:37 [INFO] [all-elements-fsod-mebv] sample 116/237 | category=Icon | supports=4 | candidates=0 | visual=0 tv=0 text=0 | 2.45 s
+19:02:39 [INFO] [all-elements-fsod-mebv] sample 117/237 | category=Icon | supports=4 | candidates=1 | visual=1 tv=6 text=0 | 2.56 s
+19:02:42 [INFO] [all-elements-fsod-mebv] sample 118/237 | category=Icon | supports=4 | candidates=4 | visual=1 tv=34 text=28 | 2.81 s
+19:02:45 [INFO] [all-elements-fsod-mebv] sample 119/237 | category=Icon | supports=4 | candidates=4 | visual=5 tv=7 text=5 | 2.75 s
+19:02:48 [INFO] [all-elements-fsod-mebv] sample 120/237 | category=Icon | supports=4 | candidates=2 | visual=0 tv=9 text=0 | 2.70 s
+19:02:51 [INFO] [all-elements-fsod-mebv] sample 121/237 | category=Icon | supports=4 | candidates=1 | visual=1 tv=17 text=14 | 2.59 s
+19:02:54 [INFO] [all-elements-fsod-mebv] sample 122/237 | category=Icon | supports=4 | candidates=2 | visual=32 tv=36 text=28 | 2.74 s
+19:02:57 [INFO] [all-elements-fsod-mebv] sample 123/237 | category=Icon | supports=4 | candidates=9 | visual=14 tv=13 text=0 | 3.12 s
+19:03:00 [INFO] [all-elements-fsod-mebv] sample 124/237 | category=Icon | supports=4 | candidates=5 | visual=4 tv=6 text=2 | 2.85 s
+19:03:03 [INFO] [all-elements-fsod-mebv] sample 125/237 | category=Icon | supports=4 | candidates=5 | visual=5 tv=4 text=0 | 2.85 s
+19:03:06 [INFO] [all-elements-fsod-mebv] sample 126/237 | category=Icon | supports=4 | candidates=2 | visual=1 tv=4 text=4 | 2.67 s
+19:03:09 [INFO] [all-elements-fsod-mebv] sample 127/237 | category=Icon | supports=4 | candidates=4 | visual=3 tv=3 text=3 | 2.74 s
+19:03:13 [INFO] [all-elements-fsod-mebv] sample 128/237 | category=Icon | supports=4 | candidates=2 | visual=20 tv=23 text=18 | 3.50 s
+19:03:15 [INFO] [all-elements-fsod-mebv] sample 129/237 | category=Icon | supports=4 | candidates=2 | visual=2 tv=12 text=3 | 2.62 s
+19:03:18 [INFO] [all-elements-fsod-mebv] sample 130/237 | category=Icon | supports=4 | candidates=1 | visual=1 tv=15 text=12 | 2.59 s
+19:03:21 [INFO] [all-elements-fsod-mebv] sample 131/237 | category=Icon | supports=4 | candidates=4 | visual=1 tv=19 text=8 | 2.80 s
+19:03:24 [INFO] [all-elements-fsod-mebv] sample 132/237 | category=Icon | supports=4 | candidates=1 | visual=1 tv=8 text=5 | 2.67 s
+19:03:27 [INFO] [all-elements-fsod-mebv] sample 133/237 | category=Icon | supports=4 | candidates=5 | visual=10 tv=15 text=12 | 2.91 s
+19:03:30 [INFO] [all-elements-fsod-mebv] sample 134/237 | category=Icon | supports=4 | candidates=7 | visual=8 tv=8 text=10 | 3.06 s
+19:03:33 [INFO] [all-elements-fsod-mebv] sample 135/237 | category=Icon | supports=4 | candidates=3 | visual=5 tv=9 text=9 | 2.70 s
+19:03:36 [INFO] [all-elements-fsod-mebv] sample 136/237 | category=Icon | supports=4 | candidates=1 | visual=2 tv=3 text=2 | 2.55 s
+19:03:39 [INFO] [all-elements-fsod-mebv] sample 137/237 | category=Icon | supports=4 | candidates=4 | visual=24 tv=18 text=0 | 2.93 s
+19:03:42 [INFO] [all-elements-fsod-mebv] sample 138/237 | category=Icon | supports=4 | candidates=3 | visual=2 tv=3 text=3 | 2.71 s
+19:03:45 [INFO] [all-elements-fsod-mebv] sample 139/237 | category=Icon | supports=4 | candidates=3 | visual=2 tv=9 text=8 | 2.81 s
+19:03:48 [INFO] [all-elements-fsod-mebv] sample 140/237 | category=Icon | supports=4 | candidates=0 | visual=0 tv=31 text=31 | 2.58 s
+19:03:50 [INFO] [all-elements-fsod-mebv] sample 141/237 | category=Icon | supports=4 | candidates=1 | visual=11 tv=16 text=3 | 2.61 s
+19:03:53 [INFO] [all-elements-fsod-mebv] sample 142/237 | category=Icon | supports=4 | candidates=3 | visual=0 tv=11 text=0 | 2.76 s
+19:03:56 [INFO] [all-elements-fsod-mebv] sample 143/237 | category=Icon | supports=4 | candidates=1 | visual=1 tv=27 text=25 | 2.61 s
+19:03:59 [INFO] [all-elements-fsod-mebv] sample 144/237 | category=Icon | supports=4 | candidates=1 | visual=1 tv=6 text=6 | 3.29 s
+19:04:03 [INFO] [all-elements-fsod-mebv] sample 145/237 | category=Icon | supports=4 | candidates=4 | visual=2 tv=7 text=6 | 2.81 s
+19:04:05 [INFO] [all-elements-fsod-mebv] sample 146/237 | category=Icon | supports=4 | candidates=1 | visual=1 tv=4 text=0 | 2.62 s
+19:04:08 [INFO] [all-elements-fsod-mebv] sample 147/237 | category=Icon | supports=4 | candidates=3 | visual=3 tv=3 text=1 | 2.74 s
+19:04:12 [INFO] [all-elements-fsod-mebv] sample 148/237 | category=Icon | supports=4 | candidates=8 | visual=19 tv=28 text=26 | 3.18 s
+19:04:15 [INFO] [all-elements-fsod-mebv] sample 149/237 | category=Icon | supports=4 | candidates=10 | visual=4 tv=6 text=0 | 3.21 s
+19:04:18 [INFO] [all-elements-fsod-mebv] sample 150/237 | category=Icon | supports=4 | candidates=6 | visual=2 tv=2 text=0 | 2.98 s
+19:04:21 [INFO] [all-elements-fsod-mebv] sample 151/237 | category=Icon | supports=4 | candidates=3 | visual=7 tv=12 text=10 | 2.69 s
+19:04:24 [INFO] [all-elements-fsod-mebv] sample 152/237 | category=Icon | supports=4 | candidates=4 | visual=2 tv=7 text=5 | 2.83 s
+19:04:27 [INFO] [all-elements-fsod-mebv] sample 153/237 | category=Icon | supports=4 | candidates=2 | visual=1 tv=17 text=0 | 2.85 s
+19:04:30 [INFO] [all-elements-fsod-mebv] sample 154/237 | category=Icon | supports=4 | candidates=3 | visual=3 tv=11 text=7 | 2.70 s
+19:04:33 [INFO] [all-elements-fsod-mebv] sample 155/237 | category=Icon | supports=4 | candidates=7 | visual=3 tv=9 text=4 | 2.96 s
+19:04:36 [INFO] [all-elements-fsod-mebv] sample 156/237 | category=Icon | supports=4 | candidates=0 | visual=0 tv=0 text=0 | 2.47 s
+19:04:39 [INFO] [all-elements-fsod-mebv] sample 157/237 | category=Icon | supports=4 | candidates=7 | visual=26 tv=29 text=26 | 3.13 s
+19:04:42 [INFO] [all-elements-fsod-mebv] sample 158/237 | category=Icon | supports=4 | candidates=1 | visual=11 tv=24 text=24 | 2.57 s
+19:04:45 [INFO] [all-elements-fsod-mebv] sample 159/237 | category=Icon | supports=4 | candidates=4 | visual=3 tv=15 text=3 | 2.78 s
+19:04:47 [INFO] [all-elements-fsod-mebv] sample 160/237 | category=Icon | supports=4 | candidates=1 | visual=9 tv=17 text=0 | 2.63 s
+19:04:51 [INFO] [all-elements-fsod-mebv] sample 161/237 | category=Icon | supports=4 | candidates=8 | visual=7 tv=31 text=29 | 3.20 s
+19:04:53 [INFO] [all-elements-fsod-mebv] sample 162/237 | category=Icon | supports=4 | candidates=0 | visual=0 tv=4 text=4 | 2.50 s
+19:04:57 [INFO] [all-elements-fsod-mebv] sample 163/237 | category=Icon | supports=4 | candidates=6 | visual=7 tv=7 text=7 | 2.99 s
+19:04:59 [INFO] [all-elements-fsod-mebv] sample 164/237 | category=Icon | supports=4 | candidates=2 | visual=6 tv=10 text=7 | 2.64 s
+19:05:02 [INFO] [all-elements-fsod-mebv] sample 165/237 | category=Icon | supports=4 | candidates=2 | visual=14 tv=15 text=10 | 2.71 s
+19:05:05 [INFO] [all-elements-fsod-mebv] sample 166/237 | category=Icon | supports=4 | candidates=3 | visual=0 tv=7 text=3 | 2.80 s
+19:05:10 [INFO] [all-elements-fsod-mebv] sample 167/237 | category=Radio button | supports=7 | candidates=13 | visual=6 tv=6 text=0 | 4.22 s
+19:05:14 [INFO] [all-elements-fsod-mebv] sample 168/237 | category=Radio button | supports=7 | candidates=12 | visual=5 tv=4 text=0 | 4.18 s
+19:05:20 [INFO] [all-elements-fsod-mebv] sample 169/237 | category=Radio button | supports=7 | candidates=35 | visual=14 tv=14 text=0 | 6.08 s
+19:05:25 [INFO] [all-elements-fsod-mebv] sample 170/237 | category=Radio button | supports=7 | candidates=11 | visual=8 tv=8 text=0 | 4.28 s
+19:05:33 [INFO] [all-elements-fsod-mebv] sample 171/237 | category=Radio button | supports=7 | candidates=37 | visual=23 tv=23 text=0 | 7.76 s
+19:05:37 [INFO] [all-elements-fsod-mebv] sample 172/237 | category=Radio button | supports=7 | candidates=13 | visual=8 tv=8 text=0 | 4.43 s
+19:05:44 [INFO] [all-elements-fsod-mebv] sample 173/237 | category=Radio button | supports=7 | candidates=41 | visual=0 tv=0 text=0 | 6.34 s
+19:05:48 [INFO] [all-elements-fsod-mebv] sample 174/237 | category=Radio button | supports=7 | candidates=14 | visual=8 tv=8 text=0 | 4.44 s
+19:05:53 [INFO] [all-elements-fsod-mebv] sample 175/237 | category=Radio button | supports=7 | candidates=21 | visual=11 tv=9 text=0 | 4.95 s
+19:05:57 [INFO] [all-elements-fsod-mebv] sample 176/237 | category=Radio button | supports=7 | candidates=4 | visual=4 tv=3 text=0 | 3.59 s
+19:06:01 [INFO] [all-elements-fsod-mebv] sample 177/237 | category=Radio button | supports=7 | candidates=13 | visual=3 tv=3 text=0 | 4.26 s
+19:06:05 [INFO] [all-elements-fsod-mebv] sample 178/237 | category=Radio button | supports=7 | candidates=8 | visual=17 tv=15 text=0 | 4.00 s
+19:06:11 [INFO] [all-elements-fsod-mebv] sample 179/237 | category=Radio button | supports=7 | candidates=8 | visual=7 tv=6 text=0 | 5.15 s
+19:06:16 [INFO] [all-elements-fsod-mebv] sample 180/237 | category=Radio button | supports=7 | candidates=25 | visual=6 tv=8 text=0 | 5.29 s
+19:06:21 [INFO] [all-elements-fsod-mebv] sample 181/237 | category=Radio button | supports=7 | candidates=17 | visual=10 tv=7 text=0 | 4.55 s
+19:06:26 [INFO] [all-elements-fsod-mebv] sample 182/237 | category=Radio button | supports=7 | candidates=22 | visual=8 tv=8 text=0 | 4.92 s
+19:06:31 [INFO] [all-elements-fsod-mebv] sample 183/237 | category=Radio button | supports=7 | candidates=25 | visual=8 tv=8 text=0 | 5.26 s
+19:06:35 [INFO] [all-elements-fsod-mebv] sample 184/237 | category=Radio button | supports=7 | candidates=11 | visual=3 tv=3 text=0 | 4.23 s
+19:06:42 [INFO] [all-elements-fsod-mebv] sample 185/237 | category=Radio button | supports=7 | candidates=46 | visual=8 tv=6 text=0 | 6.70 s
+19:06:47 [INFO] [all-elements-fsod-mebv] sample 186/237 | category=Radio button | supports=7 | candidates=13 | visual=9 tv=10 text=0 | 4.37 s
+19:06:53 [INFO] [all-elements-fsod-mebv] sample 187/237 | category=Radio button | supports=7 | candidates=36 | visual=0 tv=0 text=0 | 5.94 s
+19:06:57 [INFO] [all-elements-fsod-mebv] sample 188/237 | category=Radio button | supports=7 | candidates=12 | visual=27 tv=11 text=0 | 4.30 s
+19:07:03 [INFO] [all-elements-fsod-mebv] sample 189/237 | category=Radio button | supports=7 | candidates=30 | visual=23 tv=22 text=0 | 5.63 s
+19:07:08 [INFO] [all-elements-fsod-mebv] sample 190/237 | category=Radio button | supports=7 | candidates=14 | visual=3 tv=3 text=0 | 4.46 s
+19:07:11 [INFO] [all-elements-fsod-mebv] sample 191/237 | category=Scroll bar | supports=6 | candidates=1 | visual=2 tv=1 text=0 | 3.14 s
+19:07:14 [INFO] [all-elements-fsod-mebv] sample 192/237 | category=Scroll bar | supports=6 | candidates=3 | visual=0 tv=1 text=1 | 3.26 s
+19:07:19 [INFO] [all-elements-fsod-mebv] sample 193/237 | category=Scroll bar | supports=6 | candidates=15 | visual=10 tv=7 text=0 | 4.18 s
+19:07:22 [INFO] [all-elements-fsod-mebv] sample 194/237 | category=Scroll bar | supports=6 | candidates=3 | visual=2 tv=2 text=0 | 3.34 s
+19:07:25 [INFO] [all-elements-fsod-mebv] sample 195/237 | category=Scroll bar | supports=6 | candidates=1 | visual=3 tv=1 text=0 | 3.14 s
+19:07:31 [INFO] [all-elements-fsod-mebv] sample 196/237 | category=Scroll bar | supports=6 | candidates=31 | visual=12 tv=10 text=4 | 5.29 s
+19:07:35 [INFO] [all-elements-fsod-mebv] sample 197/237 | category=Scroll bar | supports=6 | candidates=14 | visual=4 tv=3 text=3 | 4.08 s
+19:07:39 [INFO] [all-elements-fsod-mebv] sample 198/237 | category=Scroll bar | supports=6 | candidates=9 | visual=27 tv=13 text=0 | 3.73 s
+19:07:42 [INFO] [all-elements-fsod-mebv] sample 199/237 | category=Scroll bar | supports=6 | candidates=0 | visual=0 tv=0 text=0 | 3.07 s
+19:07:46 [INFO] [all-elements-fsod-mebv] sample 200/237 | category=Scroll bar | supports=6 | candidates=5 | visual=3 tv=3 text=0 | 3.44 s
+19:07:49 [INFO] [all-elements-fsod-mebv] sample 201/237 | category=Scroll bar | supports=6 | candidates=3 | visual=0 tv=1 text=1 | 3.36 s
+19:07:53 [INFO] [all-elements-fsod-mebv] sample 202/237 | category=Scroll bar | supports=6 | candidates=11 | visual=2 tv=3 text=0 | 4.12 s
+19:07:57 [INFO] [all-elements-fsod-mebv] sample 203/237 | category=Scroll bar | supports=6 | candidates=1 | visual=1 tv=1 text=0 | 3.14 s
+19:08:00 [INFO] [all-elements-fsod-mebv] sample 204/237 | category=Scroll bar | supports=6 | candidates=3 | visual=3 tv=2 text=1 | 3.29 s
+19:08:04 [INFO] [all-elements-fsod-mebv] sample 205/237 | category=Scroll bar | supports=6 | candidates=3 | visual=2 tv=2 text=0 | 3.29 s
+19:08:08 [INFO] [all-elements-fsod-mebv] sample 206/237 | category=Scroll bar | supports=6 | candidates=17 | visual=12 tv=11 text=0 | 4.32 s
+19:08:12 [INFO] [all-elements-fsod-mebv] sample 207/237 | category=Scroll bar | supports=6 | candidates=5 | visual=0 tv=0 text=1 | 3.42 s
+19:08:15 [INFO] [all-elements-fsod-mebv] sample 208/237 | category=Scroll bar | supports=6 | candidates=4 | visual=4 tv=4 text=0 | 3.37 s
+19:08:18 [INFO] [all-elements-fsod-mebv] sample 209/237 | category=Scroll bar | supports=6 | candidates=1 | visual=1 tv=1 text=0 | 3.15 s
+19:08:22 [INFO] [all-elements-fsod-mebv] sample 210/237 | category=Scroll bar | supports=6 | candidates=0 | visual=0 tv=0 text=0 | 3.08 s
+19:08:26 [INFO] [all-elements-fsod-mebv] sample 211/237 | category=Text box | supports=7 | candidates=2 | visual=2 tv=5 text=0 | 3.63 s
+19:08:29 [INFO] [all-elements-fsod-mebv] sample 212/237 | category=Text box | supports=7 | candidates=1 | visual=1 tv=1 text=0 | 3.54 s
+19:08:33 [INFO] [all-elements-fsod-mebv] sample 213/237 | category=Text box | supports=7 | candidates=3 | visual=4 tv=2 text=0 | 3.58 s
+19:08:38 [INFO] [all-elements-fsod-mebv] sample 214/237 | category=Text box | supports=7 | candidates=12 | visual=7 tv=6 text=0 | 4.47 s
+19:08:42 [INFO] [all-elements-fsod-mebv] sample 215/237 | category=Text box | supports=7 | candidates=4 | visual=5 tv=5 text=0 | 3.78 s
+19:08:45 [INFO] [all-elements-fsod-mebv] sample 216/237 | category=Text box | supports=7 | candidates=0 | visual=0 tv=0 text=0 | 3.57 s
+19:08:49 [INFO] [all-elements-fsod-mebv] sample 217/237 | category=Text box | supports=7 | candidates=5 | visual=10 tv=5 text=3 | 3.70 s
+19:08:53 [INFO] [all-elements-fsod-mebv] sample 218/237 | category=Text box | supports=7 | candidates=4 | visual=14 tv=18 text=0 | 3.87 s
+19:08:57 [INFO] [all-elements-fsod-mebv] sample 219/237 | category=Text box | supports=7 | candidates=2 | visual=1 tv=1 text=0 | 3.76 s
+19:09:01 [INFO] [all-elements-fsod-mebv] sample 220/237 | category=Text box | supports=7 | candidates=2 | visual=3 tv=8 text=0 | 3.60 s
+19:09:05 [INFO] [all-elements-fsod-mebv] sample 221/237 | category=Text box | supports=7 | candidates=3 | visual=3 tv=3 text=0 | 3.69 s
+19:09:09 [INFO] [all-elements-fsod-mebv] sample 222/237 | category=Text box | supports=7 | candidates=1 | visual=2 tv=7 text=0 | 3.47 s
+19:09:12 [INFO] [all-elements-fsod-mebv] sample 223/237 | category=Text box | supports=7 | candidates=0 | visual=0 tv=0 text=0 | 3.36 s
+19:09:16 [INFO] [all-elements-fsod-mebv] sample 224/237 | category=Text box | supports=7 | candidates=2 | visual=2 tv=2 text=0 | 3.62 s
+19:09:20 [INFO] [all-elements-fsod-mebv] sample 225/237 | category=Text box | supports=7 | candidates=0 | visual=0 tv=0 text=0 | 3.45 s
+19:09:24 [INFO] [all-elements-fsod-mebv] sample 226/237 | category=Text box | supports=7 | candidates=10 | visual=17 tv=17 text=10 | 4.07 s
+19:09:28 [INFO] [all-elements-fsod-mebv] sample 227/237 | category=Text box | supports=7 | candidates=5 | visual=8 tv=7 text=0 | 3.84 s
+19:09:32 [INFO] [all-elements-fsod-mebv] sample 228/237 | category=Text box | supports=7 | candidates=3 | visual=3 tv=3 text=0 | 3.69 s
+19:09:36 [INFO] [all-elements-fsod-mebv] sample 229/237 | category=Text box | supports=7 | candidates=4 | visual=6 tv=6 text=0 | 3.66 s
+19:09:39 [INFO] [all-elements-fsod-mebv] sample 230/237 | category=Text box | supports=7 | candidates=2 | visual=2 tv=11 text=0 | 3.48 s
+19:09:43 [INFO] [all-elements-fsod-mebv] sample 231/237 | category=Text box | supports=7 | candidates=3 | visual=2 tv=2 text=0 | 3.59 s
+19:09:47 [INFO] [all-elements-fsod-mebv] sample 232/237 | category=Text box | supports=7 | candidates=5 | visual=5 tv=6 text=0 | 3.85 s
+19:09:51 [INFO] [all-elements-fsod-mebv] sample 233/237 | category=Text box | supports=7 | candidates=2 | visual=2 tv=2 text=0 | 3.55 s
+19:09:55 [INFO] [all-elements-fsod-mebv] sample 234/237 | category=Text box | supports=7 | candidates=2 | visual=1 tv=2 text=0 | 3.66 s
+19:09:59 [INFO] [all-elements-fsod-mebv] sample 235/237 | category=Text box | supports=7 | candidates=8 | visual=5 tv=6 text=0 | 4.07 s
+19:10:02 [INFO] [all-elements-fsod-mebv] sample 236/237 | category=Text box | supports=7 | candidates=0 | visual=0 tv=0 text=0 | 3.46 s
+19:10:06 [INFO] [all-elements-fsod-mebv] sample 237/237 | category=Text box | supports=7 | candidates=1 | visual=1 tv=1 text=0 | 3.45 s
+19:10:06 [INFO] --- COCO Evaluation: all-elements-fsod-mebv ---
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.00s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.17s).
+Accumulating evaluation results...
+DONE (t=0.04s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.155
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.232
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.170
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.123
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.189
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.190
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.075
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.318
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.352
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.277
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.404
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.447
+19:10:06 [INFO]   [visual] AP=0.1547  AP50=0.2322  AP75=0.1703  AP_s=0.1228  AP_m=0.1892  AP_l=0.1903
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.00s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.25s).
+Accumulating evaluation results...
+DONE (t=0.05s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.196
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.296
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.212
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.221
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.245
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.210
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.096
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.364
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.381
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.426
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.470
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.545
+19:10:07 [INFO]   [tv] AP=0.1960  AP50=0.2957  AP75=0.2123  AP_s=0.2213  AP_m=0.2452  AP_l=0.2100
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.00s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.17s).
+Accumulating evaluation results...
+DONE (t=0.04s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.201
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.283
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.218
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.243
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.257
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.157
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.067
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.251
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.265
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.385
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.335
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.239
+19:10:07 [INFO]   [text] AP=0.2014  AP50=0.2833  AP75=0.2179  AP_s=0.2428  AP_m=0.2570  AP_l=0.1572
+19:10:07 [INFO] ============================================================
+19:10:07 [INFO] TIMING SUMMARY
+19:10:07 [INFO] ============================================================
+19:10:07 [INFO] 
+19:10:07 [INFO] --- Timing ---
+19:10:07 [INFO] Model loading:    10.39 s
+19:10:07 [INFO] Total inference:  995.07 s
+19:10:07 [INFO] Samples processed: 237
+19:10:07 [INFO] Avg per sample:   4.007 s
+19:10:07 [INFO] Min per sample:   2.453 s
+19:10:07 [INFO] Max per sample:   7.855 s
+19:10:07 [INFO] Submission pickle files saved to results/20260513_185322_all-elements-fsod-mebv_test/submissions
+19:10:07 [INFO] Results saved to results/20260513_185322_all-elements-fsod-mebv_test/results.json
+19:10:07 [INFO] Log file: results/20260513_185322_all-elements-fsod-mebv_test/inference.log
+>>>>>>>>>> [GPU 0] all-elements-fsod-mebv DONE <<<<<<<<<<
+>>>>>>>>>> [GPU 0] (4/4) aquarium-combined-fsod-gjvb <<<<<<<<<<
+/home/chenzhigang/anaconda3/envs/sam3/lib/python3.12/site-packages/torch/backends/__init__.py:46: UserWarning: Please use the new API settings to control TF32 behavior, such as torch.backends.cudnn.conv.fp32_precision = 'tf32' or torch.backends.cuda.matmul.fp32_precision = 'ieee'. Old settings, e.g, torch.backends.cuda.matmul.allow_tf32 = True, torch.backends.cudnn.allow_tf32 = True, allowTF32CuDNN() and allowTF32CuBLAS() will be deprecated after Pytorch 2.9. Please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:80.)
+  self.setter(val)
+19:10:13 [INFO] ============================================================
+19:10:13 [INFO] RF20VL Few-Shot Object Detection — Inference
+19:10:13 [INFO] ============================================================
+19:10:13 [INFO] Arguments: {'data_path': './data', 'split': 'test', 'subset': 'aquarium-combined-fsod-gjvb', 'device': 'cuda', 'nms_iou': 0.8, 'output_json': None, 'debug': False, 'no_vis': False}
+19:10:13 [INFO] Loading Sam3Segmenter on cuda ...
+19:10:23 [INFO] Model loaded in 10.26 s
+19:10:23 [INFO] Found 1 subset(s): ['aquarium-combined-fsod-gjvb']
+19:10:23 [INFO] Dataset loaded: subset=aquarium-combined-fsod-gjvb, samples=92, categories={1: 'fish', 2: 'jellyfish', 3: 'penguin', 4: 'puffin', 5: 'shark', 6: 'starfish', 7: 'stingray'} (0.18 s)
+19:10:28 [INFO] [aquarium-combined-fsod-gjvb] sample 1/92 | category=fish | supports=7 | candidates=6 | visual=8 tv=9 text=10 | 4.64 s
+19:10:34 [INFO] [aquarium-combined-fsod-gjvb] sample 2/92 | category=fish | supports=7 | candidates=24 | visual=22 tv=22 text=23 | 5.45 s
+19:10:41 [INFO] [aquarium-combined-fsod-gjvb] sample 3/92 | category=fish | supports=7 | candidates=30 | visual=31 tv=31 text=33 | 5.94 s
+19:10:46 [INFO] [aquarium-combined-fsod-gjvb] sample 4/92 | category=fish | supports=7 | candidates=5 | visual=5 tv=5 text=6 | 4.13 s
+19:10:51 [INFO] [aquarium-combined-fsod-gjvb] sample 5/92 | category=fish | supports=7 | candidates=6 | visual=6 tv=6 text=5 | 4.16 s
+19:10:56 [INFO] [aquarium-combined-fsod-gjvb] sample 6/92 | category=fish | supports=7 | candidates=8 | visual=3 tv=16 text=11 | 4.42 s
+19:11:02 [INFO] [aquarium-combined-fsod-gjvb] sample 7/92 | category=fish | supports=7 | candidates=29 | visual=30 tv=33 text=39 | 5.90 s
+19:11:09 [INFO] [aquarium-combined-fsod-gjvb] sample 8/92 | category=fish | supports=7 | candidates=28 | visual=18 tv=18 text=21 | 5.79 s
+19:11:15 [INFO] [aquarium-combined-fsod-gjvb] sample 9/92 | category=fish | supports=7 | candidates=2 | visual=1 tv=1 text=1 | 5.00 s
+19:11:20 [INFO] [aquarium-combined-fsod-gjvb] sample 10/92 | category=fish | supports=7 | candidates=7 | visual=6 tv=7 text=7 | 4.22 s
+19:11:25 [INFO] [aquarium-combined-fsod-gjvb] sample 11/92 | category=fish | supports=7 | candidates=15 | visual=16 tv=16 text=16 | 4.75 s
+19:11:31 [INFO] [aquarium-combined-fsod-gjvb] sample 12/92 | category=fish | supports=7 | candidates=4 | visual=5 tv=12 text=11 | 5.23 s
+19:11:38 [INFO] [aquarium-combined-fsod-gjvb] sample 13/92 | category=fish | supports=7 | candidates=32 | visual=32 tv=32 text=36 | 6.07 s
+19:11:43 [INFO] [aquarium-combined-fsod-gjvb] sample 14/92 | category=fish | supports=7 | candidates=6 | visual=5 tv=5 text=6 | 4.09 s
+19:11:48 [INFO] [aquarium-combined-fsod-gjvb] sample 15/92 | category=fish | supports=7 | candidates=13 | visual=13 tv=14 text=14 | 4.62 s
+19:11:53 [INFO] [aquarium-combined-fsod-gjvb] sample 16/92 | category=fish | supports=7 | candidates=2 | visual=2 tv=2 text=2 | 3.80 s
+19:11:59 [INFO] [aquarium-combined-fsod-gjvb] sample 17/92 | category=fish | supports=7 | candidates=13 | visual=4 tv=3 text=19 | 5.88 s
+19:12:04 [INFO] [aquarium-combined-fsod-gjvb] sample 18/92 | category=fish | supports=7 | candidates=5 | visual=4 tv=5 text=2 | 4.39 s
+19:12:10 [INFO] [aquarium-combined-fsod-gjvb] sample 19/92 | category=fish | supports=7 | candidates=16 | visual=15 tv=15 text=17 | 4.81 s
+19:12:14 [INFO] [aquarium-combined-fsod-gjvb] sample 20/92 | category=fish | supports=7 | candidates=4 | visual=5 tv=5 text=2 | 3.97 s
+19:12:19 [INFO] [aquarium-combined-fsod-gjvb] sample 21/92 | category=fish | supports=7 | candidates=5 | visual=5 tv=5 text=4 | 4.01 s
+19:12:26 [INFO] [aquarium-combined-fsod-gjvb] sample 22/92 | category=fish | supports=7 | candidates=30 | visual=32 tv=32 text=32 | 5.91 s
+19:12:31 [INFO] [aquarium-combined-fsod-gjvb] sample 23/92 | category=fish | supports=7 | candidates=20 | visual=19 tv=19 text=18 | 5.18 s
+19:12:39 [INFO] [aquarium-combined-fsod-gjvb] sample 24/92 | category=fish | supports=7 | candidates=14 | visual=12 tv=29 text=20 | 6.17 s
+19:12:44 [INFO] [aquarium-combined-fsod-gjvb] sample 25/92 | category=fish | supports=7 | candidates=7 | visual=6 tv=9 text=6 | 4.52 s
+19:12:50 [INFO] [aquarium-combined-fsod-gjvb] sample 26/92 | category=fish | supports=7 | candidates=10 | visual=9 tv=10 text=8 | 5.69 s
+19:12:55 [INFO] [aquarium-combined-fsod-gjvb] sample 27/92 | category=fish | supports=7 | candidates=9 | visual=6 tv=6 text=8 | 4.35 s
+19:13:01 [INFO] [aquarium-combined-fsod-gjvb] sample 28/92 | category=fish | supports=7 | candidates=2 | visual=2 tv=13 text=7 | 5.00 s
+19:13:08 [INFO] [aquarium-combined-fsod-gjvb] sample 29/92 | category=fish | supports=7 | candidates=14 | visual=13 tv=11 text=9 | 5.94 s
+19:13:14 [INFO] [aquarium-combined-fsod-gjvb] sample 30/92 | category=fish | supports=7 | candidates=8 | visual=35 tv=11 text=8 | 5.57 s
+19:13:21 [INFO] [aquarium-combined-fsod-gjvb] sample 31/92 | category=fish | supports=7 | candidates=17 | visual=19 tv=19 text=12 | 6.15 s
+19:13:27 [INFO] [aquarium-combined-fsod-gjvb] sample 32/92 | category=fish | supports=7 | candidates=20 | visual=17 tv=18 text=14 | 5.16 s
+19:13:30 [INFO] [aquarium-combined-fsod-gjvb] sample 33/92 | category=jellyfish | supports=2 | candidates=6 | visual=6 tv=6 text=3 | 2.30 s
+19:13:32 [INFO] [aquarium-combined-fsod-gjvb] sample 34/92 | category=jellyfish | supports=2 | candidates=0 | visual=0 tv=34 text=34 | 1.85 s
+19:13:35 [INFO] [aquarium-combined-fsod-gjvb] sample 35/92 | category=jellyfish | supports=2 | candidates=9 | visual=8 tv=10 text=7 | 2.56 s
+19:13:37 [INFO] [aquarium-combined-fsod-gjvb] sample 36/92 | category=jellyfish | supports=2 | candidates=0 | visual=0 tv=67 text=67 | 2.44 s
+19:13:40 [INFO] [aquarium-combined-fsod-gjvb] sample 37/92 | category=jellyfish | supports=2 | candidates=4 | visual=4 tv=4 text=7 | 2.17 s
+19:13:42 [INFO] [aquarium-combined-fsod-gjvb] sample 38/92 | category=jellyfish | supports=2 | candidates=7 | visual=9 tv=9 text=9 | 2.37 s
+19:13:44 [INFO] [aquarium-combined-fsod-gjvb] sample 39/92 | category=jellyfish | supports=2 | candidates=0 | visual=0 tv=22 text=22 | 1.85 s
+19:13:46 [INFO] [aquarium-combined-fsod-gjvb] sample 40/92 | category=jellyfish | supports=2 | candidates=0 | visual=0 tv=6 text=6 | 1.85 s
+19:13:49 [INFO] [aquarium-combined-fsod-gjvb] sample 41/92 | category=jellyfish | supports=2 | candidates=15 | visual=9 tv=9 text=8 | 2.96 s
+19:13:53 [INFO] [aquarium-combined-fsod-gjvb] sample 42/92 | category=penguin | supports=7 | candidates=2 | visual=2 tv=2 text=2 | 3.51 s
+19:13:57 [INFO] [aquarium-combined-fsod-gjvb] sample 43/92 | category=penguin | supports=7 | candidates=1 | visual=1 tv=1 text=1 | 3.43 s
+19:14:01 [INFO] [aquarium-combined-fsod-gjvb] sample 44/92 | category=penguin | supports=7 | candidates=1 | visual=1 tv=1 text=1 | 3.43 s
+19:14:05 [INFO] [aquarium-combined-fsod-gjvb] sample 45/92 | category=penguin | supports=7 | candidates=8 | visual=11 tv=12 text=11 | 3.98 s
+19:14:09 [INFO] [aquarium-combined-fsod-gjvb] sample 46/92 | category=penguin | supports=7 | candidates=1 | visual=1 tv=1 text=1 | 3.45 s
+19:14:13 [INFO] [aquarium-combined-fsod-gjvb] sample 47/92 | category=penguin | supports=7 | candidates=1 | visual=1 tv=1 text=0 | 3.45 s
+19:14:17 [INFO] [aquarium-combined-fsod-gjvb] sample 48/92 | category=penguin | supports=7 | candidates=1 | visual=1 tv=1 text=1 | 3.44 s
+19:14:21 [INFO] [aquarium-combined-fsod-gjvb] sample 49/92 | category=penguin | supports=7 | candidates=7 | visual=9 tv=9 text=11 | 3.87 s
+19:14:26 [INFO] [aquarium-combined-fsod-gjvb] sample 50/92 | category=penguin | supports=7 | candidates=4 | visual=4 tv=3 text=4 | 3.67 s
+19:14:30 [INFO] [aquarium-combined-fsod-gjvb] sample 51/92 | category=puffin | supports=8 | candidates=3 | visual=17 tv=10 text=6 | 4.24 s
+19:14:37 [INFO] [aquarium-combined-fsod-gjvb] sample 52/92 | category=puffin | supports=8 | candidates=5 | visual=3 tv=10 text=5 | 5.84 s
+19:14:42 [INFO] [aquarium-combined-fsod-gjvb] sample 53/92 | category=puffin | supports=8 | candidates=5 | visual=6 tv=6 text=4 | 4.08 s
+19:14:46 [INFO] [aquarium-combined-fsod-gjvb] sample 54/92 | category=puffin | supports=8 | candidates=8 | visual=8 tv=8 text=9 | 4.28 s
+19:14:52 [INFO] [aquarium-combined-fsod-gjvb] sample 55/92 | category=shark | supports=8 | candidates=8 | visual=8 tv=7 text=2 | 4.90 s
+19:14:59 [INFO] [aquarium-combined-fsod-gjvb] sample 56/92 | category=shark | supports=8 | candidates=31 | visual=21 tv=19 text=1 | 6.62 s
+19:15:05 [INFO] [aquarium-combined-fsod-gjvb] sample 57/92 | category=shark | supports=8 | candidates=7 | visual=29 tv=15 text=0 | 4.83 s
+19:15:11 [INFO] [aquarium-combined-fsod-gjvb] sample 58/92 | category=shark | supports=8 | candidates=9 | visual=6 tv=5 text=1 | 5.08 s
+19:15:17 [INFO] [aquarium-combined-fsod-gjvb] sample 59/92 | category=shark | supports=8 | candidates=6 | visual=5 tv=5 text=1 | 5.69 s
+19:15:26 [INFO] [aquarium-combined-fsod-gjvb] sample 60/92 | category=shark | supports=8 | candidates=43 | visual=18 tv=17 text=1 | 7.57 s
+19:15:32 [INFO] [aquarium-combined-fsod-gjvb] sample 61/92 | category=shark | supports=8 | candidates=4 | visual=4 tv=4 text=1 | 5.49 s
+19:15:42 [INFO] [aquarium-combined-fsod-gjvb] sample 62/92 | category=shark | supports=8 | candidates=58 | visual=33 tv=33 text=2 | 8.74 s
+19:15:48 [INFO] [aquarium-combined-fsod-gjvb] sample 63/92 | category=shark | supports=8 | candidates=14 | visual=19 tv=13 text=2 | 5.34 s
+19:15:54 [INFO] [aquarium-combined-fsod-gjvb] sample 64/92 | category=shark | supports=8 | candidates=4 | visual=4 tv=5 text=1 | 5.24 s
+19:16:02 [INFO] [aquarium-combined-fsod-gjvb] sample 65/92 | category=shark | supports=8 | candidates=34 | visual=17 tv=13 text=4 | 6.84 s
+19:16:08 [INFO] [aquarium-combined-fsod-gjvb] sample 66/92 | category=shark | supports=8 | candidates=20 | visual=12 tv=11 text=1 | 5.78 s
+19:16:16 [INFO] [aquarium-combined-fsod-gjvb] sample 67/92 | category=shark | supports=8 | candidates=32 | visual=31 tv=31 text=3 | 6.73 s
+19:16:24 [INFO] [aquarium-combined-fsod-gjvb] sample 68/92 | category=shark | supports=8 | candidates=45 | visual=21 tv=20 text=2 | 7.66 s
+19:16:30 [INFO] [aquarium-combined-fsod-gjvb] sample 69/92 | category=shark | supports=8 | candidates=4 | visual=4 tv=4 text=1 | 4.61 s
+19:16:35 [INFO] [aquarium-combined-fsod-gjvb] sample 70/92 | category=shark | supports=8 | candidates=11 | visual=6 tv=4 text=1 | 5.25 s
+19:16:43 [INFO] [aquarium-combined-fsod-gjvb] sample 71/92 | category=shark | supports=8 | candidates=16 | visual=14 tv=13 text=0 | 6.26 s
+19:16:50 [INFO] [aquarium-combined-fsod-gjvb] sample 72/92 | category=shark | supports=8 | candidates=29 | visual=15 tv=15 text=8 | 6.46 s
+19:16:56 [INFO] [aquarium-combined-fsod-gjvb] sample 73/92 | category=stingray | supports=10 | candidates=2 | visual=1 tv=3 text=1 | 5.50 s
+19:17:02 [INFO] [aquarium-combined-fsod-gjvb] sample 74/92 | category=stingray | supports=10 | candidates=1 | visual=1 tv=1 text=1 | 4.90 s
+19:17:09 [INFO] [aquarium-combined-fsod-gjvb] sample 75/92 | category=stingray | supports=10 | candidates=6 | visual=5 tv=5 text=1 | 6.39 s
+19:17:16 [INFO] [aquarium-combined-fsod-gjvb] sample 76/92 | category=stingray | supports=10 | candidates=6 | visual=7 tv=6 text=2 | 5.28 s
+19:17:22 [INFO] [aquarium-combined-fsod-gjvb] sample 77/92 | category=stingray | supports=10 | candidates=3 | visual=4 tv=3 text=1 | 5.04 s
+19:17:28 [INFO] [aquarium-combined-fsod-gjvb] sample 78/92 | category=stingray | supports=10 | candidates=10 | visual=8 tv=7 text=3 | 5.70 s
+19:17:35 [INFO] [aquarium-combined-fsod-gjvb] sample 79/92 | category=stingray | supports=10 | candidates=10 | visual=13 tv=13 text=2 | 5.59 s
+19:17:43 [INFO] [aquarium-combined-fsod-gjvb] sample 80/92 | category=stingray | supports=10 | candidates=4 | visual=4 tv=3 text=1 | 6.42 s
+19:17:49 [INFO] [aquarium-combined-fsod-gjvb] sample 81/92 | category=stingray | supports=10 | candidates=3 | visual=8 tv=8 text=1 | 5.06 s
+19:17:55 [INFO] [aquarium-combined-fsod-gjvb] sample 82/92 | category=stingray | supports=10 | candidates=6 | visual=8 tv=7 text=0 | 5.34 s
+19:18:02 [INFO] [aquarium-combined-fsod-gjvb] sample 83/92 | category=stingray | supports=10 | candidates=4 | visual=4 tv=3 text=1 | 6.32 s
+19:18:09 [INFO] [aquarium-combined-fsod-gjvb] sample 84/92 | category=stingray | supports=10 | candidates=8 | visual=6 tv=6 text=3 | 5.46 s
+19:18:17 [INFO] [aquarium-combined-fsod-gjvb] sample 85/92 | category=stingray | supports=10 | candidates=6 | visual=10 tv=3 text=2 | 6.43 s
+19:18:23 [INFO] [aquarium-combined-fsod-gjvb] sample 86/92 | category=stingray | supports=10 | candidates=5 | visual=12 tv=5 text=2 | 5.22 s
+19:18:30 [INFO] [aquarium-combined-fsod-gjvb] sample 87/92 | category=stingray | supports=10 | candidates=14 | visual=11 tv=10 text=4 | 5.91 s
+19:18:36 [INFO] [aquarium-combined-fsod-gjvb] sample 88/92 | category=stingray | supports=10 | candidates=2 | visual=2 tv=2 text=1 | 4.99 s
+19:18:42 [INFO] [aquarium-combined-fsod-gjvb] sample 89/92 | category=stingray | supports=10 | candidates=4 | visual=9 tv=4 text=2 | 5.11 s
+19:18:48 [INFO] [aquarium-combined-fsod-gjvb] sample 90/92 | category=stingray | supports=10 | candidates=12 | visual=17 tv=16 text=0 | 5.71 s
+19:18:56 [INFO] [aquarium-combined-fsod-gjvb] sample 91/92 | category=stingray | supports=10 | candidates=2 | visual=2 tv=2 text=1 | 6.11 s
+19:19:02 [INFO] [aquarium-combined-fsod-gjvb] sample 92/92 | category=stingray | supports=10 | candidates=10 | visual=12 tv=12 text=2 | 5.56 s
+19:19:03 [INFO] --- COCO Evaluation: aquarium-combined-fsod-gjvb ---
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.00s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.11s).
+Accumulating evaluation results...
+DONE (t=0.02s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.262
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.388
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.278
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.172
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.285
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.135
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.419
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.456
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.313
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.480
+19:19:03 [INFO]   [visual] AP=0.2618  AP50=0.3883  AP75=0.2778  AP_s=0.0000  AP_m=0.1723  AP_l=0.2852
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.00s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.17s).
+Accumulating evaluation results...
+DONE (t=0.02s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.339
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.529
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.361
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.236
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.374
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.146
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.496
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.584
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.451
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.617
+19:19:03 [INFO]   [tv] AP=0.3385  AP50=0.5295  AP75=0.3609  AP_s=0.0000  AP_m=0.2360  AP_l=0.3744
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.00s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.16s).
+Accumulating evaluation results...
+DONE (t=0.02s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.396
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.646
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.391
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.103
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.187
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.441
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.178
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.432
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.506
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.550
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.288
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.543
+19:19:03 [INFO]   [text] AP=0.3958  AP50=0.6458  AP75=0.3911  AP_s=0.1027  AP_m=0.1865  AP_l=0.4407
+19:19:03 [INFO] ============================================================
+19:19:03 [INFO] TIMING SUMMARY
+19:19:03 [INFO] ============================================================
+19:19:03 [INFO] 
+19:19:03 [INFO] --- Timing ---
+19:19:03 [INFO] Model loading:    10.26 s
+19:19:03 [INFO] Total inference:  520.12 s
+19:19:03 [INFO] Samples processed: 92
+19:19:03 [INFO] Avg per sample:   4.924 s
+19:19:03 [INFO] Min per sample:   1.846 s
+19:19:03 [INFO] Max per sample:   8.735 s
+19:19:03 [INFO] Submission pickle files saved to results/20260513_191013_aquarium-combined-fsod-gjvb_test/submissions
+19:19:03 [INFO] Results saved to results/20260513_191013_aquarium-combined-fsod-gjvb_test/results.json
+19:19:03 [INFO] Log file: results/20260513_191013_aquarium-combined-fsod-gjvb_test/inference.log
+>>>>>>>>>> [GPU 0] aquarium-combined-fsod-gjvb DONE <<<<<<<<<<
+
+[GPU 0] All done.

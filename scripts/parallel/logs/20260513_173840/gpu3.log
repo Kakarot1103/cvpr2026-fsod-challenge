@@ -1,0 +1,13 @@
+
+CondaError: Run 'conda init' before 'conda activate'
+
+[GPU 3] Subsets 13-16 (4 tasks)
+
+>>>>>>>>>> [GPU 3] (1/4) recode-waste-czvmg-fsod-yxsw <<<<<<<<<<
+/home/chenzhigang/anaconda3/envs/sam3/lib/python3.12/site-packages/torch/backends/__init__.py:46: UserWarning: Please use the new API settings to control TF32 behavior, such as torch.backends.cudnn.conv.fp32_precision = 'tf32' or torch.backends.cuda.matmul.fp32_precision = 'ieee'. Old settings, e.g, torch.backends.cuda.matmul.allow_tf32 = True, torch.backends.cudnn.allow_tf32 = True, allowTF32CuDNN() and allowTF32CuBLAS() will be deprecated after Pytorch 2.9. Please see https://pytorch.org/docs/main/notes/cuda.html#tensorfloat-32-tf32-on-ampere-and-later-devices (Triggered internally at /pytorch/aten/src/ATen/Context.cpp:80.)
+  self.setter(val)
+17:38:47 [INFO] ============================================================
+17:38:47 [INFO] RF20VL Few-Shot Object Detection — Inference
+17:38:47 [INFO] ============================================================
+17:38:47 [INFO] Arguments: {'data_path': './data', 'split': 'valid', 'subset': 'recode-waste-czvmg-fsod-yxsw', 'device': 'cuda', 'nms_iou': 0.8, 'output_json': None, 'debug': False, 'no_vis': False}
+17:38:47 [INFO] Loading Sam3Segmenter on cuda ...
