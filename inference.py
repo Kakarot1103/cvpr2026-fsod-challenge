@@ -31,6 +31,7 @@ from pycocotools.cocoeval import COCOeval
 
 from datasets.rf20vl import DatasetRF20VL, get_all_subsets
 from model.sam3 import Sam3Segmenter
+from model.vqa_rescore import VQARescorer
 from sam3.sam3.model.box_ops import box_xywh_to_xyxy, box_xyxy_to_xywh
 
 
@@ -70,6 +71,31 @@ def setup_logging(results_dir, debug=False):
 def _collate_fn(batch):
     """Return items as-is (no stacking) — dataset has variable-length fields."""
     return batch[0]
+
+
+def load_class_descriptions(prompt_dir, subset):
+    """加载指定 subset 的 class description 映射。
+
+    prompt_dir 下文件名格式: all_refined_class_instructions_{base_name}.json
+    用最长前缀匹配：subset 名中找到能匹配 prompt 文件名 base_name 的那个。
+
+    Returns:
+        dict: {category_name: class_description}
+    """
+    if not os.path.isdir(prompt_dir):
+        return {}
+    best_match = None
+    for fname in os.listdir(prompt_dir):
+        if not fname.startswith("all_refined_class_instructions_") or not fname.endswith(".json"):
+            continue
+        base = fname[len("all_refined_class_instructions_"):-len(".json")]
+        if subset.startswith(base) and (best_match is None or len(base) > len(best_match)):
+            best_match = base
+    if best_match is None:
+        return {}
+    json_path = os.path.join(prompt_dir, f"all_refined_class_instructions_{best_match}.json")
+    with open(json_path, "r", encoding="utf-8") as f:
+        return json.load(f)
 
 
 # ---------------------------------------------------------------------------
@@ -262,12 +288,19 @@ def parse_args():
                         help="NMS IoU threshold for final prediction dedup")
     parser.add_argument("--max-samples", type=int, default=None,
                         help="Limit number of samples per subset (for quick testing)")
+    parser.add_argument("--output-dir", type=str, default=None,
+                        help="Override results output directory (default: results/<timestamp>_<subset>_<split>)")
     parser.add_argument("--output-json", type=str, default=None,
                         help="Save predictions as JSON")
     parser.add_argument("--debug", action="store_true",
                         help="Enable DEBUG level logging (file & console)")
     parser.add_argument("--no-vis", action="store_true",
                         help="Disable visualization saving")
+    parser.add_argument("--vqa-rescore", action="store_true",
+                        help="Apply VQA rescoring to tv predictions")
+    parser.add_argument("--vqa-prompt-dir", type=str,
+                        default="DetPO/prompts/detpo/Qwen3-VL-8B-Instruct",
+                        help="Directory containing class description JSON files")
     return parser.parse_args()
 
 
@@ -275,9 +308,12 @@ def main():
     args = parse_args()
 
     # --- Results directory ---
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    subset_tag = args.subset if args.subset else "all"
-    results_dir = os.path.join("results", f"{timestamp}_{subset_tag}_{args.split}")
+    if args.output_dir:
+        results_dir = args.output_dir
+    else:
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        subset_tag = args.subset if args.subset else "all"
+        results_dir = os.path.join("results", f"{timestamp}_{subset_tag}_{args.split}")
     log = setup_logging(results_dir, debug=args.debug)
 
     log.info("=" * 60)
@@ -291,6 +327,16 @@ def main():
     segmenter = Sam3Segmenter(device=args.device)
     t_model = time.time() - t0_model
     log.info("Model loaded in %.2f s", t_model)
+
+    # --- VQA Rescorer ---
+    vqa_rescorer = None
+    if args.vqa_rescore:
+        vqa_rescorer = VQARescorer(
+            api_key="EMPTY",
+            server_url="http://localhost:22002/v1",
+            model_name="InternVL2",
+        )
+        log.info("VQA Rescorer initialized (InternVL2 @ localhost:22002)")
 
     # --- Dataset ---
     subsets = get_all_subsets(args.data_path)
@@ -314,6 +360,12 @@ def main():
         t_ds = time.time() - t0_ds
         log.info("Dataset loaded: subset=%s, samples=%d, categories=%s (%.2f s)",
                  subset, len(dataset), dataset.categories, t_ds)
+
+        # 加载该 subset 的 class descriptions
+        class_descriptions = {}
+        if vqa_rescorer is not None:
+            class_descriptions = load_class_descriptions(args.vqa_prompt_dir, subset)
+            log.info("Loaded %d class descriptions for %s", len(class_descriptions), subset)
 
         dataloader = DataLoader(dataset, batch_size=1, shuffle=False,
                                 num_workers=0, collate_fn=_collate_fn)
@@ -377,6 +429,20 @@ def main():
                     keep = nms(boxes, scores, args.pred_nms_iou)
                     boxes = boxes[keep]
                     scores = scores[keep]
+
+                # VQA rescoring for tv predictions
+                if pt == "tv" and vqa_rescorer is not None and boxes.numel() > 0:
+                    desc = class_descriptions.get(category)
+                    boxes_xywh = box_xyxy_to_xywh(boxes)
+                    rescored_scores = []
+                    for i in range(boxes_xywh.shape[0]):
+                        bbox_xywh = boxes_xywh[i].tolist()
+                        vqa_score = vqa_rescorer(query_pil, bbox_xywh, category, desc)
+                        rescored_scores.append(vqa_score)
+                    scores = torch.tensor(rescored_scores, dtype=scores.dtype)
+                    log.debug("  tv VQA rescored: %d boxes, scores=%s", len(rescored_scores),
+                              [round(s, 3) for s in rescored_scores[:5]])
+
                 submission.add(pt, subset, img_id, class_id, boxes, scores)
 
             t_sample = time.time() - t0_sample

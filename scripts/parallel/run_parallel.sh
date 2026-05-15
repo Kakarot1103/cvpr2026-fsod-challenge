@@ -38,6 +38,11 @@ PER_GPU=$(( (TOTAL + NUM_GPUS - 1) / NUM_GPUS ))
 
 PRED_TYPES=("tv" "text" "visual")
 
+# VQA rescoring 配置
+VQA_RESCORE="--vqa-rescore"
+OUTPUT_BASE="results/vqa"
+SUBMIT_BASE="submission/vqa"
+
 SESSION_PREFIX="fsod"
 
 # ==================== 日志目录 ====================
@@ -102,7 +107,9 @@ echo ">>>>>>>>>> [GPU $GPU_ID] ($COUNT/$NUM_ON_GPU) $SUBSET <<<<<<<<<<"
 CUDA_VISIBLE_DEVICES=$GPU_ID python inference.py \\
     --subset "$SUBSET" \\
     --split "$SPLIT" \\
-    --device cuda
+    --device cuda \\
+    --output-dir "${OUTPUT_BASE}/${SUBSET}_${SPLIT}" \\
+    $VQA_RESCORE
 echo ">>>>>>>>>> [GPU $GPU_ID] $SUBSET DONE <<<<<<<<<<"
 
 EOF
@@ -159,22 +166,14 @@ TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 FOUND=0
 
 for PRED_TYPE in "${PRED_TYPES[@]}"; do
-    SUBMIT_DIR="submission/${TIMESTAMP}_${PRED_TYPE}"
+    SUBMIT_DIR="${SUBMIT_BASE}/${TIMESTAMP}_${PRED_TYPE}"
     mkdir -p "$SUBMIT_DIR"
 
     echo "  Collecting [$PRED_TYPE] ..."
     for SUBSET in "${SUBSETS[@]}"; do
-        # 每个 subset 的 results 目录不同，需遍历所有匹配目录查找
-        SRC=""
-        for DIR in results/*_${SPLIT}; do
-            CANDIDATE="$DIR/submissions/$PRED_TYPE/${SUBSET}.pkl"
-            if [ -f "$CANDIDATE" ]; then
-                SRC="$CANDIDATE"
-                break
-            fi
-        done
-        if [ -n "$SRC" ]; then
-            cp "$SRC" "$SUBMIT_DIR/${SUBSET}.pkl"
+        CANDIDATE="${OUTPUT_BASE}/${SUBSET}_${SPLIT}/submissions/$PRED_TYPE/${SUBSET}.pkl"
+        if [ -f "$CANDIDATE" ]; then
+            cp "$CANDIDATE" "$SUBMIT_DIR/${SUBSET}.pkl"
             echo "    ${SUBSET}.pkl"
             FOUND=1
         else
@@ -185,7 +184,7 @@ done
 
 echo ""
 if [ $FOUND -eq 1 ]; then
-    echo "Submission files saved to: submission/${TIMESTAMP}_*"
+    echo "Submission files saved to: ${SUBMIT_BASE}/${TIMESTAMP}_*"
 else
     echo "WARNING: No submission files found."
 fi
