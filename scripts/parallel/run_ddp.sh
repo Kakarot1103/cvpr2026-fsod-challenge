@@ -72,7 +72,8 @@ WORKER_FILE="$LOG_DIR/worker.sh"
 cat > "$WORKER_FILE" <<EOF
 #!/bin/bash
 cd "$PROJECT_DIR"
-source activate sam3
+source /home/chenzhigang/anaconda3/etc/profile.d/conda.sh
+conda activate sam3
 
 echo "DDP Inference: $TOTAL subsets, $NUM_GPUS GPUs"
 echo "CUDA_VISIBLE_DEVICES=$GPU_LIST"
