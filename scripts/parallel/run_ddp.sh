@@ -62,7 +62,7 @@ tmux kill-session -t "$SESSION" 2>/dev/null || true
 
 # ==================== 构造 CUDA_VISIBLE_DEVICES ====================
 
-IFS=',' read -r GPU_LIST <<< "${GPUS[*]}"
+GPU_LIST=$(IFS=,; echo "${GPUS[*]}")
 
 # ==================== 生成 worker 脚本 ====================
 
