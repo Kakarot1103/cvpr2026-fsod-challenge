@@ -36,8 +36,8 @@ PRED_TYPES=("tv" "text" "visual" "vqa")
 
 # VQA rescoring 配置
 VQA_RESCORE="--vqa-rescore"
-OUTPUT_BASE="results/vqa-val-ddp"
-SUBMIT_BASE="submission/vqa-val-ddp"
+OUTPUT_BASE="results/vqa-test-ddp"
+SUBMIT_BASE="submission/vqa-test-ddp"
 
 NUM_GPUS=${#GPUS[@]}
 TOTAL=${#SUBSETS[@]}
@@ -72,7 +72,7 @@ WORKER_FILE="$LOG_DIR/worker.sh"
 cat > "$WORKER_FILE" <<EOF
 #!/bin/bash
 cd "$PROJECT_DIR"
-conda activate sam3
+source activate sam3
 
 echo "DDP Inference: $TOTAL subsets, $NUM_GPUS GPUs"
 echo "CUDA_VISIBLE_DEVICES=$GPU_LIST"
