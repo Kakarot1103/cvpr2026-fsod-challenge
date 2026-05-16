@@ -1,13 +1,18 @@
 """
-RF20VL Few-Shot Object Detection — Inference & Evaluation Script
+RF20VL Few-Shot Object Detection — Multi-GPU DDP Inference & Evaluation
 
-Pipeline:
-  1. Create Sam3Segmenter
-  2. For each subset & sample:
-     - Concatenate each support image with query image
-     - Collect query-side candidate boxes from all supports
-     - Run forward_with_query_boxes (text=category, bboxes=candidates)
-  3. Compute AP@0.5 / AP@0.75 per class, then mAP
+Usage:
+    torchrun --nproc_per_node=5 inference_ddp.py --split test
+    torchrun --nproc_per_node=5 inference_ddp.py --split test --subset gwhd2021-fsod-atsv
+    torchrun --nproc_per_node=1 inference_ddp.py --split valid  # 单卡等价于原脚本
+
+Pipeline (per rank):
+  1. Initialize distributed process group (NCCL)
+  2. Load Sam3Segmenter on local GPU
+  3. For each subset, shard samples across ranks (round-robin)
+  4. Run inference on local shard
+  5. Save local results to temp pkl
+  6. Rank 0 merges all results, runs COCO evaluation, saves submissions
 """
 
 import argparse
@@ -15,16 +20,17 @@ import json
 import logging
 import os
 import pickle
+import shutil
 import sys
 import time
 from collections import defaultdict
-from torch.utils.data import DataLoader
 from datetime import datetime
 
 import numpy as np
 import torch
-import torchvision
+import torch.distributed as dist
 from PIL import Image, ImageDraw
+from torch.utils.data import DataLoader
 from torchvision.ops import nms
 from pycocotools.coco import COCO
 from pycocotools.cocoeval import COCOeval
@@ -39,49 +45,40 @@ from sam3.sam3.model.box_ops import box_xywh_to_xyxy, box_xyxy_to_xywh
 # Logging setup
 # ---------------------------------------------------------------------------
 
-def setup_logging(results_dir, debug=False):
-    """Configure logging to both console and file."""
+def setup_logging(results_dir, rank, debug=False):
+    """Configure logging — only rank 0 writes to file + console."""
     os.makedirs(results_dir, exist_ok=True)
-    log_path = os.path.join(results_dir, "inference.log")
 
-    logger = logging.getLogger("inference")
+    logger = logging.getLogger(f"inference-ddp-r{rank}")
     logger.setLevel(logging.DEBUG if debug else logging.INFO)
     logger.propagate = False
     logger.handlers.clear()
 
     level = logging.DEBUG if debug else logging.INFO
 
-    # File handler
-    fh = logging.FileHandler(log_path, encoding="utf-8")
-    fh.setLevel(level)
+    if rank == 0:
+        log_path = os.path.join(results_dir, "inference.log")
+        fh = logging.FileHandler(log_path, encoding="utf-8")
+        fh.setLevel(level)
+        fmt = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s", datefmt="%H:%M:%S")
+        fh.setFormatter(fmt)
+        logger.addHandler(fh)
 
-    # Console handler
     ch = logging.StreamHandler(sys.stdout)
     ch.setLevel(logging.INFO)
-
-    fmt = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s", datefmt="%H:%M:%S")
-    fh.setFormatter(fmt)
+    fmt = logging.Formatter(f"[GPU{rank}] %(asctime)s [%(levelname)s] %(message)s", datefmt="%H:%M:%S")
     ch.setFormatter(fmt)
-
-    logger.addHandler(fh)
     logger.addHandler(ch)
+
     return logger
 
 
 def _collate_fn(batch):
-    """Return items as-is (no stacking) — dataset has variable-length fields."""
     return batch[0]
 
 
 def load_class_descriptions(prompt_dir, subset):
-    """加载指定 subset 的 class description 映射。
-
-    prompt_dir 下文件名格式: all_refined_class_instructions_{base_name}.json
-    用最长前缀匹配：subset 名中找到能匹配 prompt 文件名 base_name 的那个。
-
-    Returns:
-        dict: {category_name: class_description}
-    """
+    """加载指定 subset 的 class description 映射。"""
     if not os.path.isdir(prompt_dir):
         return {}
     best_match = None
@@ -103,15 +100,7 @@ def load_class_descriptions(prompt_dir, subset):
 # ---------------------------------------------------------------------------
 
 def concat_images(supp_pil, query_pil):
-    """Horizontally concatenate support (left) + query (right).
-
-    If heights differ, resize support to match query height (keep aspect ratio).
-
-    Returns:
-        cat_pil: concatenated PIL image
-        offset_x: width of the (resized) support image (query half starts here)
-        scale: resize scale factor applied to support image
-    """
+    """Horizontally concatenate support (left) + query (right)."""
     qw, qh = query_pil.size
     sw, sh = supp_pil.size
 
@@ -131,7 +120,7 @@ def concat_images(supp_pil, query_pil):
 
 
 def scale_bboxes(bboxes_xywh, scale):
-    """Scale xywh bboxes by a factor (for resized images)."""
+    """Scale xywh bboxes by a factor."""
     if bboxes_xywh.numel() == 0:
         return bboxes_xywh.clone()
     scaled = bboxes_xywh.clone()
@@ -143,7 +132,6 @@ def scale_bboxes(bboxes_xywh, scale):
 
 
 def _draw_boxes(image_pil, boxes_xyxy, color, width=3):
-    """在 PIL 图像上画框，返回新图像。"""
     img = image_pil.copy()
     draw = ImageDraw.Draw(img)
     for box in boxes_xyxy:
@@ -154,20 +142,16 @@ def _draw_boxes(image_pil, boxes_xyxy, color, width=3):
 
 def save_visualization(results_dir, category, query_img_path, query_pil,
                        gt_xyxy, tv_boxes, support_items):
-    """保存 query 和 support 的可视化结果。"""
     vis_dir = os.path.join(results_dir, "vis", category)
     os.makedirs(vis_dir, exist_ok=True)
 
-    # --- Query: GT 绿 + pred 红 ---
     query_vis = _draw_boxes(query_pil, gt_xyxy, color="green", width=3)
     if tv_boxes.numel() > 0:
         query_vis = _draw_boxes(query_vis, tv_boxes, color="red", width=3)
 
     query_stem = os.path.splitext(os.path.basename(query_img_path))[0]
-    query_save_name = f"{query_stem}.jpg"
-    query_vis.save(os.path.join(vis_dir, query_save_name), quality=90)
+    query_vis.save(os.path.join(vis_dir, f"{query_stem}.jpg"), quality=90)
 
-    # --- Support ---
     supp_dir = os.path.join(vis_dir, "supports")
     os.makedirs(supp_dir, exist_ok=True)
     for supp_path, supp_bboxes_xywh in support_items:
@@ -179,21 +163,16 @@ def save_visualization(results_dir, category, query_img_path, query_pil,
 
 
 # ---------------------------------------------------------------------------
-# Submission
+# Submission & Evaluation
 # ---------------------------------------------------------------------------
 
 class SubmissionCollector:
-    """Collect predictions per image for submission pickle files."""
-
     def __init__(self, pred_types):
         self.pred_types = pred_types
-        # submissions[pred_type][subset][img_id] = [instance_dict, ...]
         self.submissions = {pt: defaultdict(lambda: defaultdict(list)) for pt in pred_types}
-        # Track all img_ids seen per subset so empty-prediction images are not lost
         self.all_img_ids = defaultdict(set)
 
     def add(self, pred_type, subset, img_id, cat_id, boxes_xyxy, scores):
-        """Convert xyxy predictions to COCO xywh and store."""
         self.all_img_ids[subset].add(img_id)
         if boxes_xyxy.numel() == 0:
             return
@@ -207,7 +186,6 @@ class SubmissionCollector:
             })
 
     def save_all(self, save_dir):
-        """Save pickle files for all pred_types and subsets."""
         for pt in self.pred_types:
             pt_dir = os.path.join(save_dir, pt)
             os.makedirs(pt_dir, exist_ok=True)
@@ -224,7 +202,6 @@ class SubmissionCollector:
                     pickle.dump(submission_list, f)
 
     def get_flat_predictions(self, pred_type, subset):
-        """Return flat list of COCO-format instance dicts for pycocotools."""
         flat = []
         for img_id in sorted(self.submissions[pred_type][subset].keys()):
             flat.extend(self.submissions[pred_type][subset][img_id])
@@ -232,19 +209,9 @@ class SubmissionCollector:
 
 
 def coco_evaluate(ann_json_path, coco_predictions):
-    """Run COCOeval on predictions against GT annotations.
-
-    Args:
-        ann_json_path: path to _annotations.coco.json
-        coco_predictions: flat list of {image_id, category_id, bbox, score}
-
-    Returns:
-        dict with COCO metrics, or None if evaluation fails.
-    """
     if not coco_predictions:
         return None
 
-    # Convert numpy bbox arrays to lists for pycocotools
     for pred in coco_predictions:
         if isinstance(pred["bbox"], np.ndarray):
             pred["bbox"] = pred["bbox"].tolist()
@@ -270,11 +237,11 @@ def coco_evaluate(ann_json_path, coco_predictions):
 
 
 # ---------------------------------------------------------------------------
-# Main
+# Args
 # ---------------------------------------------------------------------------
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="RF20VL FSOD Inference & Evaluation")
+    parser = argparse.ArgumentParser(description="RF20VL FSOD DDP Inference & Evaluation")
     parser.add_argument("--data-path", type=str, default="./data",
                         help="Path to RF20VL data directory")
     parser.add_argument("--split", type=str, default="test",
@@ -289,11 +256,11 @@ def parse_args():
     parser.add_argument("--max-samples", type=int, default=None,
                         help="Limit number of samples per subset (for quick testing)")
     parser.add_argument("--output-dir", type=str, default=None,
-                        help="Override results output directory (default: results/<timestamp>_<subset>_<split>)")
+                        help="Override results output directory")
     parser.add_argument("--output-json", type=str, default=None,
                         help="Save predictions as JSON")
     parser.add_argument("--debug", action="store_true",
-                        help="Enable DEBUG level logging (file & console)")
+                        help="Enable DEBUG level logging")
     parser.add_argument("--no-vis", action="store_true",
                         help="Disable visualization saving")
     parser.add_argument("--vqa-rescore", action="store_true",
@@ -304,8 +271,21 @@ def parse_args():
     return parser.parse_args()
 
 
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
+
 def main():
     args = parse_args()
+
+    # --- Distributed setup ---
+    dist.init_process_group(backend="nccl")
+    rank = dist.get_rank()
+    world_size = dist.get_world_size()
+    local_rank = int(os.environ.get("LOCAL_RANK", rank))
+    torch.cuda.set_device(local_rank)
+    device = f"cuda:{local_rank}"
+    is_main = (rank == 0)
 
     # --- Results directory ---
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -314,17 +294,19 @@ def main():
     else:
         subset_tag = args.subset if args.subset else "all"
         results_dir = os.path.join("results", f"{timestamp}_{subset_tag}_{args.split}")
-    log = setup_logging(results_dir, debug=args.debug)
 
-    log.info("=" * 60)
-    log.info("RF20VL Few-Shot Object Detection — Inference")
-    log.info("=" * 60)
-    log.info("Arguments: %s", vars(args))
+    log = setup_logging(results_dir, rank, debug=args.debug)
+
+    if is_main:
+        log.info("=" * 60)
+        log.info("RF20VL FSOD — DDP Inference (%d GPUs)", world_size)
+        log.info("=" * 60)
+        log.info("Arguments: %s", vars(args))
 
     # --- Model loading ---
     t0_model = time.time()
-    log.info("Loading Sam3Segmenter on %s ...", args.device)
-    segmenter = Sam3Segmenter(device=args.device)
+    log.info("Loading Sam3Segmenter on %s ...", device)
+    segmenter = Sam3Segmenter(device=device)
     t_model = time.time() - t0_model
     log.info("Model loaded in %.2f s", t_model)
 
@@ -336,22 +318,23 @@ def main():
             server_url="http://localhost:22002/v1",
             model_name="qwen3-vl-8b",
         )
-        log.info("VQA Rescorer initialized ")
+        log.info("VQA Rescorer initialized")
 
     # --- Dataset ---
     subsets = get_all_subsets(args.data_path)
     if args.subset:
         subsets = [s for s in subsets if s == args.subset]
-    log.info("Found %d subset(s): %s", len(subsets), subsets)
+    if is_main:
+        log.info("Found %d subset(s): %s", len(subsets), subsets)
 
     pred_types = ["visual", "tv", "text"]
     if args.vqa_rescore:
         pred_types.append("vqa")
-    submission = SubmissionCollector(pred_types)
-    coco_results = {}  # coco_results[subset][pt] = metrics dict
 
-    # Per-sample timing
-    sample_times = []
+    # Per-rank local collection
+    local_preds = []       # [(pt, subset, img_id, cat_id, boxes_list, scores_list), ...]
+    local_sample_times = []
+    local_all_img_ids = defaultdict(set)
 
     t0_total = time.time()
 
@@ -360,29 +343,31 @@ def main():
         dataset = DatasetRF20VL(args.data_path, subset, query_split=args.split,
                                 max_samples=args.max_samples)
         t_ds = time.time() - t0_ds
-        log.info("Dataset loaded: subset=%s, samples=%d, categories=%s (%.2f s)",
-                 subset, len(dataset), dataset.categories, t_ds)
 
-        # 加载该 subset 的 class descriptions
+        # Shard indices: rank 0 gets 0,5,10,...; rank 1 gets 1,6,11,...; etc.
+        total_samples = len(dataset)
+        my_indices = list(range(rank, total_samples, world_size))
+        my_count = len(my_indices)
+
+        log.info("[%s] %d total samples, rank %d handles %d (indices %s)",
+                 subset, total_samples, rank, my_count,
+                 f"{my_indices[0]}..{my_indices[-1]}" if my_indices else "none")
+
         class_descriptions = {}
         if vqa_rescorer is not None:
             class_descriptions = load_class_descriptions(args.vqa_prompt_dir, subset)
-            log.info("Loaded %d class descriptions for %s", len(class_descriptions), subset)
 
-        dataloader = DataLoader(dataset, batch_size=1, shuffle=False,
-                                num_workers=0, collate_fn=_collate_fn)
-
-        for idx, sample in enumerate(dataloader):
+        for local_idx, global_idx in enumerate(my_indices):
             t0_sample = time.time()
+            sample = dataset[global_idx]
             category = sample["category"]
             class_id = sample["class_id"]
             query_w, query_h = sample["query_img_size"]
-            _, img_id = dataset.index[idx]
+            _, img_id = dataset.index[global_idx]
 
-            # --- Load query image as PIL ---
             query_pil = Image.open(sample["query_img_path"]).convert("RGB")
 
-            # --- Collect candidate boxes from each support ---
+            # --- Collect candidate boxes ---
             all_candidate_boxes = []
             support_items = list(zip(
                 sample["support_img_paths"],
@@ -391,16 +376,11 @@ def main():
 
             for si, (supp_path, supp_bboxes_xywh) in enumerate(support_items):
                 supp_pil = Image.open(supp_path).convert("RGB")
-
                 cat_pil, offset_x, scale = concat_images(supp_pil, query_pil)
-                log.debug("  support[%d]: %s -> cat_size=%s, scale=%.3f",
-                          si, os.path.basename(supp_path), cat_pil.size, scale)
-
                 supp_scaled = scale_bboxes(supp_bboxes_xywh, scale)
                 supp_xyxy = box_xywh_to_xyxy(supp_scaled)
 
                 query_boxes = segmenter.get_query_boxes_from_cat(cat_pil, supp_xyxy)
-                log.debug("  support[%d]: query_boxes=%d", si, query_boxes.shape[0] if query_boxes.numel() > 0 else 0)
 
                 if query_boxes.numel() > 0:
                     query_boxes[:, 0] = query_boxes[:, 0].clamp(min=0, max=query_w)
@@ -411,11 +391,11 @@ def main():
 
             # --- Merge & NMS ---
             if not all_candidate_boxes:
-                candidate_boxes = torch.zeros(0, 4, device=segmenter.device)
+                candidate_boxes = torch.zeros(0, 4, device=device)
             else:
                 candidate_boxes = torch.cat(all_candidate_boxes, dim=0)
                 if candidate_boxes.numel() > 0:
-                    dummy_scores = torch.ones(candidate_boxes.shape[0], device=candidate_boxes.device)
+                    dummy_scores = torch.ones(candidate_boxes.shape[0], device=device)
                     keep = nms(candidate_boxes, dummy_scores, args.nms_iou)
                     candidate_boxes = candidate_boxes[keep]
 
@@ -424,7 +404,6 @@ def main():
                 query_pil, candidate_boxes, prompt=category,
             )
 
-            # 保存原始预测（visual / tv / text）
             tv_boxes_after_nms = None
             tv_scores_after_nms = None
             for pt in ["visual", "tv", "text"]:
@@ -435,14 +414,18 @@ def main():
                     boxes = boxes[keep]
                     scores = scores[keep]
 
-                # 记住 tv 的 NMS 后结果，用于生成 vqa 预测
                 if pt == "tv":
                     tv_boxes_after_nms = boxes
                     tv_scores_after_nms = scores
 
-                submission.add(pt, subset, img_id, class_id, boxes, scores)
+                local_all_img_ids[subset].add(img_id)
+                local_preds.append((
+                    pt, subset, img_id, class_id,
+                    boxes.numpy().tolist(),
+                    scores.numpy().tolist(),
+                ))
 
-            # VQA rescoring：基于 tv 预测框生成独立的 vqa 预测
+            # VQA rescoring
             if vqa_rescorer is not None and tv_boxes_after_nms is not None and tv_boxes_after_nms.numel() > 0:
                 desc = class_descriptions.get(category)
                 boxes_xywh = box_xyxy_to_xywh(tv_boxes_after_nms)
@@ -452,29 +435,29 @@ def main():
                     vqa_score = vqa_rescorer(query_pil, bbox_xywh, category, desc)
                     rescored_scores.append(vqa_score)
 
-                # VQA 失败（-1）时保留原始 tv 分数
                 vqa_scores = []
                 for i, vs in enumerate(rescored_scores):
                     if vs < 0:
                         vqa_scores.append(float(tv_scores_after_nms[i].item()))
                     else:
                         vqa_scores.append(vs)
-                vqa_scores_t = torch.tensor(vqa_scores, dtype=tv_scores_after_nms.dtype)
 
-                log.debug("  vqa rescored: %d boxes, scores=%s", len(rescored_scores),
-                          [round(s, 3) for s in rescored_scores[:5]])
-                submission.add("vqa", subset, img_id, class_id, tv_boxes_after_nms, vqa_scores_t)
+                local_preds.append((
+                    "vqa", subset, img_id, class_id,
+                    tv_boxes_after_nms.numpy().tolist(),
+                    vqa_scores,
+                ))
 
             t_sample = time.time() - t0_sample
-            sample_times.append(t_sample)
+            local_sample_times.append(t_sample)
 
             n_vis = result["visual_boxes"].shape[0]
             n_tv = result["tv_boxes"].shape[0]
             n_txt = result["text_boxes"].shape[0]
 
-            log.info("[%s] sample %d/%d | category=%s | supports=%d | "
-                     "candidates=%d | visual=%d tv=%d text=%d | %.2f s",
-                     subset, idx + 1, len(dataloader), category,
+            log.info("[%s] rank%d %d/%d | %s | supports=%d | "
+                     "cands=%d | v=%d tv=%d t=%d | %.2f s",
+                     subset, rank, local_idx + 1, my_count, category,
                      len(support_items), candidate_boxes.shape[0],
                      n_vis, n_tv, n_txt, t_sample)
 
@@ -489,76 +472,124 @@ def main():
                     support_items,
                 )
 
+    # ---- Save local results to temp file ----
+    tmp_dir = os.path.join(results_dir, ".tmp_ddp")
+    os.makedirs(tmp_dir, exist_ok=True)
+    tmp_path = os.path.join(tmp_dir, f"rank{rank}.pkl")
+
+    with open(tmp_path, "wb") as f:
+        pickle.dump({
+            "preds": local_preds,
+            "sample_times": local_sample_times,
+            "all_img_ids": {k: list(v) for k, v in local_all_img_ids.items()},
+        }, f)
+
+    log.info("Local results saved (%d preds, %d samples)", len(local_preds), len(local_sample_times))
+
+    # ---- Synchronize ----
+    dist.barrier()
+
+    # ---- Rank 0: merge, evaluate, save ----
+    if is_main:
+        t_merge_start = time.time()
+
+        submission = SubmissionCollector(pred_types)
+        all_sample_times = []
+
+        for r in range(world_size):
+            path = os.path.join(tmp_dir, f"rank{r}.pkl")
+            with open(path, "rb") as f:
+                data = pickle.load(f)
+
+            for pt, subset, img_id, cat_id, boxes_list, scores_list in data["preds"]:
+                boxes_t = torch.tensor(boxes_list, dtype=torch.float32)
+                scores_t = torch.tensor(scores_list, dtype=torch.float32)
+                submission.add(pt, subset, img_id, cat_id, boxes_t, scores_t)
+
+            all_sample_times.extend(data["sample_times"])
+            for subset, ids in data["all_img_ids"].items():
+                submission.all_img_ids[subset].update(ids)
+
+        log.info("Merged results from %d ranks in %.2f s", world_size, time.time() - t_merge_start)
+
         # --- COCO evaluation per subset ---
-        ann_json = os.path.join(args.data_path, subset, args.split, "_annotations.coco.json")
-        if os.path.isfile(ann_json):
-            log.info("--- COCO Evaluation: %s ---", subset)
-            coco_results[subset] = {}
-            for pt in pred_types:
-                flat_preds = submission.get_flat_predictions(pt, subset)
-                metrics = coco_evaluate(ann_json, flat_preds)
-                if metrics:
-                    coco_results[subset][pt] = metrics
-                    log.info("  [%s] AP=%.4f  AP50=%.4f  AP75=%.4f  "
-                             "AP_s=%.4f  AP_m=%.4f  AP_l=%.4f  "
-                             "AR_1=%.4f  AR_10=%.4f  AR_100=%.4f",
-                             pt, metrics["AP"], metrics["AP_50"], metrics["AP_75"],
-                             metrics["AP_small"], metrics["AP_medium"], metrics["AP_large"],
-                             metrics["AR_1"], metrics["AR_10"], metrics["AR_100"])
-                else:
-                    log.info("  [%s] No predictions for COCO eval.", pt)
-        else:
-            log.warning("Annotation file not found: %s", ann_json)
+        coco_results = {}
+        for subset in subsets:
+            ann_json = os.path.join(args.data_path, subset, args.split, "_annotations.coco.json")
+            if os.path.isfile(ann_json):
+                log.info("--- COCO Evaluation: %s ---", subset)
+                coco_results[subset] = {}
+                for pt in pred_types:
+                    flat_preds = submission.get_flat_predictions(pt, subset)
+                    metrics = coco_evaluate(ann_json, flat_preds)
+                    if metrics:
+                        coco_results[subset][pt] = metrics
+                        log.info("  [%s] AP=%.4f  AP50=%.4f  AP75=%.4f  "
+                                 "AP_s=%.4f  AP_m=%.4f  AP_l=%.4f  "
+                                 "AR_1=%.4f  AR_10=%.4f  AR_100=%.4f",
+                                 pt, metrics["AP"], metrics["AP_50"], metrics["AP_75"],
+                                 metrics["AP_small"], metrics["AP_medium"], metrics["AP_large"],
+                                 metrics["AR_1"], metrics["AR_10"], metrics["AR_100"])
+                    else:
+                        log.info("  [%s] No predictions for COCO eval.", pt)
+            else:
+                log.warning("Annotation file not found: %s", ann_json)
 
-    t_total = time.time() - t0_total
+        t_total = time.time() - t0_total
 
-    # --- Timing summary ---
-    log.info("=" * 60)
-    log.info("TIMING SUMMARY")
-    log.info("=" * 60)
-    log.info("")
-    log.info("--- Timing ---")
-    log.info("Model loading:    %.2f s", t_model)
-    log.info("Total inference:  %.2f s", t_total)
-    log.info("Samples processed: %d", len(sample_times))
-    if sample_times:
-        log.info("Avg per sample:   %.3f s", np.mean(sample_times))
-        log.info("Min per sample:   %.3f s", np.min(sample_times))
-        log.info("Max per sample:   %.3f s", np.max(sample_times))
+        # --- Timing summary ---
+        log.info("=" * 60)
+        log.info("TIMING SUMMARY")
+        log.info("=" * 60)
+        log.info("Model loading:    %.2f s", t_model)
+        log.info("Total inference:  %.2f s", t_total)
+        log.info("GPUs used:        %d", world_size)
+        log.info("Samples processed: %d", len(all_sample_times))
+        if all_sample_times:
+            log.info("Avg per sample:   %.3f s", np.mean(all_sample_times))
+            log.info("Min per sample:   %.3f s", np.min(all_sample_times))
+            log.info("Max per sample:   %.3f s", np.max(all_sample_times))
 
-    # --- Save submission pickle files ---
-    submission_dir = os.path.join(results_dir, "submissions")
-    submission.save_all(submission_dir)
-    log.info("Submission pickle files saved to %s", submission_dir)
+        # --- Save submission pickle files ---
+        submission_dir = os.path.join(results_dir, "submissions")
+        submission.save_all(submission_dir)
+        log.info("Submission pickle files saved to %s", submission_dir)
 
-    # --- Save JSON ---
-    output_json = args.output_json or os.path.join(results_dir, "results.json")
-    out = {
-        "timestamp": timestamp,
-        "subsets": subsets,
-        "split": args.split,
-        "args": vars(args),
-        "timing": {
-            "model_load_s": round(t_model, 2),
-            "total_inference_s": round(t_total, 2),
-            "num_samples": len(sample_times),
-            "avg_per_sample_s": round(float(np.mean(sample_times)), 3) if sample_times else 0,
-            "min_per_sample_s": round(float(np.min(sample_times)), 3) if sample_times else 0,
-            "max_per_sample_s": round(float(np.max(sample_times)), 3) if sample_times else 0,
-        },
-        "coco_results": {},
-    }
-    for subset_name, pt_metrics in coco_results.items():
-        out["coco_results"][subset_name] = {}
-        for pt, metrics in pt_metrics.items():
-            out["coco_results"][subset_name][pt] = {
-                k: round(v, 6) for k, v in metrics.items()
-            }
-    with open(output_json, "w") as f:
-        json.dump(out, f, indent=2, ensure_ascii=False)
-    log.info("Results saved to %s", output_json)
+        # --- Save JSON ---
+        output_json = args.output_json or os.path.join(results_dir, "results.json")
+        out = {
+            "timestamp": timestamp,
+            "subsets": subsets,
+            "split": args.split,
+            "world_size": world_size,
+            "args": vars(args),
+            "timing": {
+                "model_load_s": round(t_model, 2),
+                "total_inference_s": round(t_total, 2),
+                "num_samples": len(all_sample_times),
+                "avg_per_sample_s": round(float(np.mean(all_sample_times)), 3) if all_sample_times else 0,
+                "min_per_sample_s": round(float(np.min(all_sample_times)), 3) if all_sample_times else 0,
+                "max_per_sample_s": round(float(np.max(all_sample_times)), 3) if all_sample_times else 0,
+            },
+            "coco_results": {},
+        }
+        for subset_name, pt_metrics in coco_results.items():
+            out["coco_results"][subset_name] = {}
+            for pt, metrics in pt_metrics.items():
+                out["coco_results"][subset_name][pt] = {
+                    k: round(v, 6) for k, v in metrics.items()
+                }
+        with open(output_json, "w") as f:
+            json.dump(out, f, indent=2, ensure_ascii=False)
+        log.info("Results saved to %s", output_json)
 
-    log.info("Log file: %s", os.path.join(results_dir, "inference.log"))
+        # --- Cleanup temp files ---
+        shutil.rmtree(tmp_dir, ignore_errors=True)
+        log.info("Log file: %s", os.path.join(results_dir, "inference.log"))
+
+    # ---- Final sync and cleanup ----
+    dist.barrier()
+    dist.destroy_process_group()
 
 
 if __name__ == "__main__":

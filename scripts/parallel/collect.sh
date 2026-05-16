@@ -3,10 +3,14 @@ set -e
 
 # ==================== 配置 ====================
 
-SPLIT="test"
-# SPLIT="valid"
+INPUT_DIR="results/vqa-val"
+OUTPUT_DIR="submission/vqa-val"
 
-PRED_TYPES=("tv" "text" "visual")
+SPLIT="valid"
+# SPLIT="test"
+
+PRED_TYPES=("tv" "text" "visual" "vqa")
+# PRED_TYPES=("tv" "vqa")
 
 SUBSETS=(
     actions-zzid2-zb1hq-fsod-amih
@@ -33,32 +37,30 @@ SUBSETS=(
 
 # ==================== 收集 ====================
 
-TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 TOTAL=${#SUBSETS[@]}
 FOUND=0
 MISSING=0
 
 echo "============================================"
 echo " Collect Submissions"
-echo " Split: $SPLIT"
-echo " Total: $TOTAL subsets"
+echo " Input:    $INPUT_DIR"
+echo " Output:   $OUTPUT_DIR"
+echo " Split:    $SPLIT"
+echo " Total:    $TOTAL subsets"
 echo "============================================"
 echo ""
 
 for PRED_TYPE in "${PRED_TYPES[@]}"; do
-    SUBMIT_DIR="submission/${TIMESTAMP}_${PRED_TYPE}"
+    SUBMIT_DIR="${OUTPUT_DIR}/${PRED_TYPE}"
     mkdir -p "$SUBMIT_DIR"
 
     echo "[$PRED_TYPE]"
     for SUBSET in "${SUBSETS[@]}"; do
         SRC=""
-        for DIR in results/*_${SPLIT}; do
-            CANDIDATE="$DIR/submissions/$PRED_TYPE/${SUBSET}.pkl"
-            if [ -f "$CANDIDATE" ]; then
-                SRC="$CANDIDATE"
-                break
-            fi
-        done
+        CANDIDATE="${INPUT_DIR}/${SUBSET}_${SPLIT}/submissions/${PRED_TYPE}/${SUBSET}.pkl"
+        if [ -f "$CANDIDATE" ]; then
+            SRC="$CANDIDATE"
+        fi
         if [ -n "$SRC" ]; then
             cp "$SRC" "$SUBMIT_DIR/${SUBSET}.pkl"
             echo "  OK   ${SUBSET}.pkl"
@@ -74,7 +76,7 @@ done
 echo "============================================"
 echo " Found:    $FOUND"
 echo " Missing:  $MISSING"
-echo " Saved to: submission/${TIMESTAMP}_*"
+echo " Saved to: ${OUTPUT_DIR}"
 echo "============================================"
 echo ""
 
@@ -82,13 +84,13 @@ echo ""
 
 echo "Compressing..."
 for PRED_TYPE in "${PRED_TYPES[@]}"; do
-    SUBMIT_DIR="submission/${TIMESTAMP}_${PRED_TYPE}"
+    SUBMIT_DIR="${OUTPUT_DIR}/${PRED_TYPE}"
     if [ -d "$SUBMIT_DIR" ]; then
-        ZIP_FILE="submission/${TIMESTAMP}_${PRED_TYPE}.zip"
-        (cd "$SUBMIT_DIR" && zip -q "../${TIMESTAMP}_${PRED_TYPE}.zip" ./*.pkl)
-        echo "  ${TIMESTAMP}_${PRED_TYPE}.zip"
+        ZIP_FILE="${OUTPUT_DIR}/${PRED_TYPE}.zip"
+        (cd "$SUBMIT_DIR" && zip -q "../${PRED_TYPE}.zip" ./*.pkl)
+        echo "  ${PRED_TYPE}.zip"
     fi
 done
 
 echo ""
-echo "Done. ZIP files in submission/"
+echo "Done. ZIP files in ${OUTPUT_DIR}/"

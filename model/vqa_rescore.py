@@ -67,15 +67,18 @@ class VQARescorer(nn.Module):
 
         使用 logprobs 提取 Yes/No token 概率，计算:
             score = p(Yes) / (p(Yes) + p(No))
+
+        Returns:
+            float: [0, 1] 的置信度分数，或 -1.0 表示 VQA 失败。
         """
         import base64
         from io import BytesIO
 
-        # 缩放图片以避免超过模型 max_model_len
-        max_edge = 512
+        # 缩放图片以匹配 DetPO 的 2880x1620 上限
+        max_w, max_h = 2880, 1620
         w, h = image.size
-        if max(w, h) > max_edge:
-            scale = max_edge / max(w, h)
+        if w > max_w or h > max_h:
+            scale = min(max_w / w, max_h / h)
             image = image.resize((int(w * scale), int(h * scale)), Image.LANCZOS)
 
         buf = BytesIO()
@@ -104,13 +107,26 @@ class VQARescorer(nn.Module):
         yes_logprob = None
         no_logprob = None
         for token_lp in top_logprobs:
-            token = token_lp.token.strip().lower()
-            if token == "yes":
+            token = token_lp.token.strip()
+            if token == "Yes" and yes_logprob is None:
                 yes_logprob = token_lp.logprob
-            elif token == "no":
+            elif token == "yes" and yes_logprob is None:
+                yes_logprob = token_lp.logprob
+            elif token == "No" and no_logprob is None:
+                no_logprob = token_lp.logprob
+            elif token == "no" and no_logprob is None:
                 no_logprob = token_lp.logprob
 
-        yes_prob = math.exp(yes_logprob) if yes_logprob is not None else 0.0
+        # 两者都缺失 → VQA 失败
+        if yes_logprob is None and no_logprob is None:
+            return -1.0
+
+        # Yes 缺失但 No 存在 → 用 1 - p(No) 估计
+        if yes_logprob is None:
+            no_prob = math.exp(no_logprob)
+            return 1.0 - no_prob
+
+        yes_prob = math.exp(yes_logprob)
         no_prob = math.exp(no_logprob) if no_logprob is not None else 0.0
         return yes_prob / (yes_prob + no_prob + 1e-18)
 
