@@ -249,9 +249,9 @@ def parse_args():
     parser.add_argument("--subset", type=str, default=None,
                         help="Evaluate only this subset (default: all)")
     parser.add_argument("--device", type=str, default="cuda")
-    parser.add_argument("--nms-iou", type=float, default=0.8,
+    parser.add_argument("--nms-iou", type=float, default=0.5,
                         help="NMS IoU threshold for candidate box dedup")
-    parser.add_argument("--pred-nms-iou", type=float, default=0.8,
+    parser.add_argument("--pred-nms-iou", type=float, default=0.5,
                         help="NMS IoU threshold for final prediction dedup")
     parser.add_argument("--max-samples", type=int, default=None,
                         help="Limit number of samples per subset (for quick testing)")

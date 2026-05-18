@@ -163,6 +163,110 @@ def run_ablation_topk(args, pkl_files, submission_dir):
     return ablation_results
 
 
+def apply_nms(predictions, iou_threshold):
+    """Apply per-(image_id, category_id) NMS with given IoU threshold."""
+    import torch
+    from torchvision.ops import nms as torchvision_nms
+
+    grouped = defaultdict(list)
+    for pred in predictions:
+        grouped[(pred["image_id"], pred["category_id"])].append(pred)
+
+    kept = []
+    for key, preds in grouped.items():
+        if len(preds) <= 1:
+            kept.extend(preds)
+            continue
+        boxes = torch.tensor([p["bbox"] for p in preds], dtype=torch.float32)
+        # xywh -> xyxy
+        boxes_xyxy = boxes.clone()
+        boxes_xyxy[:, 2] += boxes_xyxy[:, 0]
+        boxes_xyxy[:, 3] += boxes_xyxy[:, 1]
+        scores = torch.tensor([p["score"] for p in preds], dtype=torch.float32)
+        keep_indices = torchvision_nms(boxes_xyxy, scores, iou_threshold)
+        kept.extend([preds[i] for i in keep_indices.tolist()])
+    return kept
+
+
+def run_ablation_nms(args, pkl_files, submission_dir):
+    """Run NMS IoU threshold ablation study."""
+    import torch
+
+    subset_data = {}
+    for pkl_file in pkl_files:
+        subset = os.path.splitext(pkl_file)[0]
+        pkl_path = os.path.join(submission_dir, pkl_file)
+        ann_json = os.path.join(args.data_path, subset, args.split, "_annotations.coco.json")
+        if not os.path.isfile(ann_json):
+            continue
+        predictions = load_submission(pkl_path)
+        if predictions:
+            subset_data[subset] = {"predictions": predictions, "ann_json": ann_json}
+
+    thresholds = [round(t * 0.05, 2) for t in range(10, 19)]  # 0.50, 0.55, ..., 0.90
+    ablation_results = {}
+    total_preds = sum(len(d["predictions"]) for d in subset_data.values())
+
+    # Baseline: no NMS
+    all_metrics = {}
+    for subset, data in subset_data.items():
+        m = evaluate_subset(data["ann_json"], data["predictions"])
+        if m:
+            all_metrics[subset] = m
+    if all_metrics:
+        ablation_results["no_nms"] = {
+            "mean_AP": float(np.mean([m["AP"] for m in all_metrics.values()])),
+            "mean_AP50": float(np.mean([m["AP_50"] for m in all_metrics.values()])),
+            "mean_AP75": float(np.mean([m["AP_75"] for m in all_metrics.values()])),
+            "mean_AR_100": float(np.mean([m["AR_100"] for m in all_metrics.values()])),
+            "total_kept": total_preds,
+            "num_subsets": len(all_metrics),
+        }
+
+    for thr in thresholds:
+        all_metrics = {}
+        total_kept = 0
+        for subset, data in subset_data.items():
+            filtered = apply_nms(data["predictions"], thr)
+            total_kept += len(filtered)
+            m = evaluate_subset(data["ann_json"], filtered)
+            if m:
+                all_metrics[subset] = m
+        if all_metrics:
+            mean_ap = np.mean([m["AP"] for m in all_metrics.values()])
+            mean_ap50 = np.mean([m["AP_50"] for m in all_metrics.values()])
+            mean_ap75 = np.mean([m["AP_75"] for m in all_metrics.values()])
+            mean_ar100 = np.mean([m["AR_100"] for m in all_metrics.values()])
+            ablation_results[thr] = {
+                "mean_AP": float(mean_ap),
+                "mean_AP50": float(mean_ap50),
+                "mean_AP75": float(mean_ap75),
+                "mean_AR_100": float(mean_ar100),
+                "num_subsets": len(all_metrics),
+                "total_kept": total_kept,
+                "keep_ratio": round(total_kept / total_preds * 100, 1) if total_preds > 0 else 0,
+            }
+
+    # Print table
+    print(f"\n{'NMS Thr':>8}  {'AP':>8}  {'AP50':>8}  {'AP75':>8}  {'AR100':>8}  {'Kept':>8}  {'Keep%':>7}")
+    print("-" * 65)
+    r = ablation_results.get("no_nms")
+    if r:
+        print(f"{'no_nms':>8}  {r['mean_AP']:>8.4f}  {r['mean_AP50']:>8.4f}  "
+              f"{r['mean_AP75']:>8.4f}  {r['mean_AR_100']:>8.4f}  {r['total_kept']:>8}  {'100.0':>7}%")
+    for thr in thresholds:
+        r = ablation_results.get(thr)
+        if r:
+            print(f"{thr:>8.2f}  {r['mean_AP']:>8.4f}  {r['mean_AP50']:>8.4f}  "
+                  f"{r['mean_AP75']:>8.4f}  {r['mean_AR_100']:>8.4f}  {r['total_kept']:>8}  {r['keep_ratio']:>6.1f}%")
+
+    best_key = max(ablation_results, key=lambda k: ablation_results[k]["mean_AP"])
+    best_thr_str = f"{best_key}" if best_key == "no_nms" else f"{best_key:.2f}"
+    print(f"\n  Best NMS threshold = {best_thr_str}  (AP={ablation_results[best_key]['mean_AP']:.4f})")
+
+    return ablation_results
+
+
 def run_ablation_threshold(args, pkl_files, submission_dir):
     """Run score threshold ablation: filter predictions by minimum score."""
     subset_data = {}
@@ -237,6 +341,8 @@ def parse_args():
                         help="Run top-K% ablation study (10%~100%, step 10%)")
     parser.add_argument("--ablation-threshold", action="store_true",
                         help="Run score threshold ablation study (0.05~0.90, step 0.05)")
+    parser.add_argument("--ablation-nms", action="store_true",
+                        help="Run NMS IoU threshold ablation study (0.50~0.90, step 0.05)")
     return parser.parse_args()
 
 
@@ -288,6 +394,20 @@ def main():
                 "data_path": args.data_path,
                 "split": args.split,
                 "ablation_threshold": {str(k): v for k, v in ablation_results.items()},
+            }
+            with open(args.output_json, "w") as f:
+                json.dump(output, f, indent=2, ensure_ascii=False)
+            print(f"\nResults saved to {args.output_json}")
+        return
+
+    if args.ablation_nms:
+        ablation_results = run_ablation_nms(args, pkl_files, submission_dir)
+        if args.output_json:
+            output = {
+                "submission_dir": submission_dir,
+                "data_path": args.data_path,
+                "split": args.split,
+                "ablation_nms": {str(k): v for k, v in ablation_results.items()},
             }
             with open(args.output_json, "w") as f:
                 json.dump(output, f, indent=2, ensure_ascii=False)
