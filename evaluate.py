@@ -14,6 +14,8 @@ import os
 import pickle
 import sys
 
+from collections import defaultdict
+
 import numpy as np
 from pycocotools.coco import COCO
 from pycocotools.cocoeval import COCOeval
@@ -35,6 +37,34 @@ def load_submission(pkl_path):
             }
             flat.append(pred)
     return flat
+
+
+def apply_ranking_rescore(predictions, max_score=1.0, min_score=0.1):
+    """Reassign scores based on ranking within each (image_id, category_id) group.
+
+    For each group, sort by original score descending, then linearly assign
+    scores from max_score (rank 1) to min_score (last rank).
+    """
+    grouped = defaultdict(list)
+    for pred in predictions:
+        grouped[(pred["image_id"], pred["category_id"])].append(pred)
+
+    rescored = []
+    for key, preds in grouped.items():
+        sorted_preds = sorted(preds, key=lambda p: p["score"], reverse=True)
+        n = len(sorted_preds)
+        for i, pred in enumerate(sorted_preds):
+            if n == 1:
+                new_score = max_score
+            else:
+                new_score = max_score - i * (max_score - min_score) / (n - 1)
+            rescored.append({
+                "image_id": pred["image_id"],
+                "category_id": pred["category_id"],
+                "score": float(new_score),
+                "bbox": pred["bbox"],
+            })
+    return rescored
 
 
 def evaluate_subset(ann_json, predictions):
@@ -65,6 +95,131 @@ def evaluate_subset(ann_json, predictions):
     }
 
 
+def keep_topk_percent(predictions, percent):
+    """Keep only top P% predictions per (image_id, category_id) group, sorted by score descending."""
+    if percent >= 100:
+        return predictions
+    grouped = defaultdict(list)
+    for pred in predictions:
+        grouped[(pred["image_id"], pred["category_id"])].append(pred)
+    kept = []
+    for key, preds in grouped.items():
+        sorted_preds = sorted(preds, key=lambda p: p["score"], reverse=True)
+        n_keep = max(1, int(len(sorted_preds) * percent / 100))
+        kept.extend(sorted_preds[:n_keep])
+    return kept
+
+
+def run_ablation_topk(args, pkl_files, submission_dir):
+    """Run top-K% ablation study: evaluate with 10%~100% predictions kept."""
+    # Load all predictions first
+    subset_data = {}
+    for pkl_file in pkl_files:
+        subset = os.path.splitext(pkl_file)[0]
+        pkl_path = os.path.join(submission_dir, pkl_file)
+        ann_json = os.path.join(args.data_path, subset, args.split, "_annotations.coco.json")
+        if not os.path.isfile(ann_json):
+            continue
+        predictions = load_submission(pkl_path)
+        if predictions:
+            subset_data[subset] = {"predictions": predictions, "ann_json": ann_json}
+
+    percents = list(range(10, 110, 10))
+    ablation_results = {}
+
+    for pct in percents:
+        all_metrics = {}
+        for subset, data in subset_data.items():
+            filtered = keep_topk_percent(data["predictions"], pct)
+            m = evaluate_subset(data["ann_json"], filtered)
+            if m:
+                all_metrics[subset] = m
+        if all_metrics:
+            mean_ap = np.mean([m["AP"] for m in all_metrics.values()])
+            mean_ap50 = np.mean([m["AP_50"] for m in all_metrics.values()])
+            mean_ap75 = np.mean([m["AP_75"] for m in all_metrics.values()])
+            mean_ar100 = np.mean([m["AR_100"] for m in all_metrics.values()])
+            ablation_results[pct] = {
+                "mean_AP": float(mean_ap),
+                "mean_AP50": float(mean_ap50),
+                "mean_AP75": float(mean_ap75),
+                "mean_AR_100": float(mean_ar100),
+                "num_subsets": len(all_metrics),
+            }
+
+    # Print table
+    print(f"\n{'TopK%':>6}  {'AP':>8}  {'AP50':>8}  {'AP75':>8}  {'AR100':>8}  {'Subsets':>7}")
+    print("-" * 55)
+    for pct in percents:
+        r = ablation_results.get(pct)
+        if r:
+            print(f"{pct:>5}%  {r['mean_AP']:>8.4f}  {r['mean_AP50']:>8.4f}  "
+                  f"{r['mean_AP75']:>8.4f}  {r['mean_AR_100']:>8.4f}  {r['num_subsets']:>7}")
+
+    # Find best
+    best_pct = max(ablation_results, key=lambda p: ablation_results[p]["mean_AP"])
+    print(f"\n  Best top-K% = {best_pct}%  (AP={ablation_results[best_pct]['mean_AP']:.4f})")
+
+    return ablation_results
+
+
+def run_ablation_threshold(args, pkl_files, submission_dir):
+    """Run score threshold ablation: filter predictions by minimum score."""
+    subset_data = {}
+    for pkl_file in pkl_files:
+        subset = os.path.splitext(pkl_file)[0]
+        pkl_path = os.path.join(submission_dir, pkl_file)
+        ann_json = os.path.join(args.data_path, subset, args.split, "_annotations.coco.json")
+        if not os.path.isfile(ann_json):
+            continue
+        predictions = load_submission(pkl_path)
+        if predictions:
+            subset_data[subset] = {"predictions": predictions, "ann_json": ann_json}
+
+    thresholds = [round(x * 0.05, 2) for x in range(0, 19)]  # 0.00, 0.05, ..., 0.90
+    ablation_results = {}
+    total_preds = sum(len(d["predictions"]) for d in subset_data.values())
+
+    for thr in thresholds:
+        all_metrics = {}
+        total_kept = 0
+        for subset, data in subset_data.items():
+            filtered = [p for p in data["predictions"] if p["score"] >= thr]
+            total_kept += len(filtered)
+            m = evaluate_subset(data["ann_json"], filtered)
+            if m:
+                all_metrics[subset] = m
+        if all_metrics:
+            mean_ap = np.mean([m["AP"] for m in all_metrics.values()])
+            mean_ap50 = np.mean([m["AP_50"] for m in all_metrics.values()])
+            mean_ap75 = np.mean([m["AP_75"] for m in all_metrics.values()])
+            mean_ar100 = np.mean([m["AR_100"] for m in all_metrics.values()])
+            ablation_results[thr] = {
+                "mean_AP": float(mean_ap),
+                "mean_AP50": float(mean_ap50),
+                "mean_AP75": float(mean_ap75),
+                "mean_AR_100": float(mean_ar100),
+                "num_subsets": len(all_metrics),
+                "total_kept": total_kept,
+                "keep_ratio": round(total_kept / total_preds * 100, 1) if total_preds > 0 else 0,
+            }
+
+    # Print table
+    print(f"\n{'Thr':>6}  {'AP':>8}  {'AP50':>8}  {'AP75':>8}  {'AR100':>8}  {'Kept':>8}  {'Keep%':>7}")
+    print("-" * 65)
+    for thr in thresholds:
+        r = ablation_results.get(thr)
+        if r:
+            print(f"{thr:>6.2f}  {r['mean_AP']:>8.4f}  {r['mean_AP50']:>8.4f}  "
+                  f"{r['mean_AP75']:>8.4f}  {r['mean_AR_100']:>8.4f}  {r['total_kept']:>8}  {r['keep_ratio']:>6.1f}%")
+
+    best_thr = max(ablation_results, key=lambda t: ablation_results[t]["mean_AP"])
+    print(f"\n  Best threshold = {best_thr:.2f}  (AP={ablation_results[best_thr]['mean_AP']:.4f}, "
+          f"kept={ablation_results[best_thr]['keep_ratio']:.1f}%)")
+
+    return ablation_results
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description="Evaluate FSOD submission")
     parser.add_argument("--submission", type=str, required=True,
@@ -78,6 +233,10 @@ def parse_args():
                         help="Evaluate only this subset (default: all)")
     parser.add_argument("--output-json", type=str, default=None,
                         help="Save evaluation results as JSON")
+    parser.add_argument("--ablation-topk", action="store_true",
+                        help="Run top-K% ablation study (10%~100%, step 10%)")
+    parser.add_argument("--ablation-threshold", action="store_true",
+                        help="Run score threshold ablation study (0.05~0.90, step 0.05)")
     return parser.parse_args()
 
 
@@ -107,7 +266,35 @@ def main():
     print(f"Subsets:    {len(pkl_files)}")
     print("=" * 90)
 
-    all_results = {}
+    if args.ablation_topk:
+        ablation_results = run_ablation_topk(args, pkl_files, submission_dir)
+        if args.output_json:
+            output = {
+                "submission_dir": submission_dir,
+                "data_path": args.data_path,
+                "split": args.split,
+                "ablation_topk": {str(k): v for k, v in ablation_results.items()},
+            }
+            with open(args.output_json, "w") as f:
+                json.dump(output, f, indent=2, ensure_ascii=False)
+            print(f"\nResults saved to {args.output_json}")
+        return
+
+    if args.ablation_threshold:
+        ablation_results = run_ablation_threshold(args, pkl_files, submission_dir)
+        if args.output_json:
+            output = {
+                "submission_dir": submission_dir,
+                "data_path": args.data_path,
+                "split": args.split,
+                "ablation_threshold": {str(k): v for k, v in ablation_results.items()},
+            }
+            with open(args.output_json, "w") as f:
+                json.dump(output, f, indent=2, ensure_ascii=False)
+            print(f"\nResults saved to {args.output_json}")
+        return
+
+    all_results = {}  # {subset: {"original": metrics, "ranking": metrics}}
 
     for pkl_file in pkl_files:
         subset = os.path.splitext(pkl_file)[0]
@@ -119,35 +306,53 @@ def main():
             continue
 
         predictions = load_submission(pkl_path)
-        metrics = evaluate_subset(ann_json, predictions)
-
-        if metrics:
-            all_results[subset] = metrics
-            print(f"  [{subset}] AP={metrics['AP']:.4f}  AP50={metrics['AP_50']:.4f}  "
-                  f"AP75={metrics['AP_75']:.4f}  "
-                  f"AR_1={metrics['AR_1']:.4f}  AR_10={metrics['AR_10']:.4f}  AR_100={metrics['AR_100']:.4f}  "
-                  f"preds={len(predictions)}")
-        else:
+        if not predictions:
             print(f"  [{subset}] SKIP — no predictions")
+            continue
+
+        # Original evaluation
+        metrics_orig = evaluate_subset(ann_json, predictions)
+        # Ranking rescore evaluation
+        predictions_ranked = apply_ranking_rescore(predictions)
+        metrics_rank = evaluate_subset(ann_json, predictions_ranked)
+
+        if metrics_orig or metrics_rank:
+            entry = {}
+            if metrics_orig:
+                entry["original"] = metrics_orig
+            if metrics_rank:
+                entry["ranking"] = metrics_rank
+            all_results[subset] = entry
+
+            o = metrics_orig or {}
+            r = metrics_rank or {}
+            print(f"  [{subset}] preds={len(predictions)}")
+            print(f"    original: AP={o.get('AP', 0):.4f}  AP50={o.get('AP_50', 0):.4f}  "
+                  f"AP75={o.get('AP_75', 0):.4f}  "
+                  f"AR_1={o.get('AR_1', 0):.4f}  AR_10={o.get('AR_10', 0):.4f}  AR_100={o.get('AR_100', 0):.4f}")
+            print(f"    ranking:  AP={r.get('AP', 0):.4f}  AP50={r.get('AP_50', 0):.4f}  "
+                  f"AP75={r.get('AP_75', 0):.4f}  "
+                  f"AR_1={r.get('AR_1', 0):.4f}  AR_10={r.get('AR_10', 0):.4f}  AR_100={r.get('AR_100', 0):.4f}")
 
     # Summary
     print("=" * 90)
-    if all_results:
-        mean_ap = np.mean([m["AP"] for m in all_results.values()])
-        mean_ap50 = np.mean([m["AP_50"] for m in all_results.values()])
-        mean_ap75 = np.mean([m["AP_75"] for m in all_results.values()])
-        mean_ar1 = np.mean([m["AR_1"] for m in all_results.values()])
-        mean_ar10 = np.mean([m["AR_10"] for m in all_results.values()])
-        mean_ar100 = np.mean([m["AR_100"] for m in all_results.values()])
-        print(f"  Evaluated {len(all_results)} subsets")
-        print(f"  Mean AP    = {mean_ap:.4f}")
-        print(f"  Mean AP50  = {mean_ap50:.4f}")
-        print(f"  Mean AP75  = {mean_ap75:.4f}")
-        print(f"  Mean AR_1  = {mean_ar1:.4f}")
-        print(f"  Mean AR_10 = {mean_ar10:.4f}")
-        print(f"  Mean AR_100= {mean_ar100:.4f}")
-    else:
-        print("  No results to summarize.")
+    for eval_type in ["original", "ranking"]:
+        results_type = {k: v[eval_type] for k, v in all_results.items() if eval_type in v}
+        if not results_type:
+            continue
+        mean_ap = np.mean([m["AP"] for m in results_type.values()])
+        mean_ap50 = np.mean([m["AP_50"] for m in results_type.values()])
+        mean_ap75 = np.mean([m["AP_75"] for m in results_type.values()])
+        mean_ar1 = np.mean([m["AR_1"] for m in results_type.values()])
+        mean_ar10 = np.mean([m["AR_10"] for m in results_type.values()])
+        mean_ar100 = np.mean([m["AR_100"] for m in results_type.values()])
+        print(f"  [{eval_type}] Evaluated {len(results_type)} subsets")
+        print(f"  [{eval_type}] Mean AP    = {mean_ap:.4f}")
+        print(f"  [{eval_type}] Mean AP50  = {mean_ap50:.4f}")
+        print(f"  [{eval_type}] Mean AP75  = {mean_ap75:.4f}")
+        print(f"  [{eval_type}] Mean AR_1  = {mean_ar1:.4f}")
+        print(f"  [{eval_type}] Mean AR_10 = {mean_ar10:.4f}")
+        print(f"  [{eval_type}] Mean AR_100= {mean_ar100:.4f}")
 
     # Save JSON
     if args.output_json:
@@ -156,13 +361,28 @@ def main():
             "data_path": args.data_path,
             "split": args.split,
             "num_subsets_evaluated": len(all_results),
-            "mean_AP": float(mean_ap) if all_results else None,
-            "mean_AP50": float(mean_ap50) if all_results else None,
-            "mean_AP75": float(mean_ap75) if all_results else None,
-            "mean_AR_1": float(mean_ar1) if all_results else None,
-            "mean_AR_10": float(mean_ar10) if all_results else None,
-            "mean_AR_100": float(mean_ar100) if all_results else None,
-            "per_subset": {k: {kk: round(vv, 6) for kk, vv in v.items()} for k, v in all_results.items()},
+            "per_subset": {},
+        }
+        for eval_type in ["original", "ranking"]:
+            results_type = {k: v[eval_type] for k, v in all_results.items() if eval_type in v}
+            if results_type:
+                mean_ap = np.mean([m["AP"] for m in results_type.values()])
+                mean_ap50 = np.mean([m["AP_50"] for m in results_type.values()])
+                mean_ap75 = np.mean([m["AP_75"] for m in results_type.values()])
+                mean_ar1 = np.mean([m["AR_1"] for m in results_type.values()])
+                mean_ar10 = np.mean([m["AR_10"] for m in results_type.values()])
+                mean_ar100 = np.mean([m["AR_100"] for m in results_type.values()])
+                output[f"mean_AP_{eval_type}"] = float(mean_ap)
+                output[f"mean_AP50_{eval_type}"] = float(mean_ap50)
+                output[f"mean_AP75_{eval_type}"] = float(mean_ap75)
+                output[f"mean_AR_1_{eval_type}"] = float(mean_ar1)
+                output[f"mean_AR_10_{eval_type}"] = float(mean_ar10)
+                output[f"mean_AR_100_{eval_type}"] = float(mean_ar100)
+            else:
+                output[f"mean_AP_{eval_type}"] = None
+        output["per_subset"] = {
+            k: {ek: {kk: round(vv, 6) for kk, vv in ev.items()} for ek, ev in v.items()}
+            for k, v in all_results.items()
         }
         with open(args.output_json, "w") as f:
             json.dump(output, f, indent=2, ensure_ascii=False)

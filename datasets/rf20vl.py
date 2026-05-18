@@ -31,20 +31,18 @@ class DatasetRF20VL(Dataset):
         self.train_imgs = {img["id"]: img for img in train_data["images"]}
         self.query_imgs = {img["id"]: img for img in query_data["images"]}
 
-        # Build category map (skip id=0 placeholder)
-        self.categories = {cat["id"]: cat["name"] for cat in train_data["categories"] if cat["id"] != 0}
+        # Build category map
+        self.categories = {cat["id"]: cat["name"] for cat in train_data["categories"]}
 
         # Build query index: (cat_id, img_id) -> [bbox, ...]
         self.query_bboxes = defaultdict(list)
         for ann in query_data["annotations"]:
-            if ann["category_id"] != 0:
-                self.query_bboxes[(ann["category_id"], ann["image_id"])].append(ann["bbox"])
+            self.query_bboxes[(ann["category_id"], ann["image_id"])].append(ann["bbox"])
 
         # Build support index: cat_id -> [(img_id, file_name, [bbox, ...]), ...]
         train_bboxes_by_class = defaultdict(lambda: defaultdict(list))
         for ann in train_data["annotations"]:
-            if ann["category_id"] != 0:
-                train_bboxes_by_class[ann["category_id"]][ann["image_id"]].append(ann["bbox"])
+            train_bboxes_by_class[ann["category_id"]][ann["image_id"]].append(ann["bbox"])
 
         self.support_info = {}
         for cat_id, img_dict in train_bboxes_by_class.items():

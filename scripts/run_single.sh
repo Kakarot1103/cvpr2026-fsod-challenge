@@ -4,8 +4,8 @@ set -e
 # ==================== 配置 ====================
 
 # 子集（取消注释你要跑的那个）
-# SUBSET="actions-zzid2-zb1hq-fsod-amih"
-SUBSET="aerial-airport-7ap9o-fsod-ddgc"
+SUBSET="actions-zzid2-zb1hq-fsod-amih"
+# SUBSET="aerial-airport-7ap9o-fsod-ddgc"
 # SUBSET="all-elements-fsod-mebv"
 # SUBSET="aquarium-combined-fsod-gjvb"
 # SUBSET="defect-detection-yjplx-fxobh-fsod-amdi"
