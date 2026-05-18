@@ -1,0 +1,376 @@
+{
+  "Button": {
+    "Button": {
+      "AP": 0.06652227722772278,
+      "AP_50": 0.07363861386138613,
+      "AP_75": 0.07363861386138613,
+      "prompt_score": 0.07363861386138613
+    },
+    "Call to Action": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Primary Action": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Submit Button": {
+      "AP": 0.019257425742574257,
+      "AP_50": 0.020792079207920793,
+      "AP_75": 0.020792079207920793,
+      "prompt_score": 0.020792079207920793
+    },
+    "Continue Button": {
+      "AP": 0.06467821782178218,
+      "AP_50": 0.06930693069306931,
+      "AP_75": 0.06930693069306931,
+      "prompt_score": 0.06930693069306931
+    },
+    "Confirm Action": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "Check box": {
+    "Check box": {
+      "AP": 0.043063866826243066,
+      "AP_50": 0.06516973125884017,
+      "AP_75": 0.04377652050919377,
+      "prompt_score": 0.06516973125884017
+    },
+    "filled square": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "unchecked box": {
+      "AP": 0.052153737351757164,
+      "AP_50": 0.07910673484930911,
+      "AP_75": 0.05284843869002285,
+      "prompt_score": 0.07910673484930911
+    },
+    "toggle square": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "checkbox icon": {
+      "AP": 0.027260726072607263,
+      "AP_50": 0.04504950495049505,
+      "AP_75": 0.0231023102310231,
+      "prompt_score": 0.04504950495049505
+    },
+    "select button": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "Checked Radio button": {
+    "Checked Radio button": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Selected radio": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Checked circle": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Radio selected": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Filled dot": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Checked option": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "Checked box": {
+    "Checked box": {
+      "AP": 0.02262311945480262,
+      "AP_50": 0.028892889288928886,
+      "AP_75": 0.028892889288928886,
+      "prompt_score": 0.028892889288928886
+    },
+    "Selected checkbox": {
+      "AP": 0.012981691026245482,
+      "AP_50": 0.022913719943422912,
+      "AP_75": 0.009924563884959924,
+      "prompt_score": 0.022913719943422912
+    },
+    "Checkmark box": {
+      "AP": 0.06431135613561356,
+      "AP_50": 0.09227690626205477,
+      "AP_75": 0.07229008615147228,
+      "prompt_score": 0.09227690626205477
+    },
+    "Ticked option": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Checked item": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Selected option box": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "Dropdown box": {
+    "Dropdown box": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Down arrow menu": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Select list field": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Expandable input box": {
+      "AP": 0.018022109903298025,
+      "AP_50": 0.01942117288651942,
+      "AP_75": 0.01942117288651942,
+      "prompt_score": 0.01942117288651942
+    },
+    "Option picker field": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Dropdown selector": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "Dropdown expand": {
+    "Dropdown expand": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Dropdown menu open": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Expanded list options": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Dropdown choices visible": {
+      "AP": 0.000726072607260726,
+      "AP_50": 0.0012101210121012102,
+      "AP_75": 0.0012101210121012102,
+      "prompt_score": 0.0012101210121012102
+    },
+    "Menu expanded view": {
+      "AP": 0.010891089108910889,
+      "AP_50": 0.010891089108910887,
+      "AP_75": 0.010891089108910887,
+      "prompt_score": 0.010891089108910887
+    },
+    "Select options shown": {
+      "AP": 0.02258921771298009,
+      "AP_50": 0.034653465346534656,
+      "AP_75": 0.02588401697312588,
+      "prompt_score": 0.034653465346534656
+    }
+  },
+  "Icon": {
+    "Icon": {
+      "AP": 0.0010396039603960397,
+      "AP_50": 0.010396039603960397,
+      "AP_75": 0.0,
+      "prompt_score": 0.010396039603960397
+    },
+    "gear": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "heart": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "home": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "user": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "settings": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "Radio button": {
+    "Radio button": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Round selection": {
+      "AP": 0.018486562942008483,
+      "AP_50": 0.025176803394625174,
+      "AP_75": 0.025176803394625174,
+      "prompt_score": 0.025176803394625174
+    },
+    "Single choice dot": {
+      "AP": 0.0021782178217821784,
+      "AP_50": 0.0027227722772277226,
+      "AP_75": 0.0027227722772277226,
+      "prompt_score": 0.0027227722772277226
+    },
+    "Checked circle": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Choice indicator": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Selection button": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "Scroll bar": {
+    "Scroll bar": {
+      "AP": 0.04938613861386139,
+      "AP_50": 0.06695544554455446,
+      "AP_75": 0.057920792079207924,
+      "prompt_score": 0.06695544554455446
+    },
+    "vertical scroll bar": {
+      "AP": 0.03826732673267327,
+      "AP_50": 0.060396039603960394,
+      "AP_75": 0.040594059405940595,
+      "prompt_score": 0.060396039603960394
+    },
+    "horizontal scroll bar": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "scroll thumb": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "scroll track": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "scroll handle": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "Text box": {
+    "Text box": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Input field": {
+      "AP": 0.06007425742574257,
+      "AP_50": 0.07277227722772277,
+      "AP_75": 0.07277227722772277,
+      "prompt_score": 0.07277227722772277
+    },
+    "Text entry box": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Editable field": {
+      "AP": 0.020792079207920793,
+      "AP_50": 0.020792079207920793,
+      "AP_75": 0.020792079207920793,
+      "prompt_score": 0.020792079207920793
+    },
+    "Free text input": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  }
+}

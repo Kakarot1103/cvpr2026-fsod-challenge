@@ -1,0 +1,230 @@
+{
+  "aggregate": {
+    "aggregate": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "broken concrete piece": {
+      "AP": 0.13481848184818482,
+      "AP_50": 0.14521452145214522,
+      "AP_75": 0.14521452145214522,
+      "prompt_score": 0.14521452145214522
+    },
+    "gray rough fragment": {
+      "AP": 0.08085808580858085,
+      "AP_50": 0.08415841584158416,
+      "AP_75": 0.08415841584158416,
+      "prompt_score": 0.08415841584158416
+    },
+    "construction rubble chunk": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "granular stone shard": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "irregular masonry bit": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "cardboard": {
+    "cardboard": {
+      "AP": 0.1254236733197129,
+      "AP_50": 0.13503850385038504,
+      "AP_75": 0.13503850385038504,
+      "prompt_score": 0.13503850385038504
+    },
+    "corrugated cardboard": {
+      "AP": 0.13720159515951594,
+      "AP_50": 0.1485148514851485,
+      "AP_75": 0.1485148514851485,
+      "prompt_score": 0.1485148514851485
+    },
+    "wavy paper board": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "brown fiber sheet": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "torn cardboard box": {
+      "AP": 0.09965163182984964,
+      "AP_50": 0.10864896013410864,
+      "AP_75": 0.10864896013410864,
+      "prompt_score": 0.10864896013410864
+    },
+    "ribbed paper material": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "hard plastic": {
+    "hard plastic": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "ribbed pipe": {
+      "AP": 0.09702970297029703,
+      "AP_50": 0.10066006600660066,
+      "AP_75": 0.10066006600660066,
+      "prompt_score": 0.10066006600660066
+    },
+    "corrugated tube": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "flexible conduit": {
+      "AP": 0.09735973597359736,
+      "AP_50": 0.10066006600660066,
+      "AP_75": 0.10066006600660066,
+      "prompt_score": 0.10066006600660066
+    },
+    "gray plastic pipe": {
+      "AP": 0.09735973597359736,
+      "AP_50": 0.10066006600660066,
+      "AP_75": 0.10066006600660066,
+      "prompt_score": 0.10066006600660066
+    },
+    "textured hose": {
+      "AP": 0.09735973597359736,
+      "AP_50": 0.10066006600660066,
+      "AP_75": 0.10066006600660066,
+      "prompt_score": 0.10066006600660066
+    }
+  },
+  "metal": {
+    "metal": {
+      "AP": 0.06105610561056106,
+      "AP_50": 0.06765676567656766,
+      "AP_75": 0.06765676567656766,
+      "prompt_score": 0.06765676567656766
+    },
+    "metal plate": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "hollow disc": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "square fastener": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "central hole": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "metal connector": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "soft plastic": {
+    "soft plastic": {
+      "AP": 0.01419141914191419,
+      "AP_50": 0.01485148514851485,
+      "AP_75": 0.01485148514851485,
+      "prompt_score": 0.01485148514851485
+    },
+    "crumpled plastic bag": {
+      "AP": 0.05115511551155116,
+      "AP_50": 0.05115511551155116,
+      "AP_75": 0.05115511551155116,
+      "prompt_score": 0.05115511551155116
+    },
+    "wadded plastic sheet": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "folded translucent plastic": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "loose plastic debris": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "wrinkled plastic mass": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "timber": {
+    "timber": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "wood plank": {
+      "AP": 0.11688668866886688,
+      "AP_50": 0.12816281628162815,
+      "AP_75": 0.12816281628162815,
+      "prompt_score": 0.12816281628162815
+    },
+    "long wood": {
+      "AP": 0.10863651841374614,
+      "AP_50": 0.11724029545811725,
+      "AP_75": 0.11724029545811725,
+      "prompt_score": 0.11724029545811725
+    },
+    "cut timber": {
+      "AP": 0.10920869519664181,
+      "AP_50": 0.11710989939573667,
+      "AP_75": 0.11710989939573667,
+      "prompt_score": 0.11710989939573667
+    },
+    "wood beam": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "grained board": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  }
+}

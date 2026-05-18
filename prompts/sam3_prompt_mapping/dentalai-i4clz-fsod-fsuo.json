@@ -1,0 +1,142 @@
+{
+  "Cavity": {
+    "Cavity": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "tooth decay hole": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "dental caries area": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "irregular tooth void": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "demineralized tooth region": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "cavity inside tooth": {
+      "AP": 0.0002647139713971398,
+      "AP_50": 0.0003781628162816282,
+      "AP_75": 0.0003781628162816282,
+      "prompt_score": 0.0003781628162816282
+    }
+  },
+  "Fillings": {
+    "Fillings": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "tooth filling material": {
+      "AP": 0.010264026402640264,
+      "AP_50": 0.015346534653465346,
+      "AP_75": 0.015346534653465346,
+      "prompt_score": 0.015346534653465346
+    },
+    "dental restoration": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "cavity filling": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "radiopaque filling": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "internal tooth filling": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "Impacted Tooth": {
+    "Impacted Tooth": {
+      "AP": 0.005673404938412815,
+      "AP_50": 0.008035985688298216,
+      "AP_75": 0.0067282963657973646,
+      "prompt_score": 0.008035985688298216
+    },
+    "misaligned erupting tooth": {
+      "AP": 0.005350386799313687,
+      "AP_50": 0.00774575853879044,
+      "AP_75": 0.006023203653088987,
+      "prompt_score": 0.00774575853879044
+    },
+    "blocked tooth root": {
+      "AP": 0.003496643414341434,
+      "AP_50": 0.004996999699969998,
+      "AP_75": 0.004059405940594059,
+      "prompt_score": 0.004996999699969998
+    },
+    "anatomical tooth obstruction": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "unerupted tooth structure": {
+      "AP": 0.007587839509213291,
+      "AP_50": 0.010488387200789047,
+      "AP_75": 0.009061682030271995,
+      "prompt_score": 0.010488387200789047
+    }
+  },
+  "Implant": {
+    "Implant": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "dental screw": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "cylindrical implant": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "bone anchor": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "radiopaque cylinder": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  }
+}

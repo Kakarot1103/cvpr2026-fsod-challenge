@@ -1,0 +1,200 @@
+{
+  "DIP": {
+    "DIP": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "toe bone": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "finger tip bone": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "distal phalanx": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "end digit bone": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "terminal bone": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "MCP": {
+    "MCP": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "finger bones": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "phalange segments": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "middle finger bone": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "proximal phalanx": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "finger joint bones": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "PIP": {
+    "PIP": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "finger middle joint": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "proximal phalangeal joint": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "middle finger hinge": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "phalangeal articulation": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "finger bend joint": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "Radius": {
+    "Radius": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "long cylindrical bone": {
+      "AP": 6.441402434082272e-05,
+      "AP_50": 0.00030003000300030005,
+      "AP_75": 0.0,
+      "prompt_score": 0.00030003000300030005
+    },
+    "forearm lever bone": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "Ulna": {
+    "Ulna": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "medial forearm bone": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "ulnar styloid process": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "forearm shaft bone": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "Wrist": {
+    "Wrist": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Carpal bones": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Hand joint": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Forearm connection": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Wrist joint": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Small bones": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  }
+}

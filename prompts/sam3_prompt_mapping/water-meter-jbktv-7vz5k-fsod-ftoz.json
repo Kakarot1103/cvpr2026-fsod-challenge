@@ -1,0 +1,340 @@
+{
+  "0": {
+    "0": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "digit zero": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "circular zero": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "zero glyph": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "zero symbol": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "zero numeral": {
+      "AP": 0.011045261669024045,
+      "AP_50": 0.026143328618576142,
+      "AP_75": 0.00792079207920792,
+      "prompt_score": 0.026143328618576142
+    }
+  },
+  "1": {
+    "1": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "digit one": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "numeral one": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "stroke one": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "top bar one": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "bottom bar one": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "2": {
+    "2": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "digit two": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "number two": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "display digit": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "numeric two": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "fractional two": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "3": {
+    "3": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "mechanical digit three": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "rotating counter three": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "4": {
+    "4": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "top loop": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "bottom loop": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "vertical stroke": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "closed top": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "closed bottom": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "5": {
+    "5": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "top loop": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "bottom stroke": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "vertical line": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "curved top": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "horizontal bar": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "6": {
+    "6": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "number six": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "closed loop six": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "curved bottom six": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "top loop six": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "extended curve six": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "7": {
+    "7": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "seven": {
+      "AP": 0.0057425742574257425,
+      "AP_50": 0.010396039603960397,
+      "AP_75": 0.0027227722772277226,
+      "prompt_score": 0.010396039603960397
+    },
+    "number seven": {
+      "AP": 0.021485148514851483,
+      "AP_50": 0.040594059405940595,
+      "AP_75": 0.020792079207920793,
+      "prompt_score": 0.040594059405940595
+    },
+    "digit seven": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "sevens": {
+      "AP": 0.016336633663366337,
+      "AP_50": 0.03069306930693069,
+      "AP_75": 0.014851485148514847,
+      "prompt_score": 0.03069306930693069
+    }
+  },
+  "8": {
+    "8": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "digit eight": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "enclosed eight": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "9": {
+    "9": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "number nine": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "digit nine": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "nine symbol": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "nine shape": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "nine numeral": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  }
+}

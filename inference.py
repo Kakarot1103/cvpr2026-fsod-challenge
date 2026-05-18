@@ -98,6 +98,30 @@ def load_class_descriptions(prompt_dir, subset):
         return json.load(f)
 
 
+def load_prompt_mapping(mapping_dir, subset):
+    """加载 prompt mapping 文件，返回 {category: best_prompt}。
+
+    对每个类别选取 prompt_score 最高的候选 prompt。
+    如果文件不存在则返回空 dict，不影响默认行为。
+    """
+    mapping_path = os.path.join(mapping_dir, f"{subset}.json")
+    if not os.path.isfile(mapping_path):
+        return {}
+    with open(mapping_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    result = {}
+    for cat_name, candidates in data.items():
+        best_prompt = cat_name
+        best_score = -1.0
+        for prompt, metrics in candidates.items():
+            score = metrics.get("prompt_score", 0.0)
+            if score > best_score:
+                best_score = score
+                best_prompt = prompt
+        result[cat_name] = best_prompt
+    return result
+
+
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
@@ -301,6 +325,9 @@ def parse_args():
     parser.add_argument("--vqa-prompt-dir", type=str,
                         default="DetPO/prompts/detpo/Qwen3-VL-8B-Instruct",
                         help="Directory containing class description JSON files")
+    parser.add_argument("--prompt-mapping-dir", type=str,
+                        default="prompts/sam3_prompt_mapping",
+                        help="Directory containing SAM3 prompt mapping JSON files")
     return parser.parse_args()
 
 
@@ -369,6 +396,11 @@ def main():
             class_descriptions = load_class_descriptions(args.vqa_prompt_dir, subset)
             log.info("Loaded %d class descriptions for %s", len(class_descriptions), subset)
 
+        # 加载 prompt mapping
+        prompt_mapping = load_prompt_mapping(args.prompt_mapping_dir, subset)
+        if prompt_mapping:
+            log.info("Loaded prompt mapping for %s: %d categories", subset, len(prompt_mapping))
+
         dataloader = DataLoader(dataset, batch_size=1, shuffle=False,
                                 num_workers=0, collate_fn=_collate_fn)
 
@@ -420,8 +452,9 @@ def main():
                     candidate_boxes = candidate_boxes[keep]
 
             # --- Inference ---
+            prompt = prompt_mapping.get(category, category)
             result = segmenter.forward_with_query_boxes(
-                query_pil, candidate_boxes, prompt=category,
+                query_pil, candidate_boxes, prompt=prompt,
             )
 
             # 保存原始预测（visual / tv / text）

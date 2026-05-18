@@ -5,4 +5,8 @@ results/
 __pycache__/
 CLAUDE.md
 scripts/parallel/logs/
-DetPO/
+DetPO/results/
+DetPO/prompts/
+DetPO/fingerprints/
+DetPO/__pycache__/
+DetPO/detpo/__pycache__/

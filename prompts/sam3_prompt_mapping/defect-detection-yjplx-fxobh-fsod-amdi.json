@@ -1,0 +1,154 @@
+{
+  "defective fishplate": {
+    "defective fishplate": {
+      "AP": 0.026732673267326732,
+      "AP_50": 0.043729372937293724,
+      "AP_75": 0.027227722772277224,
+      "prompt_score": 0.043729372937293724
+    },
+    "broken rail clip": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "damaged track fastener": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "worn rail clamp": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "corroded fishplate": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "faulty rail holder": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "fastener": {
+    "fastener": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "railway hook": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "steel anchor hook": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "track mounting hook": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "railway attachment": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "maintenance hook": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "missing fastener": {
+    "missing fastener": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "rail clip missing": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "bolt clamp gone": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "fastener absent": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "rail sleeper clip": {
+      "AP": 0.00952970297029703,
+      "AP_50": 0.013613861386138614,
+      "AP_75": 0.013613861386138614,
+      "prompt_score": 0.013613861386138614
+    },
+    "missing rail clamp": {
+      "AP": 0.006683168316831682,
+      "AP_50": 0.012376237623762377,
+      "AP_75": 0.009075907590759075,
+      "prompt_score": 0.012376237623762377
+    }
+  },
+  "non defective fishplate": {
+    "non defective fishplate": {
+      "AP": 0.019059405940594056,
+      "AP_50": 0.027227722772277224,
+      "AP_75": 0.027227722772277224,
+      "prompt_score": 0.027227722772277224
+    },
+    "rail clamping plate": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "metal rail fastener": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "symmetrical fishplate": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "bolted rail plate": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "integrated rail clamp": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  }
+}

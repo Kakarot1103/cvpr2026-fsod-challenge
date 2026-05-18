@@ -36,8 +36,8 @@ PRED_TYPES=("tv" "text" "visual" "vqa")
 
 # VQA rescoring 配置
 VQA_RESCORE="--vqa-rescore"
-OUTPUT_BASE="results/vqa-test-ddp-new"
-SUBMIT_BASE="submission/vqa-test-ddp-new"
+OUTPUT_BASE="results/vqa-test-ddp-new-prompt"
+SUBMIT_BASE="submission/vqa-test-ddp-new-prompt"
 
 NUM_GPUS=${#GPUS[@]}
 TOTAL=${#SUBSETS[@]}

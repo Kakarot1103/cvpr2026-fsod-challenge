@@ -1,0 +1,276 @@
+{
+  "Candy Boom": {
+    "Candy Boom": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "jelly candy bag": {
+      "AP": 0.03362648540251796,
+      "AP_50": 0.05634944674532993,
+      "AP_75": 0.0289553033118226,
+      "prompt_score": 0.05634944674532993
+    },
+    "white dog mascot": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "glossy fruit candy": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "translucent chewy candy": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "Chocopie Dark": {
+    "Chocopie Dark": {
+      "AP": 0.0072268060139347255,
+      "AP_50": 0.008865053171983866,
+      "AP_75": 0.008865053171983866,
+      "prompt_score": 0.008865053171983866
+    },
+    "ChocoPie Dark box": {
+      "AP": 0.04139855841914205,
+      "AP_50": 0.05346733997724097,
+      "AP_75": 0.05346733997724097,
+      "prompt_score": 0.05346733997724097
+    },
+    "Orion chocolate cookie": {
+      "AP": 0.004158415841584159,
+      "AP_50": 0.005198019801980197,
+      "AP_75": 0.005198019801980197,
+      "prompt_score": 0.005198019801980197
+    },
+    "Red ChocoPie pack": {
+      "AP": 0.04454113096508043,
+      "AP_50": 0.056648157486417355,
+      "AP_75": 0.056648157486417355,
+      "prompt_score": 0.056648157486417355
+    },
+    "Dark flavor snack": {
+      "AP": 0.0071029177093533515,
+      "AP_50": 0.008928344757552676,
+      "AP_75": 0.008928344757552676,
+      "prompt_score": 0.008928344757552676
+    },
+    "Wafer cookie package": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "Chocopie Nor": {
+    "Chocopie Nor": {
+      "AP": 0.008743335872048744,
+      "AP_50": 0.010696605374823196,
+      "AP_75": 0.010696605374823196,
+      "prompt_score": 0.010696605374823196
+    },
+    "red packaged snack": {
+      "AP": 0.005589905063437618,
+      "AP_50": 0.006564786913473955,
+      "AP_75": 0.006564786913473955,
+      "prompt_score": 0.006564786913473955
+    },
+    "chocopie wrapper": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "chocopie product": {
+      "AP": 0.014454130520257163,
+      "AP_50": 0.018104204206089602,
+      "AP_75": 0.018104204206089602,
+      "prompt_score": 0.018104204206089602
+    },
+    "red chocolate snack": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "Marine Boy": {
+    "Marine Boy": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "nautical character": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "marine graphics": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "playful sea design": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "bold underwater art": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "OStar Red": {
+    "OStar Red": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "red chip bag": {
+      "AP": 0.004918009513501959,
+      "AP_50": 0.006513809275664409,
+      "AP_75": 0.006513809275664409,
+      "prompt_score": 0.006513809275664409
+    },
+    "OStar red pack": {
+      "AP": 0.02392149929278642,
+      "AP_50": 0.03129420084865629,
+      "AP_75": 0.03129420084865629,
+      "prompt_score": 0.03129420084865629
+    },
+    "bold OStar logo": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "red branded snack": {
+      "AP": 0.008448854535633696,
+      "AP_50": 0.011396680928075059,
+      "AP_75": 0.011396680928075059,
+      "prompt_score": 0.011396680928075059
+    }
+  },
+  "OStar Yellow": {
+    "OStar Yellow": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "yellow star logo": {
+      "AP": 0.004844413012729844,
+      "AP_50": 0.03129420084865629,
+      "AP_75": 0.0,
+      "prompt_score": 0.03129420084865629
+    },
+    "OStar chip bag": {
+      "AP": 0.03812310347414051,
+      "AP_50": 0.050542860320514804,
+      "AP_75": 0.03315200485565798,
+      "prompt_score": 0.050542860320514804
+    },
+    "yellow star emblem": {
+      "AP": 0.004844413012729844,
+      "AP_50": 0.03129420084865629,
+      "AP_75": 0.0,
+      "prompt_score": 0.03129420084865629
+    },
+    "OStar snack package": {
+      "AP": 0.014911588706752871,
+      "AP_50": 0.018895651071436415,
+      "AP_75": 0.01458092992867296,
+      "prompt_score": 0.018895651071436415
+    }
+  },
+  "Swing Maxx": {
+    "Swing Maxx": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "white X logo": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Swing MAX pack": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "bold X design": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "dark background snack": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "X centered package": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    }
+  },
+  "Swing Nor": {
+    "Swing Nor": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Red bag snack": {
+      "AP": 0.013630256750371392,
+      "AP_50": 0.01770655304396836,
+      "AP_75": 0.016751194350204248,
+      "prompt_score": 0.01770655304396836
+    },
+    "Curved logo snack": {
+      "AP": 0.004182651871744551,
+      "AP_50": 0.006863186318631863,
+      "AP_75": 0.004781728172817283,
+      "prompt_score": 0.006863186318631863
+    },
+    "Orange background snack": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Green accent snack": {
+      "AP": 0.0,
+      "AP_50": 0.0,
+      "AP_75": 0.0,
+      "prompt_score": 0.0
+    },
+    "Fried snack bag": {
+      "AP": 0.007583196942534444,
+      "AP_50": 0.0110416647206626,
+      "AP_75": 0.009921663952164978,
+      "prompt_score": 0.0110416647206626
+    }
+  }
+}
