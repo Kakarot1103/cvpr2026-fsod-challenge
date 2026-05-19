@@ -414,7 +414,9 @@ def main():
             print(f"\nResults saved to {args.output_json}")
         return
 
-    all_results = {}  # {subset: {"original": metrics, "ranking": metrics}}
+    all_results = {}  # {subset: {"original": metrics, "ranking": metrics} or None}
+    zero_metrics = {"AP": 0.0, "AP_50": 0.0, "AP_75": 0.0, "AP_small": 0.0,
+                    "AP_medium": 0.0, "AP_large": 0.0, "AR_1": 0.0, "AR_10": 0.0, "AR_100": 0.0}
 
     for pkl_file in pkl_files:
         subset = os.path.splitext(pkl_file)[0]
@@ -423,11 +425,13 @@ def main():
 
         if not os.path.isfile(ann_json):
             print(f"  [{subset}] SKIP — annotation not found: {ann_json}")
+            all_results[subset] = None
             continue
 
         predictions = load_submission(pkl_path)
         if not predictions:
             print(f"  [{subset}] SKIP — no predictions")
+            all_results[subset] = None
             continue
 
         # Original evaluation
@@ -436,37 +440,43 @@ def main():
         predictions_ranked = apply_ranking_rescore(predictions)
         metrics_rank = evaluate_subset(ann_json, predictions_ranked)
 
-        if metrics_orig or metrics_rank:
-            entry = {}
-            if metrics_orig:
-                entry["original"] = metrics_orig
-            if metrics_rank:
-                entry["ranking"] = metrics_rank
-            all_results[subset] = entry
+        entry = {}
+        if metrics_orig:
+            entry["original"] = metrics_orig
+        else:
+            entry["original"] = zero_metrics
+        if metrics_rank:
+            entry["ranking"] = metrics_rank
+        else:
+            entry["ranking"] = zero_metrics
+        all_results[subset] = entry
 
-            o = metrics_orig or {}
-            r = metrics_rank or {}
-            print(f"  [{subset}] preds={len(predictions)}")
-            print(f"    original: AP={o.get('AP', 0):.4f}  AP50={o.get('AP_50', 0):.4f}  "
-                  f"AP75={o.get('AP_75', 0):.4f}  "
-                  f"AR_1={o.get('AR_1', 0):.4f}  AR_10={o.get('AR_10', 0):.4f}  AR_100={o.get('AR_100', 0):.4f}")
-            print(f"    ranking:  AP={r.get('AP', 0):.4f}  AP50={r.get('AP_50', 0):.4f}  "
-                  f"AP75={r.get('AP_75', 0):.4f}  "
-                  f"AR_1={r.get('AR_1', 0):.4f}  AR_10={r.get('AR_10', 0):.4f}  AR_100={r.get('AR_100', 0):.4f}")
+        o = metrics_orig or zero_metrics
+        r = metrics_rank or zero_metrics
+        print(f"  [{subset}] preds={len(predictions)}")
+        print(f"    original: AP={o.get('AP', 0):.4f}  AP50={o.get('AP_50', 0):.4f}  "
+              f"AP75={o.get('AP_75', 0):.4f}  "
+              f"AR_1={o.get('AR_1', 0):.4f}  AR_10={o.get('AR_10', 0):.4f}  AR_100={o.get('AR_100', 0):.4f}")
+        print(f"    ranking:  AP={r.get('AP', 0):.4f}  AP50={r.get('AP_50', 0):.4f}  "
+              f"AP75={r.get('AP_75', 0):.4f}  "
+              f"AR_1={r.get('AR_1', 0):.4f}  AR_10={r.get('AR_10', 0):.4f}  AR_100={r.get('AR_100', 0):.4f}")
 
-    # Summary
+    # Summary — use total pkl count as denominator so skipped subsets count as 0
+    num_total = len(pkl_files)
     print("=" * 90)
     for eval_type in ["original", "ranking"]:
-        results_type = {k: v[eval_type] for k, v in all_results.items() if eval_type in v}
-        if not results_type:
+        metrics_list = [v[eval_type] for v in all_results.values() if v is not None and eval_type in v]
+        num_skipped = sum(1 for v in all_results.values() if v is None)
+        if not metrics_list:
             continue
-        mean_ap = np.mean([m["AP"] for m in results_type.values()])
-        mean_ap50 = np.mean([m["AP_50"] for m in results_type.values()])
-        mean_ap75 = np.mean([m["AP_75"] for m in results_type.values()])
-        mean_ar1 = np.mean([m["AR_1"] for m in results_type.values()])
-        mean_ar10 = np.mean([m["AR_10"] for m in results_type.values()])
-        mean_ar100 = np.mean([m["AR_100"] for m in results_type.values()])
-        print(f"  [{eval_type}] Evaluated {len(results_type)} subsets")
+        mean_ap = sum(m["AP"] for m in metrics_list) / num_total
+        mean_ap50 = sum(m["AP_50"] for m in metrics_list) / num_total
+        mean_ap75 = sum(m["AP_75"] for m in metrics_list) / num_total
+        mean_ar1 = sum(m["AR_1"] for m in metrics_list) / num_total
+        mean_ar10 = sum(m["AR_10"] for m in metrics_list) / num_total
+        mean_ar100 = sum(m["AR_100"] for m in metrics_list) / num_total
+        print(f"  [{eval_type}] Evaluated {len(metrics_list)}/{num_total} subsets"
+              f"{f' ({num_skipped} skipped, counted as 0)' if num_skipped else ''}")
         print(f"  [{eval_type}] Mean AP    = {mean_ap:.4f}")
         print(f"  [{eval_type}] Mean AP50  = {mean_ap50:.4f}")
         print(f"  [{eval_type}] Mean AP75  = {mean_ap75:.4f}")
@@ -480,29 +490,23 @@ def main():
             "submission_dir": submission_dir,
             "data_path": args.data_path,
             "split": args.split,
-            "num_subsets_evaluated": len(all_results),
+            "num_subsets_total": num_total,
             "per_subset": {},
         }
         for eval_type in ["original", "ranking"]:
-            results_type = {k: v[eval_type] for k, v in all_results.items() if eval_type in v}
-            if results_type:
-                mean_ap = np.mean([m["AP"] for m in results_type.values()])
-                mean_ap50 = np.mean([m["AP_50"] for m in results_type.values()])
-                mean_ap75 = np.mean([m["AP_75"] for m in results_type.values()])
-                mean_ar1 = np.mean([m["AR_1"] for m in results_type.values()])
-                mean_ar10 = np.mean([m["AR_10"] for m in results_type.values()])
-                mean_ar100 = np.mean([m["AR_100"] for m in results_type.values()])
-                output[f"mean_AP_{eval_type}"] = float(mean_ap)
-                output[f"mean_AP50_{eval_type}"] = float(mean_ap50)
-                output[f"mean_AP75_{eval_type}"] = float(mean_ap75)
-                output[f"mean_AR_1_{eval_type}"] = float(mean_ar1)
-                output[f"mean_AR_10_{eval_type}"] = float(mean_ar10)
-                output[f"mean_AR_100_{eval_type}"] = float(mean_ar100)
+            metrics_list = [v[eval_type] for v in all_results.values() if v is not None and eval_type in v]
+            if metrics_list:
+                output[f"mean_AP_{eval_type}"] = float(sum(m["AP"] for m in metrics_list) / num_total)
+                output[f"mean_AP50_{eval_type}"] = float(sum(m["AP_50"] for m in metrics_list) / num_total)
+                output[f"mean_AP75_{eval_type}"] = float(sum(m["AP_75"] for m in metrics_list) / num_total)
+                output[f"mean_AR_1_{eval_type}"] = float(sum(m["AR_1"] for m in metrics_list) / num_total)
+                output[f"mean_AR_10_{eval_type}"] = float(sum(m["AR_10"] for m in metrics_list) / num_total)
+                output[f"mean_AR_100_{eval_type}"] = float(sum(m["AR_100"] for m in metrics_list) / num_total)
             else:
                 output[f"mean_AP_{eval_type}"] = None
         output["per_subset"] = {
             k: {ek: {kk: round(vv, 6) for kk, vv in ev.items()} for ek, ev in v.items()}
-            for k, v in all_results.items()
+            for k, v in all_results.items() if v is not None
         }
         with open(args.output_json, "w") as f:
             json.dump(output, f, indent=2, ensure_ascii=False)

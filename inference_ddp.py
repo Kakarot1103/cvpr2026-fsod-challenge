@@ -165,18 +165,21 @@ def _draw_boxes(image_pil, boxes_xyxy, color, width=3):
 
 
 def save_visualization(results_dir, category, query_img_path, query_pil,
-                       gt_xyxy, tv_boxes, support_items):
-    vis_dir = os.path.join(results_dir, "vis", category)
-    os.makedirs(vis_dir, exist_ok=True)
-
-    query_vis = _draw_boxes(query_pil, gt_xyxy, color="green", width=3)
-    if tv_boxes.numel() > 0:
-        query_vis = _draw_boxes(query_vis, tv_boxes, color="red", width=3)
-
+                       gt_xyxy, result, support_items):
     query_stem = os.path.splitext(os.path.basename(query_img_path))[0]
-    query_vis.save(os.path.join(vis_dir, f"{query_stem}.jpg"), quality=90)
 
-    supp_dir = os.path.join(vis_dir, "supports")
+    for pt in ["visual", "tv", "text"]:
+        boxes = result[f"{pt}_boxes"].cpu()
+        vis_dir = os.path.join(results_dir, "vis", pt, category)
+        os.makedirs(vis_dir, exist_ok=True)
+
+        query_vis = _draw_boxes(query_pil, gt_xyxy, color="green", width=3)
+        if boxes.numel() > 0:
+            query_vis = _draw_boxes(query_vis, boxes, color="red", width=3)
+        query_vis.save(os.path.join(vis_dir, f"{query_stem}.jpg"), quality=90)
+
+    # support images (shared, only save once)
+    supp_dir = os.path.join(results_dir, "vis", category, "supports")
     os.makedirs(supp_dir, exist_ok=True)
     for supp_path, supp_bboxes_xywh in support_items:
         supp_pil = Image.open(supp_path).convert("RGB")
@@ -199,6 +202,13 @@ class SubmissionCollector:
     def add(self, pred_type, subset, img_id, cat_id, boxes_xyxy, scores):
         self.all_img_ids[subset].add(img_id)
         if boxes_xyxy.numel() == 0:
+            # 添加一个极低分数的 dummy bbox，避免评测因空 instance 列表报错
+            self.submissions[pred_type][subset][img_id].append({
+                "image_id": int(img_id),
+                "category_id": int(cat_id),
+                "bbox": [0.0, 0.0, 0.0, 0.0],
+                "score": 1e-6,
+            })
             return
         boxes_xywh = box_xyxy_to_xywh(boxes_xyxy)
         for i in range(boxes_xywh.shape[0]):
@@ -288,7 +298,10 @@ def parse_args():
     parser.add_argument("--no-vis", action="store_true",
                         help="Disable visualization saving")
     parser.add_argument("--vqa-rescore", action="store_true",
-                        help="Apply VQA rescoring to tv predictions")
+                        help="Apply VQA rescoring to predictions")
+    parser.add_argument("--vqa-target", type=str, default="tv",
+                        choices=["tv", "text", "visual"],
+                        help="Which prediction type to apply VQA rescoring to (default: tv)")
     parser.add_argument("--vqa-prompt-dir", type=str,
                         default="DetPO/prompts/detpo/Qwen3-VL-8B-Instruct",
                         help="Directory containing class description JSON files")
@@ -436,8 +449,9 @@ def main():
                 query_pil, candidate_boxes, prompt=prompt,
             )
 
-            tv_boxes_after_nms = None
-            tv_scores_after_nms = None
+            vqa_target = args.vqa_target
+            target_boxes = None
+            target_scores = None
             for pt in ["visual", "tv", "text"]:
                 boxes = result[f"{pt}_boxes"].cpu()
                 scores = result[f"{pt}_scores"].cpu()
@@ -446,9 +460,9 @@ def main():
                     boxes = boxes[keep]
                     scores = scores[keep]
 
-                if pt == "tv":
-                    tv_boxes_after_nms = boxes
-                    tv_scores_after_nms = scores
+                if pt == vqa_target:
+                    target_boxes = boxes
+                    target_scores = scores
 
                 local_all_img_ids[subset].add(img_id)
                 local_preds.append((
@@ -458,9 +472,9 @@ def main():
                 ))
 
             # VQA rescoring
-            if vqa_rescorer is not None and tv_boxes_after_nms is not None and tv_boxes_after_nms.numel() > 0:
+            if vqa_rescorer is not None and target_boxes is not None and target_boxes.numel() > 0:
                 desc = class_descriptions.get(category)
-                boxes_xywh = box_xyxy_to_xywh(tv_boxes_after_nms)
+                boxes_xywh = box_xyxy_to_xywh(target_boxes)
                 rescored_scores = []
                 for i in range(boxes_xywh.shape[0]):
                     bbox_xywh = boxes_xywh[i].tolist()
@@ -470,13 +484,13 @@ def main():
                 vqa_scores = []
                 for i, vs in enumerate(rescored_scores):
                     if vs < 0:
-                        vqa_scores.append(float(tv_scores_after_nms[i].item()))
+                        vqa_scores.append(float(target_scores[i].item()))
                     else:
                         vqa_scores.append(vs)
 
                 local_preds.append((
                     "vqa", subset, img_id, class_id,
-                    tv_boxes_after_nms.numpy().tolist(),
+                    target_boxes.numpy().tolist(),
                     vqa_scores,
                 ))
 
@@ -500,7 +514,7 @@ def main():
                     results_dir, category,
                     sample["query_img_path"], query_pil,
                     gt_xyxy,
-                    result["tv_boxes"].cpu(),
+                    result,
                     support_items,
                 )
 

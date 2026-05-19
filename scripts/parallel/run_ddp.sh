@@ -3,8 +3,8 @@ set -e
 
 # ==================== 配置 ====================
 
-SPLIT="test"
-# SPLIT="valid"
+# SPLIT="test"
+SPLIT="valid"
 
 GPUS=(0 1 2 3 4)
 
@@ -36,6 +36,7 @@ PRED_TYPES=("tv" "text" "visual" "vqa")
 
 # VQA rescoring 配置
 VQA_RESCORE="--vqa-rescore"
+VQA_TARGET="--vqa-target text"
 OUTPUT_BASE="results/vqa-test-ddp-new-prompt"
 SUBMIT_BASE="submission/vqa-test-ddp-new-prompt"
 
@@ -94,7 +95,8 @@ CUDA_VISIBLE_DEVICES=$GPU_LIST torchrun \\
     --split "$SPLIT" \\
     --device cuda \\
     --output-dir "${OUTPUT_BASE}/${SUBSET}_${SPLIT}" \\
-    $VQA_RESCORE
+    $VQA_RESCORE \\
+    $VQA_TARGET
 echo ">>>>>>>>>> $SUBSET DONE <<<<<<<<<<"
 
 EOF
