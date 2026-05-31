@@ -299,6 +299,8 @@ def parse_args():
                         help="Disable visualization saving")
     parser.add_argument("--vqa-rescore", action="store_true",
                         help="Apply VQA rescoring to predictions")
+    parser.add_argument("--vqa-crop", action="store_true",
+                        help="VQA uses cropped region (bbox expanded by 50%%) instead of full image")
     parser.add_argument("--vqa-target", type=str, default="tv",
                         choices=["tv", "text", "visual"],
                         help="Which prediction type to apply VQA rescoring to (default: tv)")
@@ -357,8 +359,9 @@ def main():
             api_key="EMPTY",
             server_url="http://localhost:22002/v1",
             model_name="qwen3-vl-8b",
+            use_crop=args.vqa_crop,
         )
-        log.info("VQA Rescorer initialized")
+        log.info("VQA Rescorer initialized (crop=%s)", args.vqa_crop)
 
     # --- Dataset ---
     subsets = get_all_subsets(args.data_path)

@@ -20,6 +20,8 @@ class VQARescorer(nn.Module):
         api_key: str = "EMPTY",
         bbox_color: str = "red",
         bbox_width: int = 3,
+        use_crop: bool = False,
+        crop_expand: float = 0.5,
     ):
         """
         Args:
@@ -28,12 +30,16 @@ class VQARescorer(nn.Module):
             api_key: API key（vLLM 本地部署通常为 "EMPTY"）。
             bbox_color: 红框颜色。
             bbox_width: 红框线宽（像素）。
+            use_crop: 是否裁剪 bbox 附近区域后发给 VLM（而非发整图）。
+            crop_expand: 裁剪时框各边外扩比例（相对框宽高），默认 0.5 即各边外扩 50%。
         """
         super().__init__()
         self.model_name = model_name
         self.client = OpenAI(base_url=server_url, api_key=api_key)
         self.bbox_color = bbox_color
         self.bbox_width = bbox_width
+        self.use_crop = use_crop
+        self.crop_expand = crop_expand
 
     def _draw_bbox(self, image: Image.Image, bbox_xywh) -> Image.Image:
         """在图片上画红框，返回副本。"""
@@ -121,14 +127,29 @@ class VQARescorer(nn.Module):
         if yes_logprob is None and no_logprob is None:
             return -1.0
 
-        # Yes 缺失但 No 存在 → 用 1 - p(No) 估计
+        # Yes 缺失但 No 存在 → Yes 不在 top-20，概率极低
         if yes_logprob is None:
-            no_prob = math.exp(no_logprob)
-            return 1.0 - no_prob
+            return 0.0
 
         yes_prob = math.exp(yes_logprob)
         no_prob = math.exp(no_logprob) if no_logprob is not None else 0.0
         return yes_prob / (yes_prob + no_prob + 1e-18)
+
+    def _crop_around_bbox(self, image: Image.Image, bbox_xywh) -> tuple:
+        """裁剪 bbox 外扩 crop_expand 倍的区域，返回 (cropped_image, box_xywh_in_crop)。"""
+        x, y, w, h = bbox_xywh
+        pad_x = w * self.crop_expand
+        pad_y = h * self.crop_expand
+
+        img_w, img_h = image.size
+        cx = max(0, int(x - pad_x))
+        cy = max(0, int(y - pad_y))
+        cx2 = min(img_w, int(x + w + pad_x))
+        cy2 = min(img_h, int(y + h + pad_y))
+
+        cropped = image.crop((cx, cy, cx2, cy2))
+        box_in_crop = [x - cx, y - cy, w, h]
+        return cropped, box_in_crop
 
     def forward(
         self,
@@ -149,6 +170,10 @@ class VQARescorer(nn.Module):
         Returns:
             vqa_score: Yes 概率归一化值，范围 (0, 1)。
         """
-        img_with_bbox = self._draw_bbox(image, bbox_xywh)
+        if self.use_crop:
+            cropped, box_in_crop = self._crop_around_bbox(image, bbox_xywh)
+            img_with_bbox = self._draw_bbox(cropped, box_in_crop)
+        else:
+            img_with_bbox = self._draw_bbox(image, bbox_xywh)
         prompt = self._build_prompt(category_name, class_description)
         return self._call_vlm(img_with_bbox, prompt)
