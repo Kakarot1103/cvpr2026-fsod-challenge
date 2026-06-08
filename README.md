@@ -63,7 +63,7 @@ This connects to a local vLLM server (`http://localhost:22002/v1` by default) an
 ### 2. Multi-GPU parallel inference
 
 ```bash
-bash scripts/parallel/run_ddp.sh
+bash scripts/run_ddp.sh
 ```
 
 ### Evaluate a submission
