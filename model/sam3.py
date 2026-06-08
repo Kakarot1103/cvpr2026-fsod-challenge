@@ -38,13 +38,14 @@ class Sam3Segmenter(nn.Module):
             return torch.zeros(0, device=self.device)
         return scores
 
-    def get_query_boxes_from_cat(self, cat_img, cat_bboxes_xyxy):
+    def get_query_boxes_from_cat(self, cat_img, cat_bboxes_xyxy, prompt=None):
         """
         从拼接图像（ref+query）中提取 query 半边的预测 boxes。
 
         Args:
             cat_img: 拼接后的PIL图像
             cat_bboxes_xyxy: 拼接图的 bbox (xyxy format tensor)
+            prompt: 可选文本提示词，与 geometric prompt 联合使用
         Returns:
             query_boxes: query半边的预测 boxes (xyxy format tensor, 坐标已映射回 query 图空间)
         """
@@ -56,6 +57,9 @@ class Sam3Segmenter(nn.Module):
             for box in norm_boxes_cxcywh:
                 inference_state = self.processor.add_geometric_prompt(
                     state=inference_state, box=box, label=True)
+
+        if prompt and prompt != 'visual':
+            inference_state = self.processor.set_text_prompt(state=inference_state, prompt=prompt)
 
         all_boxes = self._get_boxes_from_state(inference_state)
 

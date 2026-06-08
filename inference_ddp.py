@@ -413,6 +413,7 @@ def main():
             _, img_id = dataset.index[global_idx]
 
             query_pil = Image.open(sample["query_img_path"]).convert("RGB")
+            prompt = prompt_mapping.get(category, category)
 
             # --- Collect candidate boxes ---
             all_candidate_boxes = []
@@ -427,7 +428,8 @@ def main():
                 supp_scaled = scale_bboxes(supp_bboxes_xywh, scale)
                 supp_xyxy = box_xywh_to_xyxy(supp_scaled)
 
-                query_boxes = segmenter.get_query_boxes_from_cat(cat_pil, supp_xyxy)
+                query_boxes = segmenter.get_query_boxes_from_cat(
+                    cat_pil, supp_xyxy, prompt=prompt)
 
                 if query_boxes.numel() > 0:
                     query_boxes[:, 0] = query_boxes[:, 0].clamp(min=0, max=query_w)
@@ -447,7 +449,6 @@ def main():
                     candidate_boxes = candidate_boxes[keep]
 
             # --- Inference ---
-            prompt = prompt_mapping.get(category, category)
             result = segmenter.forward_with_query_boxes(
                 query_pil, candidate_boxes, prompt=prompt,
             )

@@ -3,8 +3,8 @@ set -e
 
 # ==================== 配置 ====================
 
-SPLIT="test"
-# SPLIT="valid"
+# SPLIT="test"
+SPLIT="valid"
 
 GPUS=(0 1 2 3 4)
 
@@ -36,10 +36,9 @@ PRED_TYPES=("tv" "text" "visual" "vqa")
 
 # VQA rescoring 配置
 VQA_RESCORE="--vqa-rescore"
-VQA_CROP="--vqa-crop"
 VQA_TARGET="--vqa-target tv"
-OUTPUT_BASE="results/test/vqa_crop"
-SUBMIT_BASE="submission/test/vqa_crop"
+OUTPUT_BASE="results/val/text_on_cat"
+SUBMIT_BASE="submission/val/text_on_cat"
 
 NUM_GPUS=${#GPUS[@]}
 TOTAL=${#SUBSETS[@]}
