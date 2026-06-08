@@ -429,7 +429,7 @@ def main():
                 supp_xyxy = box_xywh_to_xyxy(supp_scaled)
 
                 query_boxes = segmenter.get_query_boxes_from_cat(
-                    cat_pil, supp_xyxy, prompt=prompt)
+                    cat_pil, supp_xyxy, prompt=None)
 
                 if query_boxes.numel() > 0:
                     query_boxes[:, 0] = query_boxes[:, 0].clamp(min=0, max=query_w)
