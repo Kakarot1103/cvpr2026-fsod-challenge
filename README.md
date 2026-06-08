@@ -4,41 +4,28 @@ CVPR 2026 Few-Shot Object Detection (FSOD) Challenge solution based on SAM3.
 
 ## Overview
 
-This project tackles few-shot object detection on the **RF-20VL** dataset using the **SAM3** foundation model. The core idea is to concatenate each support image with the query image, extract candidate bounding boxes from the query side via SAM3, and then refine detections through text-visual prompts.
+This project tackles few-shot object detection on the **RF-20VL** dataset using the **SAM3** foundation model, combined with a Multimodal Large Language Model (MLLM) for post-hoc verification.
 
-The pipeline produces three types of predictions per image:
-- **visual**: bounding boxes from visual prompts only
-- **tv**: bounding boxes from text + visual prompts
-- **text**: bounding boxes from text prompts only
+The pipeline consists of four stages:
 
-## Project Structure
+1. **Candidate box generation via in-context learning**: Each support image is concatenated horizontally with the query image. SAM3 receives the support-side ground-truth boxes as geometric prompts and predicts target boxes on the query side through visual analogy.
 
-```
-.
-├── inference_ddp.py      # Multi-GPU inference & evaluation pipeline
-├── evaluate.py           # Standalone evaluation script for submissions
-├── model/
-│   └── sam3.py           # Sam3Segmenter wrapper class
-├── datasets/
-│   └── rf20vl.py         # RF-20VL dataset loader
-├── sam3/                 # SAM3 library (source)
-├── scripts/
-│   └── parallel/
-│       └── run_ddp.sh    # Multi-GPU parallel inference script
-├── data/                 # RF-20VL dataset (symlink, excluded from git)
-├── results/              # Inference results (excluded from git)
-└── submission/           # Submission pickle files (excluded from git)
-```
+2. **Text prompt optimization**: For each category, multiple candidate text prompts are evaluated on both support (reference IoU) and query (presence score) images to select the most effective one for SAM3's semantic space.
+
+3. **Text-visual joint inference**: The optimized text prompt and the candidate boxes are jointly fed into SAM3, producing three types of predictions — visual-only, text+visual, and text-only — which are then merged and deduplicated via NMS.
+
+4. **VQA rescoring**: A multimodal LLM (Qwen3-VL-8B) performs visual question answering on each detection. The query image is annotated with a red bounding box, and the model answers a Yes/No question about whether the target object lies inside the box. Normalized log-probabilities are used to rescore detection confidence, effectively reducing false positives.
 
 ## Setup
 
 ### Requirements
 
-- Python 3.10+
-- PyTorch with CUDA
-- pycocotools
-- torchvision
-- PIL (Pillow)
+```bash
+pip install -r requirements.txt
+```
+
+- Python 3.10+, PyTorch with CUDA
+- SAM3 model (see below)
 
 ### Data
 
@@ -75,26 +62,5 @@ bash scripts/parallel/run_ddp.sh
 
 ```bash
 python evaluate.py --submission results/<timestamp>/submissions/tv
-python evaluate.py --submission results/<timestamp>/submissions/tv --split test
-python evaluate.py --submission results/<timestamp>/submissions/tv --subset gwhd2021-fsod-atsv
+python evaluate.py --submission results/<timestamp>/submissions/tv --split test --subset gwhd2021-fsod-atsv
 ```
-
-### Custom inference
-
-```bash
-torchrun --nproc_per_node=<num_gpus> inference_ddp.py \
-    --data-path ./data \
-    --split test \
-    --subset <subset-name> \
-    --device cuda \
-    --nms-iou 0.8
-```
-
-## Method
-
-1. For each (query_image, category) pair, load all support images from the train split
-2. Concatenate each support image with the query image horizontally
-3. Use SAM3 to predict candidate boxes on the concatenated image, filtering for the query half
-4. Merge and deduplicate candidate boxes across all supports via NMS
-5. Run SAM3 on the query image with candidate boxes as geometric prompts + category name as text prompt
-6. Evaluate with COCO metrics (AP, AP@50, AP@75, etc.)
