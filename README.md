@@ -15,7 +15,7 @@ The pipeline produces three types of predictions per image:
 
 ```
 .
-├── inference.py          # Main inference & evaluation pipeline
+├── inference_ddp.py      # Multi-GPU inference & evaluation pipeline
 ├── evaluate.py           # Standalone evaluation script for submissions
 ├── model/
 │   └── sam3.py           # Sam3Segmenter wrapper class
@@ -23,10 +23,8 @@ The pipeline produces three types of predictions per image:
 │   └── rf20vl.py         # RF-20VL dataset loader
 ├── sam3/                 # SAM3 library (source)
 ├── scripts/
-│   ├── run_single.sh     # Run inference on a single subset
-│   ├── run_all.sh        # Run inference on all subsets
-│   ├── run_loop.sh       # Loop over all subsets sequentially
-│   └── parallel/         # Multi-GPU parallel inference scripts
+│   └── parallel/
+│       └── run_ddp.sh    # Multi-GPU parallel inference script
 ├── data/                 # RF-20VL dataset (symlink, excluded from git)
 ├── results/              # Inference results (excluded from git)
 └── submission/           # Submission pickle files (excluded from git)
@@ -67,24 +65,10 @@ export SAM3_CHECKPOINT=/path/to/sam3.pt
 
 ## Usage
 
-### Run on a single subset
-
-```bash
-bash scripts/run_single.sh
-```
-
-Edit `SUBSET` and `SPLIT` variables in the script as needed.
-
-### Run on all subsets
-
-```bash
-bash scripts/run_all.sh
-```
-
 ### Multi-GPU parallel inference
 
 ```bash
-bash scripts/parallel/run_parallel.sh
+bash scripts/parallel/run_ddp.sh
 ```
 
 ### Evaluate a submission
@@ -98,7 +82,7 @@ python evaluate.py --submission results/<timestamp>/submissions/tv --subset gwhd
 ### Custom inference
 
 ```bash
-python inference.py \
+torchrun --nproc_per_node=<num_gpus> inference_ddp.py \
     --data-path ./data \
     --split test \
     --subset <subset-name> \
