@@ -8,9 +8,9 @@ This project tackles few-shot object detection on the **RF-20VL** dataset using 
 
 The pipeline consists of four stages:
 
-1. **Candidate box generation via in-context learning**: Each support image is concatenated horizontally with the query image. SAM3 receives the support-side ground-truth boxes as geometric prompts and predicts target boxes on the query side through visual analogy.
+1. **Text prompt optimization (pre-computed)**: Raw category names may not align well with SAM3's semantic space. The script `generate_prompt_mapping.py` first uses an LLM (e.g., Qwen3-VL-8B) to generate multiple candidate short prompts per category, then evaluates each candidate via SAM3 text-only inference on training images. The prompt achieving the highest COCO AP is selected and saved to `prompts/sam3_prompt_mapping/<subset>.json`. At inference time, `inference_ddp.py` simply loads this mapping and looks up the optimal prompt per category.
 
-2. **Text prompt optimization (pre-computed)**: Raw category names may not align well with SAM3's semantic space. The script `generate_prompt_mapping.py` first uses an LLM (e.g., Qwen3-VL-8B) to generate multiple candidate short prompts per category, then evaluates each candidate via SAM3 text-only inference on training images. The prompt achieving the highest COCO AP is selected and saved to `prompts/sam3_prompt_mapping/<subset>.json`. At inference time, `inference_ddp.py` simply loads this mapping and looks up the optimal prompt per category.
+2. **Candidate box generation via in-context learning**: Each support image is concatenated horizontally with the query image. SAM3 receives the support-side ground-truth boxes as geometric prompts and predicts target boxes on the query side through visual analogy.
 
 3. **Text-visual joint inference**: The optimized text prompt and the candidate boxes are jointly fed into SAM3, producing three types of predictions — visual-only, text+visual, and text-only — which are then merged and deduplicated via NMS.
 
