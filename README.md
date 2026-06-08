@@ -52,8 +52,18 @@ ln -s /path/to/RF-20VL ./data
 
 ### Pretrained Model
 
-The SAM3 pretrained model should be available at:
-`/data/chenzhigang/Pretrained_models/SAM/sam3/sam3.pt`
+Download the SAM3 pretrained model and place it under `./pretrained/sam3/`:
+
+```bash
+mkdir -p pretrained/sam3
+# Place sam3.pt in the directory
+```
+
+Or set the environment variable:
+
+```bash
+export SAM3_CHECKPOINT=/path/to/sam3.pt
+```
 
 ## Usage
 

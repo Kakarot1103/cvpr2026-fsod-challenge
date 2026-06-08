@@ -73,7 +73,8 @@ WORKER_FILE="$LOG_DIR/worker.sh"
 cat > "$WORKER_FILE" <<EOF
 #!/bin/bash
 cd "$PROJECT_DIR"
-source /home/chenzhigang/anaconda3/etc/profile.d/conda.sh
+# Initialize conda (auto-detect installation)
+eval "$(conda shell.bash hook 2>/dev/null)" || source "$(conda info --base 2>/dev/null)/etc/profile.d/conda.sh"
 conda activate sam3
 
 echo "DDP Inference: $TOTAL subsets, $NUM_GPUS GPUs"

@@ -8,7 +8,7 @@ defaults:
 #  python sam3/train/train.py -c configs/odinw_text_only.yaml --use-cluster 1 --partition ${PARTITION} --account ${ACCOUNT} --qos ${QoS}
 
 paths:
-  odinw_data_root: /home/chenzhigang/Datasets/odinw/
+  odinw_data_root: ${oc.env:ODINW_DATA_ROOT,/path/to/odinw}
   experiment_log_dir: ./logs/odinw_text_only
   bpe_path: assets/bpe_simple_vocab_16e6.txt.gz # This should be under assets/bpe_simple_vocab_16e6.txt.gz
 
@@ -114,7 +114,7 @@ trainer:
     device: cpus
     eval_mode: true # Set to false if training
     enable_segmentation: ${scratch.enable_segmentation} # Warning: Enable this if using segmentation.
-    checkpoint_path: /data/chenzhigang/Pretrained_models/sam3/sam3.pt
+    checkpoint_path: ${oc.env:SAM3_CHECKPOINT,/path/to/sam3.pt}
 
   meters:
     val:

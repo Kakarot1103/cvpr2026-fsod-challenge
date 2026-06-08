@@ -1,3 +1,4 @@
+import os
 import torch
 import torch.nn as nn
 import random
@@ -10,14 +11,21 @@ from sam3.sam3.model.sam3_image_processor import Sam3Processor
 from sam3.sam3.model.box_ops import box_xyxy_to_cxcywh
 from sam3.sam3.visualization_utils import normalize_bbox
 
+# Default model paths — override via SAM3_MODEL_DIR / SAM3_CHECKPOINT env vars
+_DEFAULT_MODEL_DIR = os.environ.get("SAM3_MODEL_DIR", "./pretrained/sam3")
+_DEFAULT_CHECKPOINT = os.environ.get(
+    "SAM3_CHECKPOINT", os.path.join(_DEFAULT_MODEL_DIR, "sam3.pt")
+)
+
 
 class Sam3Segmenter(nn.Module):
-    def __init__(self, model_path: str = "/data/chenzhigang/Pretrained_models/sam3", device: str = None):
+    def __init__(self, model_path: str = _DEFAULT_MODEL_DIR, device: str = None,
+                 checkpoint_path: str = _DEFAULT_CHECKPOINT):
         super().__init__()
         if device is None:
             device = "cuda" if torch.cuda.is_available() else "cpu"
         self.device = device
-        self.model = build_sam3_image_model(checkpoint_path='/data/chenzhigang/Pretrained_models/SAM/sam3/sam3.pt').to(self.device)
+        self.model = build_sam3_image_model(checkpoint_path=checkpoint_path).to(self.device)
         self.processor = Sam3Processor(self.model)
 
     def _boxes_to_normalized_cxcywh(self, boxes_xyxy, width, height):

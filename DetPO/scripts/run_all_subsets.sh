@@ -8,9 +8,10 @@ set -euo pipefail
 export CUDA_VISIBLE_DEVICES=5
 MODEL_NAME="Qwen3-VL-8B-Instruct"
 SERVED_MODEL_NAME="qwen3-vl-8b"
-ROOT_PATH="/home/chenzhigang/Projects/in-context-seg/cvpr2026-fsod-challenge/data"
+SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+ROOT_PATH="${ROOT_PATH:-$SCRIPT_DIR/../data}"
 DATA_INSTR_PATH="prompts/detpo/Qwen3-VL-8B-Instruct/all_refined_class_instructions"
-SERVER_URL="http://localhost:22002/v1"
+SERVER_URL="${VLLM_SERVER_URL:-http://localhost:22002/v1}"
 OUTPUT_DIR="${1:-results/run_all_$(date +%Y%m%d_%H%M%S)}"
 # ==============================
 
