@@ -3,8 +3,8 @@ set -e
 
 # ==================== 配置 ====================
 
-# SPLIT="test"
-SPLIT="valid"
+SPLIT="test"
+# SPLIT="valid"
 
 GPUS=(0 1 2 3 4)
 
@@ -37,8 +37,8 @@ PRED_TYPES=("tv" "text" "visual" "vqa")
 # VQA rescoring 配置
 VQA_RESCORE="--vqa-rescore"
 VQA_TARGET="--vqa-target tv"
-OUTPUT_BASE="results/val/text_on_cat"
-SUBMIT_BASE="submission/val/text_on_cat"
+OUTPUT_BASE="results/test/text_on_cat"
+SUBMIT_BASE="submission/test/text_on_cat"
 
 NUM_GPUS=${#GPUS[@]}
 TOTAL=${#SUBSETS[@]}
@@ -67,7 +67,7 @@ GPU_LIST=$(IFS=,; echo "${GPUS[*]}")
 
 # ==================== 生成 worker 脚本 ====================
 
-PROJECT_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
+PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 WORKER_FILE="$LOG_DIR/worker.sh"
 
 cat > "$WORKER_FILE" <<EOF
@@ -97,8 +97,7 @@ CUDA_VISIBLE_DEVICES=$GPU_LIST torchrun \\
     --device cuda \\
     --output-dir "${OUTPUT_BASE}/${SUBSET}_${SPLIT}" \\
     $VQA_RESCORE \\
-    $VQA_CROP \\
-    $VQA_TARGET 
+    $VQA_TARGET
 echo ">>>>>>>>>> $SUBSET DONE <<<<<<<<<<"
 
 EOF
